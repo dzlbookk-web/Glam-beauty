@@ -279,11 +279,9 @@ const DB = {
 const S = {
   page:"home", bookings:[], holidays:[], gallery:[], services:[], settings:DEF_SETTINGS,
   lastBook:null,
-  // booking flow
   step:1, date:today(), time:"",
-  selService:null,   // сонгосон үйлчилгээ {id,name,...}
-  selSub:null,       // сонгосон дэд төрөл {id,name,price}
-  form:{name:"",phone:"",email:""},errors:{},
+  selService:null, selSub:null,
+  form:{name:"",phone:""}, errors:{},
   adminAuthed:localStorage.getItem("gw:auth")==="1",
   adminTab:"bookings", adminFilter:"all", schedDate:today(), loading:false
 };
@@ -598,18 +596,29 @@ function BookPage(){
       span({style:{background:"#f7f0f5",color:"var(--pink3)",borderRadius:"8px",padding:"3px 10px",fontSize:"13px",fontWeight:"600"}},S.selService?.name+" – "+S.selSub?.name),
       " · "+S.date+" · "+S.time
     ]));
-    [{key:"name",label:"Нэр",ph:"Таны нэр",type:"text"},{key:"phone",label:"Утас",ph:"9900-0000",type:"tel"},{key:"email",label:"И-мэйл",ph:"email@example.com",type:"email"}].forEach(f=>{
-      const fw=div({style:{marginBottom:"16px"}});
-      fw.appendChild(lbl({className:"lbl"},f.label));
-      const fi=inp({type:f.type,placeholder:f.ph,value:S.form[f.key]});
-      fi.style.borderColor=S.errors[f.key]?"#f87171":"var(--border)";
-      fi.addEventListener("input",e=>{ S.form[f.key]=e.target.value; });
-      fw.appendChild(fi);
-      if(S.errors[f.key]) fw.appendChild(p({style:{fontSize:"12px",color:"#ef4444",marginTop:"4px"}},S.errors[f.key]));
-      inner.appendChild(fw);
-    });
+
+    // Нэр
+    const nw=div({style:{marginBottom:"16px"}});
+    nw.appendChild(lbl({className:"lbl"},"Нэр"));
+    const ni=inp({type:"text",placeholder:"Таны нэр",value:S.form.name});
+    ni.style.borderColor=S.errors.name?"#f87171":"var(--border)";
+    ni.addEventListener("input",e=>{ S.form.name=e.target.value; });
+    nw.appendChild(ni);
+    if(S.errors.name) nw.appendChild(p({style:{fontSize:"12px",color:"#ef4444",marginTop:"4px"}},S.errors.name));
+    inner.appendChild(nw);
+
+    // Утас
+    const pw=div({style:{marginBottom:"20px"}});
+    pw.appendChild(lbl({className:"lbl"},"Утас"));
+    const pi=inp({type:"tel",placeholder:"9900-0000",value:S.form.phone});
+    pi.style.borderColor=S.errors.phone?"#f87171":"var(--border)";
+    pi.addEventListener("input",e=>{ S.form.phone=e.target.value; });
+    pw.appendChild(pi);
+    if(S.errors.phone) pw.appendChild(p({style:{fontSize:"12px",color:"#ef4444",marginTop:"4px"}},S.errors.phone));
+    inner.appendChild(pw);
+
     // Summary
-    const sum=div({style:{background:"#fdf4ff",border:"1px solid #e9d5ff",borderRadius:"14px",padding:"18px",marginBottom:"22px"}});
+    const sum=div({style:{background:"#fdf4ff",border:"1px solid #e9d5ff",borderRadius:"14px",padding:"16px",marginBottom:"22px"}});
     sum.appendChild(p({style:{fontSize:"11px",fontWeight:"700",color:"var(--pink3)",marginBottom:"10px",letterSpacing:"1px"}},"📋 ЗАХИАЛГЫН ДЭЛГЭРЭНГҮЙ"));
     [["Үйлчилгээ",S.selService?.name],["Дэд төрөл",S.selSub?.name],["Хугацаа",(cfg.serviceDuration||90)+" минут"],["Өдөр",S.date],["Цаг",S.time],["Үнэ",fmt(S.selSub?.price||0)]].forEach(row=>{
       const r=div({style:{display:"flex",justifyContent:"space-between",fontSize:"13px",marginBottom:"6px"}});
@@ -618,17 +627,17 @@ function BookPage(){
       sum.appendChild(r);
     });
     inner.appendChild(sum);
+
     const sb=btn({style:{width:"100%",background:S.loading?"#bbb":"var(--pink2)",color:"#fff",border:"none",borderRadius:"13px",padding:"16px 0",fontWeight:"700",fontSize:"15px",boxShadow:"0 4px 18px rgba(212,114,159,.35)"}},S.loading?"Илгээж байна...":"Захиалга илгээх ✦");
     sb.disabled=S.loading;
     sb.addEventListener("click",async()=>{
       const e={};
       if(!S.form.name.trim()) e.name="Нэр оруулна уу";
       if(!/^\d{7,8}/.test(S.form.phone.replace(/[\s\-]/g,""))) e.phone="Утасны дугаар буруу";
-      if(!S.form.email.includes("@")) e.email="Зөв и-мэйл оруулна уу";
       if(Object.keys(e).length){ setState({errors:e}); return; }
       setState({loading:true});
       const b={
-        name:S.form.name, phone:S.form.phone, email:S.form.email,
+        name:S.form.name, phone:S.form.phone,
         date:S.date, time:S.time,
         serviceId:S.selService.id, serviceName:S.selService.name,
         subId:S.selSub.id, subName:S.selSub.name,
@@ -637,7 +646,7 @@ function BookPage(){
         id:uid(), status:"pending", createdAt:new Date().toISOString()
       };
       const saved=await DB.addBooking(b);
-      setState({lastBook:saved,page:"success",step:1,form:{name:"",phone:"",email:""},errors:{},time:"",selService:null,selSub:null,loading:false});
+      setState({lastBook:saved,page:"success",step:1,form:{name:"",phone:""},errors:{},time:"",selService:null,selSub:null,loading:false});
     });
     inner.appendChild(sb);
   }
@@ -652,27 +661,40 @@ function SuccessPage(){
   if(!b){ setState({page:"home"}); return div({}); }
   const wrap=div({style:{minHeight:"100vh",background:"linear-gradient(135deg,#fff5f0,#fdf4ff)",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"24px"}});
   const card=div({style:{maxWidth:"460px",width:"100%",background:"#fff",borderRadius:"26px",padding:"40px 32px",textAlign:"center",boxShadow:"0 20px 60px rgba(0,0,0,.08)"}});
+
   card.appendChild(div({style:{fontSize:"48px",marginBottom:"12px"}},"✨"));
-  card.appendChild(h2({className:"serif",style:{fontSize:"30px",marginBottom:"8px"}},"Амжилттай захиалагдлаа!"));
-  const sp=p({style:{color:"var(--muted)",marginBottom:"24px",fontSize:"14px",lineHeight:"1.75"}});
-  sp.innerHTML=`Захиалгын дугаар: <strong style="color:var(--dark)">#${b.id}</strong><br>Та <strong>${b.email}</strong> хаяг руу мэйл хүлээж авна.`;
-  card.appendChild(sp);
+  card.appendChild(h2({className:"serif",style:{fontSize:"30px",marginBottom:"6px"}},"Захиалга амжилттай!"));
+  card.appendChild(p({style:{color:"var(--muted)",marginBottom:"22px",fontSize:"14px"}},`Захиалгын дугаар: #${b.id}`));
+
+  // Захиалгын дэлгэрэнгүй
   const det=div({style:{background:"#fdf4ff",border:"1px dashed #e9d5ff",borderRadius:"14px",padding:"16px",marginBottom:"18px",textAlign:"left"}});
   [["Үйлчилгээ",b.serviceName],["Дэд төрөл",b.subName],["Өдөр",b.date],["Цаг",b.time],["Нэр",b.name],["Утас",b.phone],["Үнэ",fmt(b.price)]].forEach(row=>{
     const r=div({style:{display:"flex",justifyContent:"space-between",fontSize:"13px",marginBottom:"6px"}});
     r.appendChild(span({style:{color:"var(--muted)"}},row[0]));
-    r.appendChild(span({style:{fontWeight:"600"}},row[1]||""));
+    r.appendChild(span({style:{fontWeight:"600",color:"var(--dark)"}},row[1]||""));
     det.appendChild(r);
   });
   card.appendChild(det);
+
+  // Банкны мэдээлэл
   if(cfg.account){
-    const pay=div({style:{background:"#fff7ed",border:"1px solid #fed7aa",borderRadius:"12px",padding:"14px",marginBottom:"22px",textAlign:"left",fontSize:"13px"}});
-    pay.appendChild(p({style:{fontWeight:"700",color:"#c2410c",marginBottom:"6px"}},"💳 Төлбөр шилжүүлэх"));
-    const pp=p({style:{color:"#555",lineHeight:"1.8"}});
-    pp.innerHTML=`<strong>${cfg.bank}</strong> · <strong>${cfg.account}</strong><br>Утга: <strong>${b.phone}</strong> · Дүн: <strong style="color:#c2410c">${fmt(b.price)}</strong>`;
-    pay.appendChild(pp);
+    const pay=div({style:{background:"#fff7ed",border:"2px solid #fed7aa",borderRadius:"14px",padding:"18px",marginBottom:"16px",textAlign:"left"}});
+    pay.appendChild(p({style:{fontWeight:"700",color:"#c2410c",marginBottom:"10px",fontSize:"14px"}},"💳 Төлбөр шилжүүлэх"));
+    const rows=[["Банк",cfg.bank],["Дансны дугаар",cfg.account],["Гүйлгээний утга",b.phone],["Дүн",fmt(b.price)]];
+    rows.forEach(row=>{
+      const r=div({style:{display:"flex",justifyContent:"space-between",fontSize:"13px",marginBottom:"7px",alignItems:"center"}});
+      r.appendChild(span({style:{color:"#92400e"}},row[0]));
+      r.appendChild(span({style:{fontWeight:"700",color:row[0]==="Дүн"?"#c2410c":"#1a1a1a",fontSize:row[0]==="Дүн"?"15px":"13px"}},row[1]));
+      pay.appendChild(r);
+    });
     card.appendChild(pay);
   }
+
+  // Мэдэгдэл
+  card.appendChild(div({style:{background:"#f0fdf4",border:"1px solid #86efac",borderRadius:"12px",padding:"14px",marginBottom:"22px",fontSize:"13px",color:"#166534",textAlign:"left",lineHeight:"1.7"}},
+    "✅ Төлбөр шилжүүлсний дараа админ захиалгыг баталгаажуулна. Баталгаажсаны дараа та "+b.phone+" дугаарт мэдэгдэл хүлээж авна."
+  ));
+
   card.appendChild(btn({style:{width:"100%",background:"var(--dark)",color:"#fff",border:"none",borderRadius:"13px",padding:"13px 0",fontSize:"15px",fontWeight:"600"},onClick:()=>setState({page:"home"})},"Нүүр хуудас руу буцах"));
   wrap.appendChild(card);
   return wrap;
