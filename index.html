@@ -195,15 +195,15 @@ const DEF_SETTINGS = {
 // Үйлчилгээ: дэд төрлүүдтэй
 const DEF_SERVICES = [
   {id:"svc1",name:"Сормуус",emoji:"👁️",desc:"Сормуусны өргөтгөл, янз бүрийн төрөл",imageUrl:"",capacity:2,order:0,
-   subs:[{id:"sub1a",name:"Classic",price:35000},{id:"sub1b",name:"Volume",price:45000},{id:"sub1c",name:"Mega Volume",price:55000}]},
+   subs:[{id:"sub1a",name:"Classic",price:35000,duration:90},{id:"sub1b",name:"Volume",price:45000,duration:90},{id:"sub1c",name:"Mega Volume",price:55000,duration:90}]},
   {id:"svc2",name:"Хумс",emoji:"💅",desc:"Маникюр, педикюр, гелний бүрэлт",imageUrl:"",capacity:1,order:1,
-   subs:[{id:"sub2a",name:"Маникюр",price:25000},{id:"sub2b",name:"Педикюр",price:30000},{id:"sub2c",name:"Гель маникюр",price:35000}]},
+   subs:[{id:"sub2a",name:"Маникюр",price:25000,duration:45},{id:"sub2b",name:"Педикюр",price:30000,duration:60},{id:"sub2c",name:"Гель маникюр",price:35000,duration:60}]},
   {id:"svc3",name:"Гоо сайхан",emoji:"💄",desc:"Нүүрний будалт, арчилгаа",imageUrl:"",capacity:1,order:2,
-   subs:[{id:"sub3a",name:"Өдрийн будалт",price:40000},{id:"sub3b",name:"Оройн будалт",price:55000}]},
+   subs:[{id:"sub3a",name:"Өдрийн будалт",price:40000,duration:60},{id:"sub3b",name:"Оройн будалт",price:55000,duration:75}]},
   {id:"svc4",name:"Үсчин",emoji:"✂️",desc:"Үс засах, угаах, тохируулах",imageUrl:"",capacity:1,order:3,
-   subs:[{id:"sub4a",name:"Үс засах",price:20000},{id:"sub4b",name:"Угаах + засах",price:28000},{id:"sub4c",name:"Будах",price:60000}]},
+   subs:[{id:"sub4a",name:"Үс засах",price:20000,duration:45},{id:"sub4b",name:"Угаах + засах",price:28000,duration:60},{id:"sub4c",name:"Будах",price:60000,duration:120}]},
   {id:"svc5",name:"Хөмсөг шивээс",emoji:"🖊️",desc:"Хөмсөгний хагас байнгын будалт",imageUrl:"",capacity:1,order:4,
-   subs:[{id:"sub5a",name:"Powder Brow",price:80000},{id:"sub5b",name:"Ombre Brow",price:90000},{id:"sub5c",name:"Microblading",price:120000}]}
+   subs:[{id:"sub5a",name:"Powder Brow",price:80000,duration:120},{id:"sub5b",name:"Ombre Brow",price:90000,duration:120},{id:"sub5c",name:"Microblading",price:120000,duration:150}]}
 ];
 
 const SC={pending:"#f59e0b",confirmed:"#10b981",cancelled:"#ef4444"};
@@ -231,24 +231,20 @@ function genSlots(cfg){
 }
 
 // Тухайн үйлчилгээний slot боломжтой эсэх шалгах
-// Нэг захиалга = serviceDuration минут эзэлдэг
-// Тиймээс [startMin, startMin+serviceDuration) хооронд давхцах захиалгуудыг шалгана
-function getSlotInfo(date, slotTime, svcId, cfg, bookings){
-  const dur = cfg.serviceDuration || 90;
+// Шинэ логик: sub бүр өөр хугацаатай тул booking.duration-ыг ашиглана
+// Slot [slotMin, slotMin+subDur) — энэ хугацаанд давхцах захиалгуудыг тоолно
+function getSlotInfo(date, slotTime, svcId, subDuration, bookings){
   const slotMin = timeToMin(slotTime);
-  const slotEnd = slotMin + dur;
+  const slotEnd = slotMin + (subDuration||90);
 
-  // Тухайн үйлчилгээний capacity
   const svc = S.services.find(s=>s.id===svcId) || DEF_SERVICES.find(s=>s.id===svcId);
   const cap = svc ? (svc.capacity||1) : 1;
 
-  // Давхцаж байгаа захиалгуудыг тоол
-  // Захиалга [bookStart, bookStart+dur) хооронд байвал давхцана
   const overlapping = bookings.filter(b=>{
     if(b.date!==date || b.serviceId!==svcId || b.status==="cancelled") return false;
     const bMin = timeToMin(b.time);
-    const bEnd = bMin + dur;
-    // [slotMin, slotEnd) ба [bMin, bEnd) давхцах
+    const bDur = b.duration || 90;
+    const bEnd = bMin + bDur;
     return slotMin < bEnd && slotEnd > bMin;
   });
 
@@ -527,7 +523,7 @@ function BookPage(){
       const card=btn({style:{border:"2px solid "+(sel?"var(--pink2)":"var(--border)"),borderRadius:"14px",padding:"16px 20px",background:sel?"#fdf0f7":"#fff",display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%",textAlign:"left",transition:"all .15s"}});
       const left2=div({});
       left2.appendChild(p({style:{fontWeight:"700",fontSize:"15px",color:"var(--dark)",marginBottom:"2px"}},sub.name));
-      left2.appendChild(p({style:{fontSize:"12px",color:"var(--muted)"}},`${cfg.serviceDuration||90} минут`));
+      left2.appendChild(p({style:{fontSize:"12px",color:"var(--muted)"}},`${sub.duration||90} минут`));
       card.appendChild(left2);
       const right2=div({style:{display:"flex",alignItems:"center",gap:"10px"}});
       right2.appendChild(span({style:{fontSize:"18px",fontWeight:"700",color:"var(--pink3)"}},fmt(sub.price)));
@@ -558,9 +554,10 @@ function BookPage(){
       inner.appendChild(div({style:{background:"#fef3c7",border:"1px solid #fcd34d",borderRadius:"12px",padding:"14px 18px",fontSize:"13px",color:"#92400e"}},"⚠️ Энэ өдөр амралтын өдөр тул захиалга авахгүй."));
     } else {
       inner.appendChild(lbl({className:"lbl",style:{marginBottom:"12px"}},"Цаг сонгоно уу"));
+      const subDur = S.selSub?.duration || 90;
       const tg=div({className:"slot-grid"});
       slots.forEach(t=>{
-        const info=getSlotInfo(S.date,t,S.selService.id,cfg,S.bookings);
+        const info=getSlotInfo(S.date,t,S.selService.id,subDur,S.bookings);
         const sel=S.time===t;
         let cls="slot-btn";
         if(sel) cls+=" sel";
@@ -569,17 +566,21 @@ function BookPage(){
         const tb=el("button",{className:cls});
         tb.disabled=info.full;
         tb.appendChild(p({style:{fontWeight:"700",fontSize:"15px"}},t));
-        const statusTxt = info.full ? "Дүүрсэн" : info.cap>1 ? `${info.left}/${info.cap} боломжтой` : "Боломжтой";
-        tb.appendChild(p({style:{fontSize:"11px",marginTop:"3px",color:sel?"rgba(255,255,255,.7)":info.full?"#ccc":info.used>0?"#d97706":"var(--muted)"}},statusTxt));
+        const endMin=timeToMin(t)+subDur;
+        const endTime=minToTime(endMin);
+        tb.appendChild(p({style:{fontSize:"11px",marginTop:"2px",color:sel?"rgba(255,255,255,.6)":info.full?"#ccc":"var(--muted)"}},sel?`${t}–${endTime}`:info.full?"Дүүрсэн":info.cap>1?`${info.left}/${info.cap}`:"Боломжтой"));
         tb.addEventListener("click",()=>{ S.time=t; render(); });
         tg.appendChild(tb);
       });
       inner.appendChild(tg);
 
-      // Мэдэгдэл: хугацааны тайлбар
-      const dur=cfg.serviceDuration||90;
+      // Хугацааны мэдэгдэл
+      const subDurDisp = S.selSub?.duration || 90;
+      const selEndTime = S.time ? minToTime(timeToMin(S.time)+subDurDisp) : "";
       inner.appendChild(div({style:{background:"#f0f9ff",border:"1px solid #bae6fd",borderRadius:"10px",padding:"10px 14px",fontSize:"12px",color:"#0369a1",marginBottom:"20px"}},
-        `ℹ️ ${S.selService?.name} үйлчилгээ ${dur} минут үргэлжилнэ. Сонгосон цагаас хойш ${dur} минутын хуваарь эзлэгдэнэ.`
+        S.time
+          ? `⏱️ ${S.time} – ${selEndTime} (${subDurDisp} минут)`
+          : `ℹ️ ${S.selSub?.name} — ${subDurDisp} минут үргэлжилнэ`
       ));
 
       inner.appendChild(btn({style:{width:"100%",background:S.time?"var(--dark)":"#e5e7eb",color:S.time?"#fff":"#9ca3af",border:"none",borderRadius:"13px",padding:"14px 0",fontSize:"15px",fontWeight:"600"},onClick:()=>{ if(S.time) setState({step:4}); }},"Үргэлжлүүлэх →"));
@@ -618,7 +619,7 @@ function BookPage(){
     // Summary
     const sum=div({style:{background:"#fdf4ff",border:"1px solid #e9d5ff",borderRadius:"14px",padding:"16px",marginBottom:"22px"}});
     sum.appendChild(p({style:{fontSize:"11px",fontWeight:"700",color:"var(--pink3)",marginBottom:"10px",letterSpacing:"1px"}},"📋 ЗАХИАЛГЫН ДЭЛГЭРЭНГҮЙ"));
-    [["Үйлчилгээ",S.selService?.name],["Дэд төрөл",S.selSub?.name],["Хугацаа",(cfg.serviceDuration||90)+" минут"],["Өдөр",S.date],["Цаг",S.time],["Үнэ",fmt(S.selSub?.price||0)]].forEach(row=>{
+    [["Үйлчилгээ",S.selService?.name],["Дэд төрөл",S.selSub?.name],["Хугацаа",(S.selSub?.duration||90)+" минут"],["Өдөр",S.date],["Цаг",S.time],["Үнэ",fmt(S.selSub?.price||0)]].forEach(row=>{
       const r=div({style:{display:"flex",justifyContent:"space-between",fontSize:"13px",marginBottom:"6px"}});
       r.appendChild(span({style:{color:"var(--muted)"}},row[0]));
       r.appendChild(span({style:{fontWeight:"600",color:"var(--dark)"}},row[1]||""));
@@ -640,7 +641,7 @@ function BookPage(){
         serviceId:S.selService.id, serviceName:S.selService.name,
         subId:S.selSub.id, subName:S.selSub.name,
         price:S.selSub.price,
-        duration:cfg.serviceDuration||90,
+        duration:S.selSub.duration||90,
         id:uid(), status:"pending", createdAt:new Date().toISOString()
       };
       const saved=await DB.addBooking(b);
@@ -721,7 +722,7 @@ function showConfirmEmailModal(booking){
 Таны захиалга баталгаажлаа. ✅
 
 📋 Захиалгын дэлгэрэнгүй:
-• Үйлчилгээ: ${booking.serviceName} — ${booking.subName}
+• Үйлчилгээ: ${booking.serviceName} — ${booking.subName} (${booking.duration||90} мин)
 • Өдөр: ${booking.date}
 • Цаг: ${booking.time}
 • Үнэ: ${fmt(booking.price)}
@@ -924,28 +925,37 @@ function showServiceModal(svc){
   // Дэд төрлүүд
   m.appendChild(div({style:{height:"1px",background:"var(--border)",marginBottom:"16px"}}));
   const subHeader=div({style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"12px"}});
-  subHeader.appendChild(p({style:{fontWeight:"700",fontSize:"14px"}},"Дэд төрлүүд (үнэ)"));
+  subHeader.appendChild(p({style:{fontWeight:"700",fontSize:"14px"}},"Дэд төрлүүд"));
   const addSubBtn=btn({style:{background:"var(--pink3)",color:"#fff",border:"none",borderRadius:"8px",padding:"5px 12px",fontSize:"12px",fontWeight:"600"}},"+ Нэмэх");
   subHeader.appendChild(addSubBtn); m.appendChild(subHeader);
+
+  // Толгой мөр
+  const subHead=div({style:{display:"grid",gridTemplateColumns:"1fr 90px 80px auto",gap:"8px",marginBottom:"4px"}});
+  ["Нэр","Үнэ (₮)","Хугацаа (мин)",""].forEach(h=>{
+    subHead.appendChild(p({style:{fontSize:"11px",fontWeight:"700",color:"var(--muted)",textTransform:"uppercase",letterSpacing:".5px"}},h));
+  });
+  m.appendChild(subHead);
 
   const subList=div({style:{display:"flex",flexDirection:"column",gap:"8px",marginBottom:"16px"}});
 
   function renderSubs(){
     subList.innerHTML="";
     (data.subs||[]).forEach((sub,idx)=>{
-      const row=div({style:{display:"grid",gridTemplateColumns:"1fr 1fr auto",gap:"8px",alignItems:"center"}});
-      const ni=inp({type:"text",placeholder:"Нэр (жишээ: Classic)",value:sub.name,style:{padding:"9px 12px"}});
+      const row=div({style:{display:"grid",gridTemplateColumns:"1fr 90px 80px auto",gap:"8px",alignItems:"center"}});
+      const ni=inp({type:"text",placeholder:"Classic",value:sub.name,style:{padding:"9px 12px"}});
       ni.addEventListener("input",e=>{ data.subs[idx].name=e.target.value; });
-      const pi=inp({type:"number",placeholder:"Үнэ",value:String(sub.price||""),style:{padding:"9px 12px"}});
+      const pi=inp({type:"number",placeholder:"35000",value:String(sub.price||""),style:{padding:"9px 12px"}});
       pi.addEventListener("input",e=>{ data.subs[idx].price=parseInt(e.target.value)||0; });
+      const di=inp({type:"number",placeholder:"90",value:String(sub.duration||90),style:{padding:"9px 12px"}});
+      di.addEventListener("input",e=>{ data.subs[idx].duration=parseInt(e.target.value)||90; });
       const db4=btn({style:{background:"#fef2f2",color:"#ef4444",border:"1px solid #fecaca",borderRadius:"8px",padding:"8px 10px",fontSize:"13px"}},"✕");
       (function(i){ db4.addEventListener("click",()=>{ data.subs.splice(i,1); renderSubs(); }); })(idx);
-      row.appendChild(ni); row.appendChild(pi); row.appendChild(db4);
+      row.appendChild(ni); row.appendChild(pi); row.appendChild(di); row.appendChild(db4);
       subList.appendChild(row);
     });
   }
   renderSubs();
-  addSubBtn.addEventListener("click",()=>{ if(!data.subs) data.subs=[]; data.subs.push({id:"sub"+Date.now(),name:"",price:0}); renderSubs(); });
+  addSubBtn.addEventListener("click",()=>{ if(!data.subs) data.subs=[]; data.subs.push({id:"sub"+Date.now(),name:"",price:0,duration:90}); renderSubs(); });
   m.appendChild(subList);
 
   // Хадгалах
@@ -1080,13 +1090,14 @@ function buildCalendarTab(){
       secDiv.appendChild(p({style:{fontWeight:"700",fontSize:"13px",marginBottom:"8px",color:"var(--pink3)"}},[svc.emoji||"","  ",svc.name,span({style:{fontSize:"11px",color:"var(--muted)",fontWeight:"400",marginLeft:"6px"}},"("+cap+" зэрэг)")]));
       const sg=div({style:{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(90px,1fr))",gap:"6px"}});
       slots.forEach(t=>{
-        const info=getSlotInfo(S.schedDate,t,svc.id,cfg,S.bookings);
+        const svcSubs=(svc.subs||[]);
+        const maxDur=svcSubs.length>0?Math.max(...svcSubs.map(s=>s.duration||90)):90;
+        const info=getSlotInfo(S.schedDate,t,svc.id,maxDur,S.bookings);
         const sc2=div({style:{border:"1px solid var(--border)",borderRadius:"10px",padding:"8px 6px",background:info.full?"#fff5f5":info.used>0?"#fffbeb":"#fff",textAlign:"center"}});
         sc2.appendChild(p({style:{fontWeight:"700",fontSize:"13px",marginBottom:"2px"}},t));
         sc2.appendChild(p({style:{fontSize:"10px",fontWeight:"700",color:info.full?"#ef4444":info.used>0?"#d97706":"#10b981"}},info.full?"Дүүрсэн":info.used+"/"+cap));
-        // Захиалагчдын нэр
         const bks=S.bookings.filter(b=>b.date===S.schedDate&&b.time===t&&b.serviceId===svc.id&&b.status!=="cancelled");
-        bks.forEach(b=>sc2.appendChild(p({style:{fontSize:"9px",color:"#999",marginTop:"2px"}},"• "+b.name+(b.subName?" ("+b.subName+")":""))));
+        bks.forEach(b=>sc2.appendChild(p({style:{fontSize:"9px",color:"#999",marginTop:"2px"}},"• "+b.name+(b.subName?" ("+b.subName+(b.duration?", "+(b.duration)+"мин":"")+")":""))));
         sg.appendChild(sc2);
       });
       secDiv.appendChild(sg);
