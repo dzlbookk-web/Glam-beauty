@@ -737,26 +737,26 @@ ${cfg.studioName}`;
 
   // Header
   const hd=div({style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"16px"}});
-  hd.appendChild(h3({style:{fontSize:"16px",fontWeight:"700"}},"📧 Үйлчлүүлэгчид илгээх мэйл"));
+  hd.appendChild(h3({style:{fontSize:"16px",fontWeight:"700"}},"💬 Үйлчлүүлэгчид илгээх мессеж"));
   const cl=btn({style:{background:"none",border:"none",fontSize:"20px",cursor:"pointer",color:"#999"}},"✕");
   cl.addEventListener("click",()=>ov.remove());
   hd.appendChild(cl); m.appendChild(hd);
 
   // Хэнд илгээх
   m.appendChild(div({style:{background:"#f0fdf4",border:"1px solid #86efac",borderRadius:"10px",padding:"10px 14px",marginBottom:"14px",fontSize:"13px",color:"#166534"}},
-    `✅ ${booking.name}-д илгээх мэйлийн текст. Доорхыг хуулаад мэйл app-д paste хийнэ үү.`
+    `✅ ${booking.name}-д илгээх мессежийн текст. Доорхыг хуулаад мессеж app-д paste хийнэ үү.`
   ));
 
-  // Мэйлийн текст
+  // Мессежийн текст
   const textBox=div({style:{background:"#f8f8f8",border:"1px solid #eee",borderRadius:"12px",padding:"16px",fontSize:"13px",lineHeight:"1.8",whiteSpace:"pre-wrap",marginBottom:"14px",color:"#333",fontFamily:"monospace",maxHeight:"260px",overflowY:"auto"}},emailText);
   m.appendChild(textBox);
 
   // Copy товч
-  const cpBtn=btn({style:{width:"100%",background:"var(--dark)",color:"#fff",border:"none",borderRadius:"11px",padding:"13px",fontWeight:"600",fontSize:"14px",marginBottom:"8px"}},"📋 Мэйлийн текст хуулах");
+  const cpBtn=btn({style:{width:"100%",background:"var(--dark)",color:"#fff",border:"none",borderRadius:"11px",padding:"13px",fontWeight:"600",fontSize:"14px",marginBottom:"8px"}},"📋 Мессежийн текст хуулах");
   cpBtn.addEventListener("click",()=>{
     navigator.clipboard.writeText(emailText).then(()=>{
       cpBtn.textContent="✓ Хуулагдлаа!"; cpBtn.style.background="#10b981";
-      setTimeout(()=>{ cpBtn.textContent="📋 Мэйлийн текст хуулах"; cpBtn.style.background="var(--dark)"; },2500);
+      setTimeout(()=>{ cpBtn.textContent="📋 Мессежийн текст хуулах"; cpBtn.style.background="var(--dark)"; },2500);
     });
   });
   m.appendChild(cpBtn);
