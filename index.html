@@ -676,31 +676,103 @@ function SuccessPage(){
   });
   card.appendChild(det);
 
-  // Банкны мэдээлэл
+  // Банкны мэдээлэл — copy товчтой
   if(cfg.account){
     const pay=div({style:{background:"#fff7ed",border:"2px solid #fed7aa",borderRadius:"14px",padding:"18px",marginBottom:"16px",textAlign:"left"}});
-    pay.appendChild(p({style:{fontWeight:"700",color:"#c2410c",marginBottom:"10px",fontSize:"14px"}},"💳 Төлбөр шилжүүлэх"));
+    pay.appendChild(p({style:{fontWeight:"700",color:"#c2410c",marginBottom:"12px",fontSize:"14px"}},"💳 Төлбөр шилжүүлэх"));
     const rows=[["Банк",cfg.bank],["Дансны дугаар",cfg.account],["Гүйлгээний утга",b.phone],["Дүн",fmt(b.price)]];
     rows.forEach(row=>{
-      const r=div({style:{display:"flex",justifyContent:"space-between",fontSize:"13px",marginBottom:"7px",alignItems:"center"}});
-      r.appendChild(span({style:{color:"#92400e"}},row[0]));
-      r.appendChild(span({style:{fontWeight:"700",color:row[0]==="Дүн"?"#c2410c":"#1a1a1a",fontSize:row[0]==="Дүн"?"15px":"13px"}},row[1]));
+      const r=div({style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"9px"}});
+      r.appendChild(span({style:{fontSize:"13px",color:"#92400e"}},row[0]));
+      const right=div({style:{display:"flex",alignItems:"center",gap:"7px"}});
+      right.appendChild(span({style:{fontWeight:"700",color:row[0]==="Дүн"?"#c2410c":"#1a1a1a",fontSize:row[0]==="Дүн"?"15px":"13px"}},row[1]));
+      // Copy товч
+      const cp=btn({style:{background:"rgba(194,65,12,.1)",border:"none",borderRadius:"6px",padding:"3px 8px",fontSize:"11px",color:"#c2410c",fontWeight:"600",cursor:"pointer"}},"копи");
+      (function(val,button){
+        button.addEventListener("click",()=>{
+          navigator.clipboard.writeText(val).then(()=>{
+            button.textContent="✓"; button.style.background="rgba(16,185,129,.15)"; button.style.color="#059669";
+            setTimeout(()=>{ button.textContent="копи"; button.style.background="rgba(194,65,12,.1)"; button.style.color="#c2410c"; },2000);
+          });
+        });
+      })(row[1],cp);
+      right.appendChild(cp);
+      r.appendChild(right);
       pay.appendChild(r);
     });
     card.appendChild(pay);
   }
 
-  // Мэдэгдэл
-  card.appendChild(div({style:{background:"#f0fdf4",border:"1px solid #86efac",borderRadius:"12px",padding:"14px",marginBottom:"22px",fontSize:"13px",color:"#166534",textAlign:"left",lineHeight:"1.7"}},
-    "✅ Төлбөр шилжүүлсний дараа админ захиалгыг баталгаажуулна. Баталгаажсаны дараа та "+b.phone+" дугаарт мэдэгдэл хүлээж авна."
-  ));
+  // Ногоон мэдэгдэл
+  const notice=div({style:{background:"#f0fdf4",border:"1px solid #86efac",borderRadius:"12px",padding:"14px",marginBottom:"22px",textAlign:"left",lineHeight:"1.7"}});
+  notice.appendChild(p({style:{fontSize:"13px",color:"#166534",marginBottom:"4px"}},"✅ Дээрх мэдээллээр төлбөр шилжүүлсний дараа админ захиалгыг баталгаажуулна."));
+  notice.appendChild(p({style:{fontSize:"12px",color:"#4ade80"}},"Баталгаажсаны дараа та "+b.phone+" дугаарт мэдэгдэл хүлээж авна."));
+  card.appendChild(notice);
 
   card.appendChild(btn({style:{width:"100%",background:"var(--dark)",color:"#fff",border:"none",borderRadius:"13px",padding:"13px 0",fontSize:"15px",fontWeight:"600"},onClick:()=>setState({page:"home"})},"Нүүр хуудас руу буцах"));
   wrap.appendChild(card);
   return wrap;
 }
 
-// ── ADMIN LOGIN ───────────────────────────────────
+// ── Баталгаажсан мэйлийн modal ───────────────────
+function showConfirmEmailModal(booking){
+  const cfg=S.settings;
+  const emailText=
+`Сайн байна уу, ${booking.name}!
+
+Таны захиалга баталгаажлаа. ✅
+
+📋 Захиалгын дэлгэрэнгүй:
+• Үйлчилгээ: ${booking.serviceName} — ${booking.subName}
+• Өдөр: ${booking.date}
+• Цаг: ${booking.time}
+• Үнэ: ${fmt(booking.price)}
+
+📍 Хаяг: ${cfg.address}
+📞 Утас: ${cfg.phone}
+
+Цагтаа ирнэ үү! Харж байна 🌸
+${cfg.studioName}`;
+
+  const ov=div({className:"modal-overlay"});
+  const m=div({className:"modal",style:{maxWidth:"460px"}});
+
+  // Header
+  const hd=div({style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"16px"}});
+  hd.appendChild(h3({style:{fontSize:"16px",fontWeight:"700"}},"📧 Үйлчлүүлэгчид илгээх мэйл"));
+  const cl=btn({style:{background:"none",border:"none",fontSize:"20px",cursor:"pointer",color:"#999"}},"✕");
+  cl.addEventListener("click",()=>ov.remove());
+  hd.appendChild(cl); m.appendChild(hd);
+
+  // Хэнд илгээх
+  m.appendChild(div({style:{background:"#f0fdf4",border:"1px solid #86efac",borderRadius:"10px",padding:"10px 14px",marginBottom:"14px",fontSize:"13px",color:"#166534"}},
+    `✅ ${booking.name}-д илгээх мэйлийн текст. Доорхыг хуулаад мэйл app-д paste хийнэ үү.`
+  ));
+
+  // Мэйлийн текст
+  const textBox=div({style:{background:"#f8f8f8",border:"1px solid #eee",borderRadius:"12px",padding:"16px",fontSize:"13px",lineHeight:"1.8",whiteSpace:"pre-wrap",marginBottom:"14px",color:"#333",fontFamily:"monospace",maxHeight:"260px",overflowY:"auto"}},emailText);
+  m.appendChild(textBox);
+
+  // Copy товч
+  const cpBtn=btn({style:{width:"100%",background:"var(--dark)",color:"#fff",border:"none",borderRadius:"11px",padding:"13px",fontWeight:"600",fontSize:"14px",marginBottom:"8px"}},"📋 Мэйлийн текст хуулах");
+  cpBtn.addEventListener("click",()=>{
+    navigator.clipboard.writeText(emailText).then(()=>{
+      cpBtn.textContent="✓ Хуулагдлаа!"; cpBtn.style.background="#10b981";
+      setTimeout(()=>{ cpBtn.textContent="📋 Мэйлийн текст хуулах"; cpBtn.style.background="var(--dark)"; },2500);
+    });
+  });
+  m.appendChild(cpBtn);
+
+  // Хаах
+  const closeBtn=btn({style:{width:"100%",background:"transparent",color:"var(--muted)",border:"1px solid var(--border)",borderRadius:"11px",padding:"11px",fontSize:"14px"}},"Хаах");
+  closeBtn.addEventListener("click",()=>ov.remove());
+  m.appendChild(closeBtn);
+
+  ov.addEventListener("click",e=>{ if(e.target===ov) ov.remove(); });
+  ov.appendChild(m); document.body.appendChild(ov);
+}
+
+
 function AdminLoginPage(){
   const cfg=S.settings;
   const wrap=div({style:{minHeight:"100vh",background:"linear-gradient(135deg,var(--dark),#2d1526)",display:"flex",alignItems:"center",justifyContent:"center",padding:"24px"}});
@@ -756,7 +828,7 @@ function buildBookingTable(){
       const atd=el("td",{style:{padding:"10px 12px"}}); const abx=div({style:{display:"flex",gap:"4px"}});
       if(b.status==="pending"){
         const cb=btn({style:{background:"#10b981",color:"#fff",border:"none",borderRadius:"7px",padding:"5px 9px",fontSize:"11px",fontWeight:"600",whiteSpace:"nowrap"}},"✓ Баталгаажуулах");
-        (function(booking,button){ button.addEventListener("click",async()=>{ if(!booking._docId){alert("_docId олдсонгүй");return;} button.textContent="⏳..."; button.disabled=true; button.style.background="#6b7280"; try{ await DB.updateBooking(booking._docId,{status:"confirmed"}); showToast("Баталгаажлаа ✓"); } catch(err){ alert("Алдаа: "+err.message); button.textContent="✓ Баталгаажуулах"; button.disabled=false; button.style.background="#10b981"; } }); })(b,cb); abx.appendChild(cb);
+        (function(booking,button){ button.addEventListener("click",async()=>{ if(!booking._docId){alert("_docId олдсонгүй");return;} button.textContent="⏳..."; button.disabled=true; button.style.background="#6b7280"; try{ await DB.updateBooking(booking._docId,{status:"confirmed"}); showToast("Баталгаажлаа ✓"); showConfirmEmailModal(booking); } catch(err){ alert("Алдаа: "+err.message); button.textContent="✓ Баталгаажуулах"; button.disabled=false; button.style.background="#10b981"; } }); })(b,cb); abx.appendChild(cb);
       }
       if(b.status!=="cancelled"){
         const xb=btn({style:{background:"#ef4444",color:"#fff",border:"none",borderRadius:"7px",padding:"5px 9px",fontSize:"11px",fontWeight:"600"}},"✕");
