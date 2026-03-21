@@ -11,17 +11,17 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
   --cream:#ffffff;
-  --rose:#fadadd;
-  --rose2:#f4a7b9;
-  --rose3:#e07090;
+  --rose:#fce4ec;
+  --rose2:#f48fb1;
+  --rose3:#e91e8c;
   --sage:#fce4ec;
-  --sage2:#d47a8f;
-  --terra:#e07090;
-  --dark:#2a1a22;
-  --text:#3a2030;
-  --muted:#b08090;
-  --border:#fbc8d4;
-  --card:#fff5f7;
+  --sage2:#e91e8c;
+  --terra:#e91e8c;
+  --dark:#880e4f;
+  --text:#4a0030;
+  --muted:#c2709a;
+  --border:#f8bbd0;
+  --card:#fff0f5;
 }
 html{scroll-behavior:smooth;}
 body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;}
@@ -161,7 +161,7 @@ footer{background:var(–dark);padding:60px clamp(20px,5vw,64px) 36px;}
 .slot-btn{border-radius:16px;padding:14px 8px;border:1.5px solid var(–border);background:var(–card);transition:all .2s;text-align:center;cursor:pointer;}
 .slot-btn:hover:not(:disabled){border-color:var(–rose2);background:#fff;}
 .slot-btn.sel{border-color:var(–dark);background:var(–dark);color:#fff;}
-.slot-btn.full{border-color:var(–border);background:#fafafa;color:#ccc;cursor:not-allowed;opacity:.6;}
+.slot-btn.full{border-color:var(–border);background:var(–card);color:var(–border);cursor:not-allowed;opacity:.6;}
 .slot-btn.partial{border-color:rgba(200,149,122,.4);background:rgba(200,149,122,.06);}
 
 /* Summary box */
@@ -295,7 +295,7 @@ const DEF_SVCS=[
    subs:[{id:"s5a",name:"Powder Brow",price:80000,duration:120},{id:"s5b",name:"Ombre Brow",price:90000,duration:120},{id:"s5c",name:"Microblading",price:120000,duration:150}]}
 ];
 
-const SC={pending:"#d97706",confirmed:"#059669",cancelled:"#dc2626"};
+const SC={pending:"#f48fb1",confirmed:"#059669",cancelled:"#dc2626"};
 const SL={pending:"Хүлээгдэж буй",confirmed:"Баталгаажсан",cancelled:"Цуцлагдсан"};
 
 function fmt(n){return(n||0).toLocaleString()+"₮";}
@@ -646,7 +646,7 @@ function BookPage(){
     di.addEventListener("change",e=>{S.date=e.target.value;S.time="";render();});
     inner.appendChild(di);
     if(isHol){
-      inner.appendChild(div({style:{background:"rgba(217,119,6,.08)",border:"1px solid rgba(217,119,6,.2)",borderRadius:"14px",padding:"14px 18px",fontSize:"13px",color:"#92400e"}},"⚠️ Энэ өдөр амралтын өдөр тул захиалга авахгүй."));
+      inner.appendChild(div({style:{background:"rgba(248,187,208,.2)",border:"1px solid rgba(244,143,177,.4)",borderRadius:"14px",padding:"14px 18px",fontSize:"13px",color:"var(--rose3)"}},"⚠️ Энэ өдөр амралтын өдөр тул захиалга авахгүй."));
     } else {
       inner.appendChild(lbl({className:"lbl",style:{marginBottom:"12px"}},"Цаг сонгоно уу"));
       const subDur=S.selSub?.duration||90;
@@ -662,7 +662,7 @@ function BookPage(){
         tb.disabled=info.full;
         const endTime=minToTime(timeToMin(t)+subDur);
         tb.appendChild(p({style:{fontWeight:"600",fontSize:"15px",marginBottom:"2px"}},t));
-        tb.appendChild(p({style:{fontSize:"10px",color:sel?"rgba(255,255,255,.6)":info.full?"#ccc":"var(--muted)"}},
+        tb.appendChild(p({style:{fontSize:"10px",color:sel?"rgba(255,255,255,.6)":info.full?"var(--border)":"var(--muted)"}},
           sel?`– ${endTime}`:info.full?"Дүүрсэн":info.cap>1?`${info.left}/${info.cap}`:"Боломжтой"));
         tb.addEventListener("click",()=>{S.time=t;render();});
         tg.appendChild(tb);
@@ -701,7 +701,7 @@ function BookPage(){
     if(S.errors.phone)pw.appendChild(p({style:{fontSize:"12px",color:"#dc2626",marginTop:"4px"}},S.errors.phone));
     inner.appendChild(pw);
     const sum=div({className:"sum-box"});
-    sum.appendChild(p({style:{fontSize:"11px",fontWeight:"700",color:"var(--terra)",marginBottom:"12px",letterSpacing:"1px"}},"📋 ЗАХИАЛГЫН ДЭЛГЭРЭНГҮЙ"));
+    sum.appendChild(p({style:{fontSize:"11px",fontWeight:"700",color:"var(--rose3)",marginBottom:"12px",letterSpacing:"1px"}},"📋 ЗАХИАЛГЫН ДЭЛГЭРЭНГҮЙ"));
     [["Үйлчилгээ",S.selService?.name],["Дэд төрөл",S.selSub?.name],["Хугацаа",(S.selSub?.duration||90)+" минут"],["Өдөр",S.date],["Цаг",S.time],["Үнэ",fmt(S.selSub?.price||0)]].forEach(row=>{
       const r=div({className:"sum-row"});
       r.appendChild(span({className:"sum-label"},row[0]));
@@ -748,14 +748,14 @@ function SuccessPage(){
   card.appendChild(det);
   if(cfg.account){
     const pay=div({style:{background:"rgba(196,149,122,.08)",border:"2px solid rgba(196,149,122,.25)",borderRadius:"18px",padding:"20px",marginBottom:"18px",textAlign:"left"}});
-    pay.appendChild(p({style:{fontWeight:"700",color:"var(--terra)",marginBottom:"14px",fontSize:"14px",fontFamily:"'Fraunces',serif"}},"💳 Төлбөр шилжүүлэх"));
+    pay.appendChild(p({style:{fontWeight:"700",color:"var(--rose3)",marginBottom:"14px",fontSize:"14px",fontFamily:"'Fraunces',serif"}},"💳 Төлбөр шилжүүлэх"));
     [["Банк",cfg.bank],["Дансны дугаар",cfg.account],["Гүйлгээний утга",b.phone],["Дүн",fmt(b.price)]].forEach(row=>{
       const r=div({style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"10px"}});
-      r.appendChild(span({style:{fontSize:"13px",color:"#92400e"}},row[0]));
+      r.appendChild(span({style:{fontSize:"13px",color:"var(--rose3)"}},row[0]));
       const rgt=div({style:{display:"flex",alignItems:"center",gap:"8px"}});
       rgt.appendChild(span({style:{fontWeight:"700",color:row[0]==="Дүн"?"var(--terra)":"var(--dark)",fontSize:row[0]==="Дүн"?"15px":"13px"}},row[1]));
-      const cp=btn({style:{background:"rgba(196,149,122,.12)",border:"none",borderRadius:"6px",padding:"3px 9px",fontSize:"11px",color:"var(--terra)",fontWeight:"600"}},"копи");
-      (function(val,button){button.addEventListener("click",()=>{navigator.clipboard.writeText(val).then(()=>{button.textContent="✓";button.style.background="rgba(5,150,105,.12)";button.style.color="#059669";setTimeout(()=>{button.textContent="копи";button.style.background="rgba(196,149,122,.12)";button.style.color="var(--terra)";},2000);});});})(row[1],cp);
+      const cp=btn({style:{background:"rgba(248,187,208,.2)",border:"none",borderRadius:"6px",padding:"3px 9px",fontSize:"11px",color:"var(--rose3)",fontWeight:"600"}},"копи");
+      (function(val,button){button.addEventListener("click",()=>{navigator.clipboard.writeText(val).then(()=>{button.textContent="✓";button.style.background="rgba(5,150,105,.12)";button.style.color="#059669";setTimeout(()=>{button.textContent="копи";button.style.background="rgba(248,187,208,.2)";button.style.color="var(--terra)";},2000);});});})(row[1],cp);
       rgt.appendChild(cp);r.appendChild(rgt);pay.appendChild(r);
     });
     card.appendChild(pay);
@@ -816,7 +816,7 @@ function showMsgModal(booking){
   const cl=btn({style:{background:"none",border:"none",fontSize:"20px",cursor:"pointer",color:"var(--muted)"}},"✕");
   cl.addEventListener("click",()=>ov.remove());hd.appendChild(cl);m.appendChild(hd);
   m.appendChild(div({style:{background:"rgba(250,218,221,.2)",border:"1px solid rgba(244,167,185,.4)",borderRadius:"12px",padding:"10px 14px",marginBottom:"14px",fontSize:"13px",color:"var(--rose3)"}},`✅ ${booking.name}-д илгээх мессежийн текст. Хуулаад мессеж app-д paste хийнэ үү.`));
-  m.appendChild(div({style:{background:"#f8f6f4",border:"1px solid var(--border)",borderRadius:"14px",padding:"16px",fontSize:"13px",lineHeight:"1.8",whiteSpace:"pre-wrap",marginBottom:"14px",color:"var(--text)",fontFamily:"monospace",maxHeight:"240px",overflowY:"auto"}},txt));
+  m.appendChild(div({style:{background:"var(--card)",border:"1px solid var(--border)",borderRadius:"14px",padding:"16px",fontSize:"13px",lineHeight:"1.8",whiteSpace:"pre-wrap",marginBottom:"14px",color:"var(--text)",fontFamily:"monospace",maxHeight:"240px",overflowY:"auto"}},txt));
   const cpBtn=btn({style:{width:"100%",background:"var(--dark)",color:"#fff",border:"none",borderRadius:"100px",padding:"13px",fontWeight:"500",fontSize:"14px",marginBottom:"8px"}},"📋 Мессежийн текст хуулах");
   cpBtn.addEventListener("click",()=>{navigator.clipboard.writeText(txt).then(()=>{cpBtn.textContent="✓ Хуулагдлаа!";cpBtn.style.background="#059669";setTimeout(()=>{cpBtn.textContent="📋 Мессежийн текст хуулах";cpBtn.style.background="var(--dark)";},2500);});});
   m.appendChild(cpBtn);
@@ -828,7 +828,7 @@ function showMsgModal(booking){
 // ── ADMIN: Stats ─────────────────────────────────
 function buildStats(){
   const w=div({style:{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(130px,1fr))",gap:"12px",marginBottom:"20px"}});
-  [{l:"Нийт",v:S.bookings.length,c:"#6366f1"},{l:"Хүлээгдэж буй",v:S.bookings.filter(b=>b.status==="pending").length,c:"#d97706"},{l:"Баталгаажсан",v:S.bookings.filter(b=>b.status==="confirmed").length,c:"#059669"},{l:"Цуцлагдсан",v:S.bookings.filter(b=>b.status==="cancelled").length,c:"#dc2626"}].forEach(s=>{
+  [{l:"Нийт",v:S.bookings.length,c:"var(--rose3)"},{l:"Хүлээгдэж буй",v:S.bookings.filter(b=>b.status==="pending").length,c:"#f48fb1"},{l:"Баталгаажсан",v:S.bookings.filter(b=>b.status==="confirmed").length,c:"#059669"},{l:"Цуцлагдсан",v:S.bookings.filter(b=>b.status==="cancelled").length,c:"#dc2626"}].forEach(s=>{
     const c=div({className:"acard"});c.appendChild(p({style:{fontSize:"26px",fontWeight:"700",color:s.c}},s.v));c.appendChild(p({style:{fontSize:"12px",color:"var(--muted)",marginTop:"2px"}},s.l));w.appendChild(c);
   });
   return w;
@@ -863,7 +863,7 @@ function buildBookingTable(){
       const atd=el("td",{style:{padding:"10px 12px"}});const abx=div({style:{display:"flex",gap:"4px"}});
       if(b.status==="pending"){
         const cb=btn({style:{background:"#059669",color:"#fff",border:"none",borderRadius:"100px",padding:"5px 11px",fontSize:"11px",fontWeight:"600",whiteSpace:"nowrap"}},"✓ Баталгаажуулах");
-        (function(booking,button){button.addEventListener("click",async()=>{if(!booking._docId){alert("_docId олдсонгүй");return;}button.textContent="⏳...";button.disabled=true;button.style.background="#6b7280";try{await DB.updateBooking(booking._docId,{status:"confirmed"});showToast("Баталгаажлаа ✓");showMsgModal(booking);}catch(err){alert("Алдаа: "+err.message);button.textContent="✓ Баталгаажуулах";button.disabled=false;button.style.background="#059669";}});})(b,cb);abx.appendChild(cb);
+        (function(booking,button){button.addEventListener("click",async()=>{if(!booking._docId){alert("_docId олдсонгүй");return;}button.textContent="⏳...";button.disabled=true;button.style.background="var(--rose2)";try{await DB.updateBooking(booking._docId,{status:"confirmed"});showToast("Баталгаажлаа ✓");showMsgModal(booking);}catch(err){alert("Алдаа: "+err.message);button.textContent="✓ Баталгаажуулах";button.disabled=false;button.style.background="#059669";}});})(b,cb);abx.appendChild(cb);
       }
       if(b.status!=="cancelled"){
         const xb=btn({style:{background:"rgba(220,38,38,.08)",color:"#dc2626",border:"1px solid rgba(220,38,38,.15)",borderRadius:"100px",padding:"5px 10px",fontSize:"11px",fontWeight:"600"}},"✕");
@@ -1081,7 +1081,7 @@ function buildCalendarTab(){
   const sCard=div({className:"acard"});
   sCard.appendChild(h3({style:{fontFamily:"'Fraunces',serif",fontSize:"17px",fontWeight:"400",marginBottom:"14px",color:"var(--dark)"}},"📊 Өдрийн байдал"));
   const sI=inp({type:"date",value:S.schedDate,style:{marginBottom:"14px"}});sI.addEventListener("change",e=>setState({schedDate:e.target.value}));sCard.appendChild(sI);
-  if(S.holidays.includes(S.schedDate)){sCard.appendChild(div({style:{background:"rgba(217,119,6,.08)",border:"1px solid rgba(217,119,6,.2)",borderRadius:"12px",padding:"12px",fontSize:"13px",color:"#92400e"}},"⚠️ Амралтын өдөр"));}
+  if(S.holidays.includes(S.schedDate)){sCard.appendChild(div({style:{background:"rgba(248,187,208,.2)",border:"1px solid rgba(244,143,177,.4)",borderRadius:"12px",padding:"12px",fontSize:"13px",color:"var(--rose3)"}},"⚠️ Амралтын өдөр"));}
   else{
     svcs.forEach(svc=>{
       const cap=svc.capacity||1;
@@ -1093,7 +1093,7 @@ function buildCalendarTab(){
         const info=getSlotInfo(S.schedDate,t,svc.id,maxDur,S.bookings);
         const sc2=div({style:{border:"1px solid var(--border)",borderRadius:"12px",padding:"8px 6px",background:info.full?"rgba(220,38,38,.05)":info.used>0?"rgba(217,119,6,.05)":"#fff",textAlign:"center"}});
         sc2.appendChild(p({style:{fontWeight:"600",fontSize:"13px",marginBottom:"2px"}},t));
-        sc2.appendChild(p({style:{fontSize:"10px",fontWeight:"700",color:info.full?"#dc2626":info.used>0?"#d97706":"#059669"}},info.full?"Дүүрсэн":info.used+"/"+cap));
+        sc2.appendChild(p({style:{fontSize:"10px",fontWeight:"700",color:info.full?"#dc2626":info.used>0?"var(--rose2)":"#059669"}},info.full?"Дүүрсэн":info.used+"/"+cap));
         const bks=S.bookings.filter(b=>b.date===S.schedDate&&b.time===t&&b.serviceId===svc.id&&b.status!=="cancelled");
         bks.forEach(b=>sc2.appendChild(p({style:{fontSize:"9px",color:"var(--muted)",marginTop:"2px"}},"• "+b.name+(b.subName?" ("+b.subName+(b.duration?", "+b.duration+"мин":"")+")":""))));
         sg.appendChild(sc2);
@@ -1108,7 +1108,7 @@ function buildCalendarTab(){
 function AdminPage(){
   if(!S.adminAuthed)return AdminLoginPage();
   const cfg=S.settings;
-  const wrap=div({style:{minHeight:"100vh",background:"#f5f0eb"}});
+  const wrap=div({style:{minHeight:"100vh",background:"var(--card)"}});
   const bar=div({className:"admin-bar"});
   const left=div({style:{display:"flex",alignItems:"center",gap:"10px"}});
   left.appendChild(div({className:"nav-petal",style:{width:"22px",height:"22px"}}));
