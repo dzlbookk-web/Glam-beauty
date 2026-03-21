@@ -361,7 +361,6 @@ function HomePage(){
 
   // Services
   const secS=div({className:"section",style:{background:"#fff",textAlign:"center"}});
-  secS.appendChild(p({className:"sec-label"},"ҮЙЛЧИЛГЭЭ"));
   secS.appendChild(h2({className:"serif sec-title"},"Манай үйлчилгээнүүд"));
   const sg=div({className:"svc-grid"});
   svcs.forEach(svc=>{
@@ -417,7 +416,6 @@ function HomePage(){
   else aImg.appendChild(document.createTextNode(cfg.aboutEmoji||"✨"));
   ai.appendChild(aImg);
   const aTxt=div({});
-  aTxt.appendChild(p({className:"sec-label"},"БИДНИЙ ТУХАЙ"));
   aTxt.appendChild(h2({className:"serif",style:{fontSize:"clamp(24px,4vw,36px)",fontWeight:"400",lineHeight:"1.2",marginBottom:"18px"}},cfg.aboutTitle||"Бидний тухай"));
   aTxt.appendChild(p({style:{fontSize:"15px",color:"var(--muted)",lineHeight:"1.9",marginBottom:"28px"}},cfg.aboutText||""));
   aTxt.appendChild(btn({style:{background:"var(--dark)",color:"#fff",border:"none",borderRadius:"12px",padding:"13px 30px",fontSize:"14px",fontWeight:"600"},onClick:()=>setState({page:"book",step:1,selService:null,selSub:null,time:""})},"Цаг захиалах"));
@@ -731,7 +729,7 @@ function showConfirmEmailModal(booking){
 📍 Хаяг: ${cfg.address}
 📞 Утас: ${cfg.phone}
 
-Цагтаа ирнэ үү! Харж байна 🌸
+Цагтаа ирээрэй! 🌸
 ${cfg.studioName}`;
 
   const ov=div({className:"modal-overlay"});
