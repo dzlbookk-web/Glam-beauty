@@ -11,7 +11,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
   --pink:#e8a0bf;--pink2:#d4729f;--pink3:#b5507d;
-  --dark:#1c1218;--cream:#fdf8f5;--card:#fff;
+  --dark:#1c1218;--cream:#fdf8f5;
   --border:#f0e4ec;--text:#2d1f27;--muted:#9e8490;
 }
 body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--text);}
@@ -19,115 +19,115 @@ body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--text);}
 input,select,textarea{font-family:'Outfit',sans-serif;outline:none;border:1.5px solid var(--border);border-radius:12px;padding:12px 16px;font-size:14px;background:#fff;width:100%;transition:border-color .2s,box-shadow .2s;}
 input:focus,select:focus,textarea:focus{border-color:var(--pink2);box-shadow:0 0 0 3px rgba(212,114,159,.12);}
 button{cursor:pointer;font-family:'Outfit',sans-serif;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 @keyframes spin{to{transform:rotate(360deg);}}
-@keyframes shimmer{0%{background-position:-200% 0;}100%{background-position:200% 0;}}
-.f1{animation:fadeUp .55s ease both;}
-.f2{animation:fadeUp .55s .08s ease both;}
-.f3{animation:fadeUp .55s .16s ease both;}
-.f4{animation:fadeUp .55s .24s ease both;}
-.f5{animation:fadeUp .55s .32s ease both;}
+.f1{animation:fadeUp .5s ease both;}
+.f2{animation:fadeUp .5s .08s ease both;}
+.f3{animation:fadeUp .5s .16s ease both;}
+.f4{animation:fadeUp .5s .24s ease both;}
 
-/* NAV */
 nav{position:sticky;top:0;z-index:200;height:64px;background:rgba(253,248,245,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(–border);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,5vw,52px);}
-.nav-logo{display:flex;align-items:center;gap:10px;background:none;border:none;}
-.nav-logo .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(–pink),var(–pink3));}
+.nav-logo{display:flex;align-items:center;gap:10px;background:none;border:none;cursor:pointer;}
+.nav-dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(–pink),var(–pink3));}
 
-/* HERO */
-.hero{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:64px 24px;position:relative;overflow:hidden;background:var(–cream);}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(232,160,191,.18) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 80% 80%,rgba(181,80,125,.08) 0%,transparent 60%);pointer-events:none;}
+.hero{min-height:90vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:64px 24px;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(232,160,191,.18),transparent 70%),radial-gradient(ellipse 50% 40% at 80% 80%,rgba(181,80,125,.08),transparent 60%);pointer-events:none;}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.8);border:1px solid var(–border);border-radius:100px;padding:7px 22px;font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(–pink3);margin-bottom:32px;}
-.hero-title{font-size:clamp(44px,9vw,96px);font-weight:400;line-height:1.05;color:var(–dark);margin-bottom:22px;}
+.hero-title{font-size:clamp(44px,9vw,90px);font-weight:400;line-height:1.05;color:var(–dark);margin-bottom:20px;}
 .hero-title em{font-style:italic;color:var(–pink3);}
-.hero-sub{font-size:16px;color:var(–muted);max-width:480px;line-height:1.85;margin-bottom:52px;}
+.hero-sub{font-size:16px;color:var(–muted);max-width:460px;line-height:1.85;margin-bottom:48px;}
 .hero-btn{background:var(–dark);color:#fff;border:none;border-radius:14px;padding:16px 44px;font-size:15px;font-weight:600;box-shadow:0 8px 28px rgba(28,18,24,.18);transition:transform .2s,box-shadow .2s;}
-.hero-btn:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(28,18,24,.22);}
+.hero-btn:hover{transform:translateY(-2px);}
 
-/* SERVICES SECTION */
-.section{padding:88px clamp(16px,5vw,64px);}
-.section-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(–pink2);margin-bottom:10px;}
-.section-title{font-size:clamp(32px,5vw,48px);font-weight:400;line-height:1.15;margin-bottom:48px;}
-.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;max-width:1100px;margin:0 auto;}
-.service-card{background:#fff;border-radius:22px;overflow:hidden;border:1.5px solid var(–border);transition:transform .25s,box-shadow .25s;cursor:pointer;}
-.service-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(28,18,24,.09);}
-.service-card.selected{border-color:var(–pink2);box-shadow:0 0 0 3px rgba(212,114,159,.18);}
-.service-img{width:100%;height:180px;object-fit:cover;display:block;background:linear-gradient(135deg,var(–border),#f9eef5);}
-.service-img-placeholder{width:100%;height:180px;display:flex;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#fdf0f7,#f5e8f2);}
-.service-body{padding:20px;}
-.service-name{font-size:16px;font-weight:600;margin-bottom:4px;}
-.service-desc{font-size:13px;color:var(–muted);line-height:1.6;margin-bottom:14px;}
-.service-footer{display:flex;align-items:center;justify-content:space-between;}
-.service-price{font-size:18px;font-weight:700;color:var(–pink3);}
-.service-duration{font-size:12px;color:var(–muted);background:#f7f0f5;padding:3px 10px;border-radius:100px;}
+.section{padding:80px clamp(16px,5vw,64px);}
+.sec-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(–pink2);margin-bottom:10px;}
+.sec-title{font-size:clamp(28px,4vw,44px);font-weight:400;line-height:1.15;margin-bottom:44px;}
 
-/* GALLERY */
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;max-width:1100px;margin:0 auto;}
-.gallery-item{border-radius:18px;overflow:hidden;aspect-ratio:1;position:relative;background:var(–border);cursor:pointer;}
-.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;}
-.gallery-item:hover img{transform:scale(1.06);}
-.gallery-item .goverlay{position:absolute;inset:0;background:rgba(28,18,24,.38);opacity:0;transition:opacity .3s;display:flex;align-items:center;justify-content:center;padding:16px;}
-.gallery-item:hover .goverlay{opacity:1;}
+/* Service cards on home */
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px;max-width:1080px;margin:0 auto;}
+.svc-card{background:#fff;border-radius:22px;overflow:hidden;border:1.5px solid var(–border);transition:transform .25s,box-shadow .25s;cursor:pointer;}
+.svc-card:hover{transform:translateY(-4px);box-shadow:0 14px 44px rgba(28,18,24,.09);}
+.svc-img{width:100%;height:175px;object-fit:cover;display:block;}
+.svc-img-ph{width:100%;height:140px;display:flex;align-items:center;justify-content:center;font-size:44px;background:linear-gradient(135deg,#fdf0f7,#f5e8f2);}
+.svc-body{padding:18px;}
+.svc-name{font-size:16px;font-weight:700;margin-bottom:4px;}
+.svc-desc{font-size:13px;color:var(–muted);line-height:1.55;margin-bottom:12px;}
+.svc-sub-list{display:flex;flex-direction:column;gap:6px;margin-bottom:12px;}
+.svc-sub-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:6px 10px;background:#fdf4ff;border-radius:8px;}
+.svc-sub-name{color:var(–text);}
+.svc-sub-price{font-weight:700;color:var(–pink3);}
+.book-link{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600;color:var(–pink3);background:none;border:none;padding:0;}
 
-/* ABOUT */
-.about-section{background:#fff;padding:88px clamp(16px,5vw,64px);}
-.about-inner{max-width:820px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
-@media(max-width:640px){.about-inner{grid-template-columns:1fr;gap:32px;}}
-.about-img{border-radius:24px;overflow:hidden;aspect-ratio:4/5;}
-.about-img img{width:100%;height:100%;object-fit:cover;}
-.about-img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:64px;background:linear-gradient(135deg,#fdf0f7,#f5e8f2);}
+/* Gallery */
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;max-width:1080px;margin:0 auto;}
+.gal-item{border-radius:16px;overflow:hidden;aspect-ratio:1;position:relative;background:var(–border);cursor:pointer;}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+.gal-item:hover img{transform:scale(1.06);}
+.gal-ov{position:absolute;inset:0;background:rgba(28,18,24,.4);opacity:0;transition:opacity .3s;display:flex;align-items:center;justify-content:center;padding:12px;}
+.gal-item:hover .gal-ov{opacity:1;}
 
-/* FOOTER */
-footer{background:var(–dark);color:#9e8490;padding:56px clamp(16px,5vw,64px) 36px;}
-.footer-inner{max-width:1000px;margin:0 auto;}
-.footer-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:36px;padding-bottom:36px;border-bottom:1px solid #2d1f27;margin-bottom:28px;}
-.footer-brand p{font-family:‘Playfair Display’,serif;font-size:26px;color:#fff;margin-bottom:8px;}
-.footer-links a{display:block;color:#9e8490;text-decoration:none;font-size:14px;margin-bottom:8px;transition:color .2s;}
-.footer-links a:hover{color:#e8a0bf;}
+/* About */
+.about-inner{max-width:820px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+@media(max-width:620px){.about-inner{grid-template-columns:1fr;gap:28px;}}
+.about-img-wrap{border-radius:24px;overflow:hidden;aspect-ratio:4/5;background:linear-gradient(135deg,#fdf0f7,#f5e8f2);display:flex;align-items:center;justify-content:center;font-size:64px;}
+.about-img-wrap img{width:100%;height:100%;object-fit:cover;}
 
-/* BOOK PAGE */
-.book-wrap{max-width:620px;margin:0 auto;padding:52px clamp(16px,4vw,32px);}
-.stepper{display:flex;align-items:center;margin-bottom:48px;}
+footer{background:var(–dark);color:#6b5460;padding:52px clamp(16px,5vw,60px) 32px;}
+.foot-inner{max-width:980px;margin:0 auto;}
+.foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px;padding-bottom:32px;border-bottom:1px solid #2d1f27;margin-bottom:24px;}
+.foot-links a{display:block;color:#6b5460;text-decoration:none;font-size:14px;margin-bottom:8px;transition:color .2s;}
+.foot-links a:hover{color:var(–pink);}
+
+/* Book page */
+.book-wrap{max-width:600px;margin:0 auto;padding:52px clamp(16px,4vw,32px);}
+.stepper{display:flex;align-items:center;margin-bottom:44px;}
 .step-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
-.step-line{flex:1;height:1px;margin:0 10px;}
+.step-line{flex:1;height:1px;margin:0 8px;}
 
-/* MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(28,18,24,.6);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;}
+/* Slot btn */
+.slot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px;}
+.slot-btn{border-radius:13px;padding:12px 8px;border:2px solid var(–border);background:#fff;transition:all .15s;text-align:center;}
+.slot-btn.sel{border-color:var(–dark);background:var(–dark);color:#fff;}
+.slot-btn.full{border-color:#f0e4ec;background:#fafafa;color:#ccc;cursor:not-allowed;}
+.slot-btn.partial{border-color:#fcd34d;background:#fffbeb;}
 
-/* LOADING */
-#loading-screen{position:fixed;inset:0;background:var(–cream);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;}
-.spinner{width:38px;height:38px;border:3px solid var(–border);border-top-color:var(–pink2);border-radius:50%;animation:spin .7s linear infinite;}
-
-/* ADMIN */
-.admin-bar{background:var(–dark);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,40px);height:60px;flex-wrap:wrap;gap:8px;}
-.admin-tab{background:none;border:none;color:#9e8490;border-radius:8px;padding:7px 15px;font-size:13px;font-weight:500;transition:background .15s,color .15s;}
-.admin-tab.active{background:rgba(255,255,255,.14);color:#fff;}
-.card-box{background:#fff;border-radius:20px;padding:28px;box-shadow:0 1px 10px rgba(0,0,0,.05);}
-.upload-area{border:2px dashed var(–border);border-radius:14px;padding:32px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;}
+/* Admin */
+.admin-bar{background:var(–dark);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,40px);min-height:60px;flex-wrap:wrap;gap:8px;padding-top:8px;padding-bottom:8px;}
+.atab{background:none;border:none;color:#6b5460;border-radius:8px;padding:7px 13px;font-size:13px;font-weight:500;transition:all .15s;}
+.atab.on{background:rgba(255,255,255,.14);color:#fff;}
+.card{background:#fff;border-radius:18px;padding:24px;box-shadow:0 1px 10px rgba(0,0,0,.05);}
+.upload-area{border:2px dashed var(–border);border-radius:14px;padding:28px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;}
 .upload-area:hover,.upload-area.drag{border-color:var(–pink2);background:#fdf4ff;}
 .upload-area input[type=file]{display:none;}
+.pill{border-radius:100px;padding:3px 10px;font-size:11px;font-weight:700;}
+.tag{display:inline-flex;align-items:center;gap:5px;background:#f7f0f5;border:1px solid var(–border);border-radius:100px;padding:3px 10px;font-size:12px;color:var(–pink3);}
 
-/* TOAST */
-#toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(–dark);color:#fff;padding:13px 26px;border-radius:100px;font-size:13px;font-weight:500;z-index:99999;transition:transform .3s ease;pointer-events:none;white-space:nowrap;}
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(28,18,24,.6);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;}
+.modal{background:#fff;border-radius:22px;padding:28px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.3);}
+
+/* Loading */
+#loading-screen{position:fixed;inset:0;background:var(–cream);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;}
+.spinner{width:36px;height:36px;border:3px solid var(–border);border-top-color:var(–pink2);border-radius:50%;animation:spin .7s linear infinite;}
+
+/* Toast */
+#toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(–dark);color:#fff;padding:12px 24px;border-radius:100px;font-size:13px;font-weight:500;z-index:99999;transition:transform .3s;pointer-events:none;white-space:nowrap;}
 #toast.show{transform:translateX(-50%) translateY(0);}
 
-/* SLOT GRID */
-.slot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:28px;}
-.slot-btn{border-radius:13px;padding:13px 8px;border:2px solid var(–border);background:#fff;transition:all .15s;}
-.slot-btn.sel{border-color:var(–dark);background:var(–dark);color:#fff;}
-.slot-btn.full{border-color:#f0e6de;background:#fafafa;color:#ccc;cursor:not-allowed;}
-
-/* MISC */
-.tag{display:inline-flex;align-items:center;gap:6px;background:#f7f0f5;border:1px solid var(–border);border-radius:100px;padding:4px 12px;font-size:12px;color:var(–pink3);}
-.pill{border-radius:100px;padding:3px 12px;font-size:11px;font-weight:700;}
-.divider{height:1px;background:var(–border);margin:20px 0;}
+.lbl{display:block;font-size:11px;font-weight:700;color:var(–muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px;}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.mb12{margin-bottom:12px;}
+.mb16{margin-bottom:16px;}
+.mb20{margin-bottom:20px;}
 </style>
 
 </head>
 <body>
+
 <div id="loading-screen">
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
-    <div style="width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,#e8a0bf,#b5507d)"></div>
-    <span style="font-family:'Playfair Display',serif;font-size:22px;color:#1c1218">Glow Studio</span>
+  <div style="display:flex;align-items:center;gap:10px">
+    <div class="nav-dot"></div>
+    <span class="serif" style="font-size:22px;color:var(--dark)">Glow Studio</span>
   </div>
   <div class="spinner"></div>
   <p style="font-size:13px;color:#bbb">Уншиж байна...</p>
@@ -143,20 +143,34 @@ import {
   deleteDoc, setDoc, getDoc, onSnapshot
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
-
-// ── Firebase ─────────────────────────────────────
+// ── Firebase ──────────────────────────────────────
 const firebaseConfig = {
   apiKey: "AIzaSyC_qZHFNbaPMhbN1kpCqAkSCN-rgUArZVA",
   authDomain: "awesome-3acdf.firebaseapp.com",
   projectId: "awesome-3acdf",
   storageBucket: "awesome-3acdf.firebasestorage.app",
   messagingSenderId: "287866787443",
-  appId: "1:287866787443:web:9a5e66c4ec01f51c723c06",
-  measurementId: "G-PYCTQ3ZRC8"
+  appId: "1:287866787443:web:9a5e66c4ec01f51c723c06"
 };
 const app = initializeApp(firebaseConfig);
 const db  = getFirestore(app);
 
+// ── Image compress → base64 ───────────────────────
+function compressImage(file, maxW=900, q=0.78){
+  return new Promise((res,rej)=>{
+    const img=new Image(), url=URL.createObjectURL(file);
+    img.onload=()=>{
+      let w=img.width, h=img.height;
+      if(w>maxW){h=Math.round(h*maxW/w);w=maxW;}
+      const c=document.createElement("canvas");
+      c.width=w; c.height=h;
+      c.getContext("2d").drawImage(img,0,0,w,h);
+      URL.revokeObjectURL(url);
+      res(c.toDataURL("image/jpeg",q));
+    };
+    img.onerror=rej; img.src=url;
+  });
+}
 
 // ── Defaults ──────────────────────────────────────
 const DEF_SETTINGS = {
@@ -167,22 +181,29 @@ const DEF_SETTINGS = {
   instagram:"",facebook:"",tiktok:"",
   adminEmail:"admin@glowstudio.mn",
   adminPass:"Glow@2026",
-  slots:["10:00","11:30","13:00","14:30","16:00","17:30"],
-  maxSlot:1,
-  bank:"Хаан банк",account:"",
+  slotDuration:90,        // минутаар — slot хоорондын зай
+  serviceDuration:90,     // бүх үйлчилгээний хугацаа (мин)
+  firstSlot:"10:00",      // эхний цаг
+  lastSlot:"20:00",       // сүүлийн боломжит эхлэх цаг
+  bank:"Хаан банк", account:"",
   aboutTitle:"Бидний тухай",
-  aboutText:"Glow Studio нь таны гоо сайхныг илрүүлэх тав тухтай орчин юм. Мэргэжлийн багийнхантайгаа хамт та бүрэлгэн гоёж гарна.",
+  aboutText:"Glow Studio нь таны гоо сайхныг илрүүлэх тав тухтай орчин юм.",
   aboutEmoji:"✨",
   aboutImageUrl:""
 };
 
+// Үйлчилгээ: дэд төрлүүдтэй
 const DEF_SERVICES = [
-  {id:"s1",name:"Сормуус",emoji:"👁️",desc:"Сормуусны өргөтгөл, будалт",price:35000,duration:"60 мин",imageUrl:"",order:0},
-  {id:"s2",name:"Маникюр",emoji:"💅",desc:"Хумсны чимэглэл, арчилгаа",price:25000,duration:"45 мин",imageUrl:"",order:1},
-  {id:"s3",name:"Педикюр",emoji:"🦶",desc:"Хөлний хумсны арчилгаа",price:30000,duration:"60 мин",imageUrl:"",order:2},
-  {id:"s4",name:"Гоо сайхан",emoji:"💄",desc:"Нүүрний будалт, арчилгаа",price:45000,duration:"75 мин",imageUrl:"",order:3},
-  {id:"s5",name:"Үсчин",emoji:"✂️",desc:"Үс засах, угаах, тохируулах",price:20000,duration:"45 мин",imageUrl:"",order:4},
-  {id:"s6",name:"Хөмсөг шивээс",emoji:"🖊️",desc:"Хөмсөгний хагас байнгын будалт",price:80000,duration:"90 мин",imageUrl:"",order:5}
+  {id:"svc1",name:"Сормуус",emoji:"👁️",desc:"Сормуусны өргөтгөл, янз бүрийн төрөл",imageUrl:"",capacity:2,order:0,
+   subs:[{id:"sub1a",name:"Classic",price:35000},{id:"sub1b",name:"Volume",price:45000},{id:"sub1c",name:"Mega Volume",price:55000}]},
+  {id:"svc2",name:"Хумс",emoji:"💅",desc:"Маникюр, педикюр, гелний бүрэлт",imageUrl:"",capacity:1,order:1,
+   subs:[{id:"sub2a",name:"Маникюр",price:25000},{id:"sub2b",name:"Педикюр",price:30000},{id:"sub2c",name:"Гель маникюр",price:35000}]},
+  {id:"svc3",name:"Гоо сайхан",emoji:"💄",desc:"Нүүрний будалт, арчилгаа",imageUrl:"",capacity:1,order:2,
+   subs:[{id:"sub3a",name:"Өдрийн будалт",price:40000},{id:"sub3b",name:"Оройн будалт",price:55000}]},
+  {id:"svc4",name:"Үсчин",emoji:"✂️",desc:"Үс засах, угаах, тохируулах",imageUrl:"",capacity:1,order:3,
+   subs:[{id:"sub4a",name:"Үс засах",price:20000},{id:"sub4b",name:"Угаах + засах",price:28000},{id:"sub4c",name:"Будах",price:60000}]},
+  {id:"svc5",name:"Хөмсөг шивээс",emoji:"🖊️",desc:"Хөмсөгний хагас байнгын будалт",imageUrl:"",capacity:1,order:4,
+   subs:[{id:"sub5a",name:"Powder Brow",price:80000},{id:"sub5b",name:"Ombre Brow",price:90000},{id:"sub5c",name:"Microblading",price:120000}]}
 ];
 
 const SC={pending:"#f59e0b",confirmed:"#10b981",cancelled:"#ef4444"};
@@ -191,51 +212,77 @@ const SL={pending:"Хүлээгдэж буй",confirmed:"Баталгаажса�
 function fmt(n){ return (n||0).toLocaleString()+"₮"; }
 function uid(){ return Date.now().toString(36).toUpperCase()+Math.random().toString(36).slice(2,5).toUpperCase(); }
 function today(){ return new Date().toISOString().slice(0,10); }
-function showToast(m){ var t=document.getElementById("toast"); t.textContent=m; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),2600); }
+function showToast(m){ const t=document.getElementById("toast"); t.textContent=m; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),2600); }
+
+// ── Slot logic ────────────────────────────────────
+// Цагийг минут болгох
+function timeToMin(t){ const [h,m]=t.split(":").map(Number); return h*60+m; }
+function minToTime(m){ const h=Math.floor(m/60); const mm=m%60; return `${String(h).padStart(2,"0")}:${String(mm).padStart(2,"0")}`; }
+
+// Slot-уудыг firstSlot, lastSlot, slotDuration-аас үүсгэх
+function genSlots(cfg){
+  const dur=cfg.slotDuration||90;
+  const svcDur=cfg.serviceDuration||90;
+  const first=timeToMin(cfg.firstSlot||"10:00");
+  const last=timeToMin(cfg.lastSlot||"20:00");
+  const slots=[];
+  for(let t=first; t<=last; t+=dur){ slots.push(minToTime(t)); }
+  return slots;
+}
+
+// Тухайн үйлчилгээний slot боломжтой эсэх шалгах
+// Нэг захиалга = serviceDuration минут эзэлдэг
+// Тиймээс [startMin, startMin+serviceDuration) хооронд давхцах захиалгуудыг шалгана
+function getSlotInfo(date, slotTime, svcId, cfg, bookings){
+  const dur = cfg.serviceDuration || 90;
+  const slotMin = timeToMin(slotTime);
+  const slotEnd = slotMin + dur;
+
+  // Тухайн үйлчилгээний capacity
+  const svc = S.services.find(s=>s.id===svcId) || DEF_SERVICES.find(s=>s.id===svcId);
+  const cap = svc ? (svc.capacity||1) : 1;
+
+  // Давхцаж байгаа захиалгуудыг тоол
+  // Захиалга [bookStart, bookStart+dur) хооронд байвал давхцана
+  const overlapping = bookings.filter(b=>{
+    if(b.date!==date || b.serviceId!==svcId || b.status==="cancelled") return false;
+    const bMin = timeToMin(b.time);
+    const bEnd = bMin + dur;
+    // [slotMin, slotEnd) ба [bMin, bEnd) давхцах
+    return slotMin < bEnd && slotEnd > bMin;
+  });
+
+  const used = overlapping.length;
+  const left = cap - used;
+  return { used, left, cap, full: left<=0 };
+}
 
 // ── DB ────────────────────────────────────────────
 const DB = {
-  async loadBookings(){
-    try{ const s=await getDocs(collection(db,"bookings")); return s.docs.map(d=>({...d.data(),_docId:d.id})).sort((a,b)=>(b.createdAt||"").localeCompare(a.createdAt||"")); }catch(e){ return []; }
-  },
-  async addBooking(b){ try{ const r=await addDoc(collection(db,"bookings"),b); return {...b,_docId:r.id}; }catch(e){ return b; } },
+  async loadBookings(){ try{ const s=await getDocs(collection(db,"bookings")); return s.docs.map(d=>({...d.data(),_docId:d.id})).sort((a,b)=>(b.createdAt||"").localeCompare(a.createdAt||"")); }catch(e){return[];} },
+  async addBooking(b){ try{ const r=await addDoc(collection(db,"bookings"),b); return {...b,_docId:r.id}; }catch(e){return b;} },
   async updateBooking(id,patch){ try{ if(!id)return; await updateDoc(doc(db,"bookings",id),patch); }catch(e){console.error(e);} },
-  async loadHolidays(){ try{ const s=await getDocs(collection(db,"holidays")); return s.docs.map(d=>d.data().date).filter(Boolean).sort(); }catch(e){ return []; } },
+  async loadHolidays(){ try{ const s=await getDocs(collection(db,"holidays")); return s.docs.map(d=>d.data().date).filter(Boolean).sort(); }catch(e){return[];} },
   async addHoliday(date){ try{ await addDoc(collection(db,"holidays"),{date}); }catch(e){} },
   async removeHoliday(date){ try{ const s=await getDocs(collection(db,"holidays")); const t=s.docs.find(d=>d.data().date===date); if(t) await deleteDoc(doc(db,"holidays",t.id)); }catch(e){} },
-  async loadSettings(){ try{ const d=await getDoc(doc(db,"config","settings")); return d.exists()?{...DEF_SETTINGS,...d.data()}:DEF_SETTINGS; }catch(e){ return DEF_SETTINGS; } },
-  async saveSettings(data){ try{ await setDoc(doc(db,"config","settings"),data,{merge:true}); }catch(e){ console.error(e); } },
-  async loadServices(){ try{ const s=await getDocs(collection(db,"services")); if(s.empty) return DEF_SERVICES; return s.docs.map(d=>({...d.data(),_docId:d.id})).sort((a,b)=>(a.order||0)-(b.order||0)); }catch(e){ return DEF_SERVICES; } },
-  async saveService(data){ try{ if(data._docId){ const {_docId,...rest}=data; await setDoc(doc(db,"services",_docId),rest,{merge:true}); } else { const r=await addDoc(collection(db,"services"),data); return {...data,_docId:r.id}; } return data; }catch(e){ console.error(e); return data; } },
-  async deleteService(docId){ try{ await deleteDoc(doc(db,"services",docId)); }catch(e){} },
-  async loadGallery(){ try{ const s=await getDocs(collection(db,"gallery")); return s.docs.map(d=>({...d.data(),_docId:d.id})).sort((a,b)=>(b.createdAt||"").localeCompare(a.createdAt||"")); }catch(e){ return []; } },
-  async addGallery(item){ try{ const r=await addDoc(collection(db,"gallery"),item); return {...item,_docId:r.id}; }catch(e){ return item; } },
+  async loadSettings(){ try{ const d=await getDoc(doc(db,"config","settings")); return d.exists()?{...DEF_SETTINGS,...d.data()}:DEF_SETTINGS; }catch(e){return DEF_SETTINGS;} },
+  async saveSettings(data){ try{ await setDoc(doc(db,"config","settings"),data,{merge:true}); }catch(e){console.error(e);} },
+  async loadServices(){ try{ const s=await getDocs(collection(db,"services")); if(s.empty) return DEF_SERVICES; return s.docs.map(d=>({...d.data(),_docId:d.id,subs:d.data().subs||[]})).sort((a,b)=>(a.order||0)-(b.order||0)); }catch(e){return DEF_SERVICES;} },
+  async saveService(data){ try{ const {_docId,...rest}=data; if(_docId){ await setDoc(doc(db,"services",_docId),rest,{merge:true}); return data; } else { const r=await addDoc(collection(db,"services"),rest); return {...data,_docId:r.id}; } }catch(e){console.error(e);return data;} },
+  async deleteService(id){ try{ await deleteDoc(doc(db,"services",id)); }catch(e){} },
+  async loadGallery(){ try{ const s=await getDocs(collection(db,"gallery")); return s.docs.map(d=>({...d.data(),_docId:d.id})).sort((a,b)=>(b.createdAt||"").localeCompare(a.createdAt||"")); }catch(e){return[];} },
+  async addGallery(item){ try{ const r=await addDoc(collection(db,"gallery"),item); return {...item,_docId:r.id}; }catch(e){return item;} },
   async deleteGallery(id){ try{ await deleteDoc(doc(db,"gallery",id)); }catch(e){} }
 };
-
-// ── Image → base64 (compress to <800KB) ──────────
-function compressImage(file, maxW=900, quality=0.78){
-  return new Promise((resolve,reject)=>{
-    const img=new Image();
-    const url=URL.createObjectURL(file);
-    img.onload=()=>{
-      let w=img.width, h=img.height;
-      if(w>maxW){ h=Math.round(h*maxW/w); w=maxW; }
-      const canvas=document.createElement("canvas");
-      canvas.width=w; canvas.height=h;
-      canvas.getContext("2d").drawImage(img,0,0,w,h);
-      URL.revokeObjectURL(url);
-      resolve(canvas.toDataURL("image/jpeg", quality));
-    };
-    img.onerror=reject;
-    img.src=url;
-  });
-}
 
 // ── State ─────────────────────────────────────────
 const S = {
   page:"home", bookings:[], holidays:[], gallery:[], services:[], settings:DEF_SETTINGS,
-  lastBook:null, step:1, date:today(), time:"", selectedService:null,
+  lastBook:null,
+  // booking flow
+  step:1, date:today(), time:"",
+  selService:null,   // сонгосон үйлчилгээ {id,name,...}
+  selSub:null,       // сонгосон дэд төрөл {id,name,price}
   form:{name:"",phone:"",email:""},errors:{},
   adminAuthed:localStorage.getItem("gw:auth")==="1",
   adminTab:"bookings", adminFilter:"all", schedDate:today(), loading:false
@@ -243,24 +290,20 @@ const S = {
 
 function setState(p){ Object.assign(S,p); render(); }
 
-// ── Realtime ──────────────────────────────────────
+// ── Realtime sync ─────────────────────────────────
 function startSync(){
-  onSnapshot(collection(db,"bookings"),snap=>{ S.bookings=snap.docs.map(d=>({...d.data(),_docId:d.id})).sort((a,b)=>(b.createdAt||"").localeCompare(a.createdAt||"")); if(S.page==="admin"&&S.adminAuthed) refreshAdminTable(); else render(); },e=>console.error(e));
-  onSnapshot(collection(db,"holidays"),snap=>{ S.holidays=snap.docs.map(d=>d.data().date).filter(Boolean).sort(); render(); },e=>console.error(e));
-  onSnapshot(collection(db,"gallery"),snap=>{ S.gallery=snap.docs.map(d=>({...d.data(),_docId:d.id})).sort((a,b)=>(b.createdAt||"").localeCompare(a.createdAt||"")); if(S.page==="home") render(); },e=>console.error(e));
-  onSnapshot(collection(db,"services"),snap=>{ if(!snap.empty){ S.services=snap.docs.map(d=>({...d.data(),_docId:d.id})).sort((a,b)=>(a.order||0)-(b.order||0)); render(); } },e=>console.error(e));
+  onSnapshot(collection(db,"bookings"),snap=>{
+    S.bookings=snap.docs.map(d=>({...d.data(),_docId:d.id})).sort((a,b)=>(b.createdAt||"").localeCompare(a.createdAt||""));
+    if(S.page==="admin"&&S.adminAuthed) refreshAdminTable(); else render();
+  });
+  onSnapshot(collection(db,"holidays"),snap=>{ S.holidays=snap.docs.map(d=>d.data().date).filter(Boolean).sort(); render(); });
+  onSnapshot(collection(db,"gallery"),snap=>{ S.gallery=snap.docs.map(d=>({...d.data(),_docId:d.id})).sort((a,b)=>(b.createdAt||"").localeCompare(a.createdAt||"")); if(S.page==="home") render(); });
+  onSnapshot(collection(db,"services"),snap=>{ if(!snap.empty){ S.services=snap.docs.map(d=>({...d.data(),_docId:d.id,subs:d.data().subs||[]})).sort((a,b)=>(a.order||0)-(b.order||0)); render(); } });
 }
 
 function refreshAdminTable(){
-  var tc=document.getElementById("atc"); if(!tc){render();return;} tc.innerHTML=""; tc.appendChild(buildBookingTable());
-  var sc=document.getElementById("asc"); if(sc){sc.innerHTML="";sc.appendChild(buildStats());}
-}
-
-function slotUsed(date,time,svcId){
-  return S.bookings.filter(b=>b.date===date&&b.time===time&&b.serviceId===svcId&&b.status!=="cancelled").length;
-}
-function slotUsedAny(date,time){
-  return S.bookings.filter(b=>b.date===date&&b.time===time&&b.status!=="cancelled").length;
+  const tc=document.getElementById("atc"); if(!tc){render();return;} tc.innerHTML=""; tc.appendChild(buildBookingTable());
+  const sc=document.getElementById("asc"); if(sc){sc.innerHTML="";sc.appendChild(buildStats());}
 }
 
 // ── DOM helpers ───────────────────────────────────
@@ -290,14 +333,11 @@ const lbl=(a,c)=>el("label",a,c);
 function Nav(active){
   const cfg=S.settings;
   const nav=el("nav");
-  const logo=btn({className:"nav-logo",onClick:()=>setState({page:"home"})}, [
-    div({className:"dot"}),
-    span({className:"serif",style:{fontSize:"20px",fontWeight:"500",color:"var(--dark)"}}, cfg.studioName||"Glow Studio")
-  ]);
-  const right=div({style:{display:"flex",gap:"6px",alignItems:"center"}}, [
-    btn({style:{background:active==="home"?"var(--dark)":"transparent",color:active==="home"?"#fff":"var(--muted)",border:"none",borderRadius:"9px",padding:"8px 18px",fontSize:"13px",fontWeight:"500"},onClick:()=>setState({page:"home"})}, "Нүүр"),
-    btn({style:{background:active==="book"?"var(--dark)":"transparent",color:active==="book"?"#fff":"var(--muted)",border:"none",borderRadius:"9px",padding:"8px 18px",fontSize:"13px",fontWeight:"500"},onClick:()=>setState({page:"book",step:1,selectedService:null,time:""})}, "Цаг захиалах"),
-    btn({style:{background:"transparent",color:"#ccc",border:"1px solid var(--border)",borderRadius:"9px",padding:"8px 13px",fontSize:"12px",marginLeft:"4px"},onClick:()=>setState({page:"admin"})}, "⚙")
+  const logo=el("button",{className:"nav-logo",onClick:()=>setState({page:"home"})},[ div({className:"nav-dot"}), span({className:"serif",style:{fontSize:"20px",fontWeight:"500",color:"var(--dark)"}},cfg.studioName||"Glow Studio") ]);
+  const right=div({style:{display:"flex",gap:"5px",alignItems:"center"}},[
+    btn({style:{background:active==="home"?"var(--dark)":"transparent",color:active==="home"?"#fff":"var(--muted)",border:"none",borderRadius:"9px",padding:"8px 16px",fontSize:"13px",fontWeight:"500"},onClick:()=>setState({page:"home"})},"Нүүр"),
+    btn({style:{background:active==="book"?"var(--dark)":"transparent",color:active==="book"?"#fff":"var(--muted)",border:"none",borderRadius:"9px",padding:"8px 16px",fontSize:"13px",fontWeight:"500"},onClick:()=>setState({page:"book",step:1,selService:null,selSub:null,time:""})},"Цаг захиалах"),
+    btn({style:{background:"transparent",color:"#ccc",border:"1px solid var(--border)",borderRadius:"9px",padding:"8px 12px",fontSize:"12px",marginLeft:"4px"},onClick:()=>setState({page:"admin"})},"⚙")
   ]);
   nav.appendChild(logo); nav.appendChild(right);
   return nav;
@@ -306,108 +346,115 @@ function Nav(active){
 // ── HOME ──────────────────────────────────────────
 function HomePage(){
   const cfg=S.settings;
+  const svcs=S.services.length>0?S.services:DEF_SERVICES;
   const wrap=div({});
   wrap.appendChild(Nav("home"));
 
   // Hero
   const hero=div({className:"hero"});
   hero.appendChild(div({className:"hero-bg"}));
-  hero.appendChild(div({className:"hero-badge f1"}, ["✦ ", cfg.studioName||"Glow Studio", " ✦"]));
+  hero.appendChild(div({className:"hero-badge f1"},["✦ ",cfg.studioName||"Glow Studio"," ✦"]));
   const ht=h1({className:"serif hero-title f2"});
-  ht.innerHTML=(cfg.tagline||"Өөрийгөө <em>илэрхийлэх</em> газар");
+  ht.innerHTML=cfg.tagline||"Өөрийгөө <em>илэрхийлэх</em> газар";
   hero.appendChild(ht);
-  hero.appendChild(p({className:"hero-sub f3"}, "Мэргэжлийн гоо сайхны үйлчилгээгээр өөрийгөө хайрлаарай."));
-  hero.appendChild(div({className:"f4"},[
-    btn({className:"hero-btn",onClick:()=>setState({page:"book",step:1,selectedService:null,time:""})}, "Цаг захиалах →")
-  ]));
+  hero.appendChild(p({className:"hero-sub f3"},"Мэргэжлийн гоо сайхны үйлчилгээгээр өөрийгөө хайрлаарай."));
+  hero.appendChild(div({className:"f4"},[btn({className:"hero-btn",onClick:()=>setState({page:"book",step:1,selService:null,selSub:null,time:""})},"Цаг захиалах →")]));
   wrap.appendChild(hero);
 
   // Services
-  const svcs=S.services.length>0?S.services:DEF_SERVICES;
-  const secSvc=div({className:"section",style:{background:"#fff",textAlign:"center"}});
-  secSvc.appendChild(p({className:"section-label"}, "ҮЙЛЧИЛГЭЭ"));
-  secSvc.appendChild(h2({className:"serif section-title"}, "Манай үйлчилгээнүүд"));
-  const sgrid=div({className:"services-grid"});
+  const secS=div({className:"section",style:{background:"#fff",textAlign:"center"}});
+  secS.appendChild(p({className:"sec-label"},"ҮЙЛЧИЛГЭЭ"));
+  secS.appendChild(h2({className:"serif sec-title"},"Манай үйлчилгээнүүд"));
+  const sg=div({className:"svc-grid"});
   svcs.forEach(svc=>{
-    const card=div({className:"service-card",onClick:()=>setState({page:"book",step:1,selectedService:svc,time:""})});
-    if(svc.imageUrl){ card.appendChild(el("img",{src:svc.imageUrl,alt:svc.name,className:"service-img"})); }
-    else { card.appendChild(div({className:"service-img-placeholder"},svc.emoji||"💄")); }
-    const body=div({className:"service-body"});
-    body.appendChild(p({className:"service-name"},[svc.emoji?" "+svc.emoji+" ":"",svc.name]));
-    body.appendChild(p({className:"service-desc"},svc.desc||""));
-    const foot=div({className:"service-footer"});
-    foot.appendChild(span({className:"service-price"},fmt(svc.price)));
-    foot.appendChild(span({className:"service-duration"},svc.duration||""));
-    body.appendChild(foot);
+    const card=div({className:"svc-card"});
+    if(svc.imageUrl) card.appendChild(el("img",{src:svc.imageUrl,alt:svc.name,className:"svc-img"}));
+    else card.appendChild(div({className:"svc-img-ph"},svc.emoji||"💄"));
+    const body=div({className:"svc-body"});
+    body.appendChild(p({className:"svc-name"},[svc.emoji?" ":"",svc.emoji||"",svc.emoji?" ":"",svc.name]));
+    if(svc.desc) body.appendChild(p({className:"svc-desc"},svc.desc));
+    // Дэд төрлүүд
+    const subs=svc.subs||[];
+    if(subs.length>0){
+      const sl=div({className:"svc-sub-list"});
+      subs.slice(0,3).forEach(sub=>{
+        const row=div({className:"svc-sub-row"});
+        row.appendChild(span({className:"svc-sub-name"},sub.name));
+        row.appendChild(span({className:"svc-sub-price"},fmt(sub.price)));
+        sl.appendChild(row);
+      });
+      if(subs.length>3) sl.appendChild(p({style:{fontSize:"12px",color:"var(--muted)",paddingLeft:"4px",marginTop:"2px"}},"+ "+(subs.length-3)+" төрөл"));
+      body.appendChild(sl);
+    }
+    body.appendChild(btn({className:"book-link",onClick:()=>setState({page:"book",step:1,selService:svc,selSub:null,time:""})},"Цаг захиалах →"));
     card.appendChild(body);
-    sgrid.appendChild(card);
+    sg.appendChild(card);
   });
-  secSvc.appendChild(sgrid);
-  wrap.appendChild(secSvc);
+  secS.appendChild(sg);
+  wrap.appendChild(secS);
 
   // Gallery
   if(S.gallery.length>0){
-    const secGal=div({className:"section",style:{textAlign:"center"}});
-    secGal.appendChild(p({className:"section-label"}, "ГАЛЕРЕЙ"));
-    secGal.appendChild(h2({className:"serif section-title"}, "Манай ажлуудаас"));
-    const gg=div({className:"gallery-grid"});
+    const secG=div({className:"section",style:{textAlign:"center"}});
+    secG.appendChild(p({className:"sec-label"},"ГАЛЕРЕЙ"));
+    secG.appendChild(h2({className:"serif sec-title"},"Манай ажлуудаас"));
+    const gg=div({className:"gal-grid"});
     S.gallery.forEach(item=>{
-      const gi=div({className:"gallery-item"});
-      if(item.imageUrl){ gi.appendChild(el("img",{src:item.imageUrl,alt:item.caption||""})); }
-      const ov=div({className:"goverlay"});
+      const gi=div({className:"gal-item"});
+      if(item.imageUrl) gi.appendChild(el("img",{src:item.imageUrl,alt:item.caption||""}));
+      const ov=div({className:"gal-ov"});
       if(item.caption) ov.appendChild(span({style:{color:"#fff",fontSize:"13px",fontWeight:"600",textAlign:"center"}},item.caption));
       gi.appendChild(ov);
       gg.appendChild(gi);
     });
-    secGal.appendChild(gg);
-    wrap.appendChild(secGal);
+    secG.appendChild(gg);
+    wrap.appendChild(secG);
   }
 
   // About
-  const secAbout=div({className:"about-section"});
+  const secA=div({className:"about-section",style:{background:"#fff",padding:"80px clamp(16px,5vw,64px)"}});
   const ai=div({className:"about-inner"});
-  const aImg=div({className:"about-img"});
-  if(cfg.aboutImageUrl){ aImg.appendChild(el("img",{src:cfg.aboutImageUrl,alt:"About"})); }
-  else { aImg.appendChild(div({className:"about-img-placeholder"},cfg.aboutEmoji||"✨")); }
+  const aImg=div({className:"about-img-wrap"});
+  if(cfg.aboutImageUrl) aImg.appendChild(el("img",{src:cfg.aboutImageUrl,alt:"About"}));
+  else aImg.appendChild(document.createTextNode(cfg.aboutEmoji||"✨"));
   ai.appendChild(aImg);
   const aTxt=div({});
-  aTxt.appendChild(p({className:"section-label"},["БИДНИЙ ТУХАЙ"]));
-  aTxt.appendChild(h2({className:"serif",style:{fontSize:"clamp(26px,4vw,38px)",fontWeight:"400",lineHeight:"1.2",marginBottom:"20px"}},cfg.aboutTitle||"Бидний тухай"));
-  aTxt.appendChild(p({style:{fontSize:"15px",color:"var(--muted)",lineHeight:"1.9"}},cfg.aboutText||""));
-  aTxt.appendChild(div({style:{marginTop:"28px"}}, [
-    btn({style:{background:"var(--dark)",color:"#fff",border:"none",borderRadius:"12px",padding:"13px 32px",fontSize:"14px",fontWeight:"600"},onClick:()=>setState({page:"book",step:1,selectedService:null,time:""})}, "Цаг захиалах")
-  ]));
+  aTxt.appendChild(p({className:"sec-label"},"БИДНИЙ ТУХАЙ"));
+  aTxt.appendChild(h2({className:"serif",style:{fontSize:"clamp(24px,4vw,36px)",fontWeight:"400",lineHeight:"1.2",marginBottom:"18px"}},cfg.aboutTitle||"Бидний тухай"));
+  aTxt.appendChild(p({style:{fontSize:"15px",color:"var(--muted)",lineHeight:"1.9",marginBottom:"28px"}},cfg.aboutText||""));
+  aTxt.appendChild(btn({style:{background:"var(--dark)",color:"#fff",border:"none",borderRadius:"12px",padding:"13px 30px",fontSize:"14px",fontWeight:"600"},onClick:()=>setState({page:"book",step:1,selService:null,selSub:null,time:""})},"Цаг захиалах"));
   ai.appendChild(aTxt);
-  secAbout.appendChild(ai);
-  wrap.appendChild(secAbout);
+  secA.appendChild(ai);
+  wrap.appendChild(secA);
 
-  // Info cards
-  const secInfo=div({className:"section",style:{background:"var(--cream)",paddingTop:"60px",paddingBottom:"60px"}});
-  const igrid=div({style:{maxWidth:"860px",margin:"0 auto",display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",gap:"16px"}});
-  [{icon:"📍",label:"Хаяг",val:cfg.address},{icon:"📞",label:"Утас",val:cfg.phone},{icon:"🕙",label:"Цагийн хуваарь",val:"10:00 – 19:00"}].forEach(it=>{
-    const c=div({style:{background:"#fff",borderRadius:"20px",padding:"26px",border:"1px solid var(--border)",boxShadow:"0 2px 12px rgba(0,0,0,.04)"}});
-    c.appendChild(div({style:{fontSize:"24px",marginBottom:"10px"}},it.icon));
-    c.appendChild(p({style:{fontSize:"10px",fontWeight:"700",letterSpacing:"1.8px",textTransform:"uppercase",color:"var(--pink2)",marginBottom:"5px"}},it.label));
+  // Info
+  const secI=div({className:"section",style:{paddingTop:"60px",paddingBottom:"60px"}});
+  const ig=div({style:{maxWidth:"860px",margin:"0 auto",display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))",gap:"14px"}});
+  [{icon:"📍",label:"Хаяг",val:cfg.address},{icon:"📞",label:"Утас",val:cfg.phone},{icon:"🕙",label:"Цагийн хуваарь",val:`${cfg.firstSlot||"10:00"} – ${cfg.lastSlot||"20:00"}`}].forEach(it=>{
+    const c=div({style:{background:"#fff",borderRadius:"18px",padding:"22px",border:"1px solid var(--border)",boxShadow:"0 2px 10px rgba(0,0,0,.04)"}});
+    c.appendChild(div({style:{fontSize:"22px",marginBottom:"8px"}},it.icon));
+    c.appendChild(p({style:{fontSize:"10px",fontWeight:"700",letterSpacing:"1.5px",textTransform:"uppercase",color:"var(--pink2)",marginBottom:"4px"}},it.label));
     c.appendChild(p({style:{fontSize:"14px",color:"var(--text)",lineHeight:"1.6"}},it.val));
-    igrid.appendChild(c);
+    ig.appendChild(c);
   });
-  secInfo.appendChild(igrid);
-  wrap.appendChild(secInfo);
+  secI.appendChild(ig);
+  wrap.appendChild(secI);
 
   // Footer
   const foot=el("footer");
-  const fi=div({className:"footer-inner"});
-  const ft=div({className:"footer-top"});
-  const fb=div({className:"footer-brand"});
-  const fl=p({}); fl.innerHTML=`<span style="font-family:'Playfair Display',serif;font-size:22px;color:#fff">${cfg.studioName||"Glow Studio"}</span>`;
-  fb.appendChild(fl);
-  fb.appendChild(p({style:{fontSize:"13px",marginTop:"6px",lineHeight:"1.8"}},cfg.phone+"<br>"+cfg.address));
-  fb.children[1].innerHTML=cfg.phone+"<br>"+cfg.address;
+  const fi=div({className:"foot-inner"});
+  const ft=div({className:"foot-top"});
+  const fb=div({});
+  const fn=p({}); fn.innerHTML=`<span class="serif" style="font-size:22px;color:#fff">${cfg.studioName||"Glow Studio"}</span>`;
+  fb.appendChild(fn);
+  const fa=p({style:{fontSize:"13px",marginTop:"6px",lineHeight:"1.8"}});
+  fa.innerHTML=cfg.phone+"<br>"+cfg.address;
+  fb.appendChild(fa);
   ft.appendChild(fb);
   const hasSoc=cfg.instagram||cfg.facebook||cfg.tiktok;
   if(hasSoc){
-    const sd=div({className:"footer-links"});
-    sd.appendChild(p({style:{fontSize:"11px",fontWeight:"700",letterSpacing:"1.5px",textTransform:"uppercase",color:"#4a3540",marginBottom:"10px"}},"СОШИАЛ МЕДИА"));
+    const sd=div({className:"foot-links"});
+    sd.appendChild(p({style:{fontSize:"11px",fontWeight:"700",letterSpacing:"1.5px",textTransform:"uppercase",color:"#4a3540",marginBottom:"8px"}},"СОШИАЛ МЕДИА"));
     if(cfg.instagram){ const a=el("a",{href:cfg.instagram.startsWith("http")?cfg.instagram:"https://instagram.com/"+cfg.instagram.replace("@",""),target:"_blank"}); a.textContent="📸 Instagram"; sd.appendChild(a); }
     if(cfg.facebook){ const a=el("a",{href:cfg.facebook.startsWith("http")?cfg.facebook:"https://facebook.com/"+cfg.facebook,target:"_blank"}); a.textContent="👍 Facebook"; sd.appendChild(a); }
     if(cfg.tiktok){ const a=el("a",{href:cfg.tiktok.startsWith("http")?cfg.tiktok:"https://tiktok.com/@"+cfg.tiktok.replace("@",""),target:"_blank"}); a.textContent="🎵 TikTok"; sd.appendChild(a); }
@@ -423,95 +470,137 @@ function HomePage(){
 // ── BOOK ──────────────────────────────────────────
 function BookPage(){
   const cfg=S.settings;
+  const svcs=S.services.length>0?S.services:DEF_SERVICES;
+  const slots=genSlots(cfg);
   const wrap=div({});
   wrap.appendChild(Nav("book"));
   const inner=div({className:"book-wrap"});
 
   // Stepper
+  const steps=["Үйлчилгээ","Дэд төрөл","Цаг","Мэдээлэл"];
   const stpr=div({className:"stepper"});
-  ["Үйлчилгээ","Цаг","Мэдээлэл"].forEach((s,i)=>{
-    stpr.appendChild(div({className:"step-dot",style:{background:S.step>i+1?"var(--dark)":S.step===i+1?"var(--pink2)":"#f0e4ec",color:S.step>=i+1?"#fff":"#ccc"}}, S.step>i+1?"✓":String(i+1)));
-    stpr.appendChild(span({style:{marginLeft:"7px",fontSize:"13px",fontWeight:"500",whiteSpace:"nowrap",color:S.step===i+1?"var(--dark)":"#bbb"}},s));
-    if(i<2) stpr.appendChild(div({className:"step-line",style:{background:S.step>i+1?"var(--dark)":"var(--border)"}}));
+  steps.forEach((s,i)=>{
+    stpr.appendChild(div({className:"step-dot",style:{background:S.step>i+1?"var(--dark)":S.step===i+1?"var(--pink2)":"#f0e4ec",color:S.step>=i+1?"#fff":"#ccc"}},S.step>i+1?"✓":String(i+1)));
+    stpr.appendChild(span({style:{marginLeft:"6px",fontSize:"12px",fontWeight:"500",whiteSpace:"nowrap",color:S.step===i+1?"var(--dark)":"#bbb"}},s));
+    if(i<steps.length-1) stpr.appendChild(div({className:"step-line",style:{background:S.step>i+1?"var(--dark)":"var(--border)"}}));
   });
   inner.appendChild(stpr);
 
-  const isHol=S.holidays.indexOf(S.date)>=0;
-  const slots=cfg.slots||["10:00","11:30","13:00","14:30","16:00","17:30"];
-  const maxSlot=cfg.maxSlot||1;
-  const svcs=S.services.length>0?S.services:DEF_SERVICES;
+  const isHol=S.holidays.includes(S.date);
 
-  // STEP 1 – service
+  // ── STEP 1: Үйлчилгээ сонгох ──
   if(S.step===1){
-    inner.appendChild(h2({className:"serif f1",style:{fontSize:"32px",marginBottom:"8px"}},"Үйлчилгээ сонгоно уу"));
-    inner.appendChild(p({style:{color:"var(--muted)",marginBottom:"28px",fontSize:"14px"}},"Авахыг хүсэж буй үйлчилгээгээ сонгоно уу"));
-    const sg=div({style:{display:"flex",flexDirection:"column",gap:"12px"}});
+    inner.appendChild(h2({className:"serif f1",style:{fontSize:"30px",marginBottom:"8px"}},"Үйлчилгээ сонгоно уу"));
+    inner.appendChild(p({style:{color:"var(--muted)",marginBottom:"24px",fontSize:"14px"}},"Авахыг хүсэж буй үйлчилгээгээ сонгоно уу"));
+    const sg=div({style:{display:"flex",flexDirection:"column",gap:"10px"}});
     svcs.forEach(svc=>{
-      const sel=S.selectedService&&S.selectedService.id===svc.id;
-      const card=btn({style:{border:"2px solid "+(sel?"var(--pink2)":"var(--border)"),borderRadius:"16px",padding:"0",background:sel?"#fdf0f7":"#fff",display:"flex",alignItems:"center",gap:"0",textAlign:"left",width:"100%",overflow:"hidden",boxShadow:sel?"0 0 0 3px rgba(212,114,159,.14)":"none",transition:"all .15s"}});
-      if(svc.imageUrl){ card.appendChild(el("img",{src:svc.imageUrl,alt:svc.name,style:{width:"80px",height:"80px",objectFit:"cover",flexShrink:"0"}})); }
-      else { card.appendChild(div({style:{width:"80px",height:"80px",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"30px",background:"linear-gradient(135deg,#fdf0f7,#f5e8f2)",flexShrink:"0"}},svc.emoji||"💄")); }
-      const bd=div({style:{flex:"1",padding:"14px 18px"}});
+      const sel=S.selService?.id===svc.id;
+      const card=btn({style:{border:"2px solid "+(sel?"var(--pink2)":"var(--border)"),borderRadius:"16px",padding:"0",background:sel?"#fdf0f7":"#fff",display:"flex",alignItems:"center",textAlign:"left",width:"100%",overflow:"hidden",boxShadow:sel?"0 0 0 3px rgba(212,114,159,.13)":"none",transition:"all .15s"}});
+      if(svc.imageUrl) card.appendChild(el("img",{src:svc.imageUrl,alt:svc.name,style:{width:"80px",height:"80px",objectFit:"cover",flexShrink:"0"}}));
+      else card.appendChild(div({style:{width:"80px",height:"80px",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"28px",background:"linear-gradient(135deg,#fdf0f7,#f5e8f2)",flexShrink:"0"}},svc.emoji||"💄"));
+      const bd=div({style:{flex:"1",padding:"13px 16px"}});
       bd.appendChild(p({style:{fontWeight:"700",fontSize:"15px",color:"var(--dark)",marginBottom:"2px"}},svc.name));
-      bd.appendChild(p({style:{fontSize:"12px",color:"var(--muted)",marginBottom:"6px"}},svc.desc||""));
-      const sf=div({style:{display:"flex",alignItems:"center",gap:"8px"}});
-      sf.appendChild(span({style:{fontSize:"16px",fontWeight:"700",color:"var(--pink3)"}},fmt(svc.price)));
-      sf.appendChild(span({style:{fontSize:"11px",color:"var(--muted)",background:"#f7f0f5",padding:"2px 8px",borderRadius:"100px"}},svc.duration||""));
-      bd.appendChild(sf);
+      const subs=svc.subs||[];
+      if(subs.length>0){
+        const priceRange=`${fmt(Math.min(...subs.map(s=>s.price)))} – ${fmt(Math.max(...subs.map(s=>s.price)))}`;
+        bd.appendChild(p({style:{fontSize:"12px",color:"var(--pink3)",fontWeight:"600"}},priceRange));
+      }
+      bd.appendChild(p({style:{fontSize:"12px",color:"var(--muted)",marginTop:"2px"}},svc.desc||""));
       card.appendChild(bd);
-      if(sel) card.appendChild(span({style:{paddingRight:"16px",fontSize:"20px",color:"var(--pink2)"}},"\u2713"));
-      card.addEventListener("click",()=>{ S.selectedService=svc; render(); });
+      if(sel) card.appendChild(span({style:{paddingRight:"16px",fontSize:"18px",color:"var(--pink2)"}},"✓"));
+      card.addEventListener("click",()=>{ S.selService=svc; S.selSub=null; render(); });
       sg.appendChild(card);
     });
     inner.appendChild(sg);
-    inner.appendChild(div({style:{marginTop:"24px"}},[
-      btn({style:{width:"100%",background:S.selectedService?"var(--dark)":"#e5e7eb",color:S.selectedService?"#fff":"#9ca3af",border:"none",borderRadius:"13px",padding:"15px 0",fontSize:"15px",fontWeight:"600"},onClick:()=>{ if(S.selectedService) setState({step:2}); }}, "Үргэлжлүүлэх →")
+    inner.appendChild(div({style:{marginTop:"20px"}},[
+      btn({style:{width:"100%",background:S.selService?"var(--dark)":"#e5e7eb",color:S.selService?"#fff":"#9ca3af",border:"none",borderRadius:"13px",padding:"14px 0",fontSize:"15px",fontWeight:"600"},onClick:()=>{ if(S.selService) setState({step:2}); }},"Үргэлжлүүлэх →")
     ]));
   }
 
-  // STEP 2 – date/time
+  // ── STEP 2: Дэд төрөл сонгох ──
   else if(S.step===2){
-    inner.appendChild(btn({style:{background:"none",border:"none",color:"var(--muted)",fontSize:"13px",marginBottom:"20px",display:"flex",alignItems:"center",gap:"5px"},onClick:()=>setState({step:1})}, "← Буцах"));
-    inner.appendChild(h2({className:"serif f1",style:{fontSize:"32px",marginBottom:"8px"}},"Өдөр, цаг сонгоно уу"));
-    inner.appendChild(p({style:{color:"var(--muted)",marginBottom:"28px",fontSize:"14px"}},[
-      span({style:{background:"#f7f0f5",color:"var(--pink3)",borderRadius:"8px",padding:"3px 10px",fontSize:"13px",fontWeight:"600"}},S.selectedService?.name||""), " сонгогдлоо"
+    inner.appendChild(btn({style:{background:"none",border:"none",color:"var(--muted)",fontSize:"13px",marginBottom:"18px",display:"flex",alignItems:"center",gap:"5px"},onClick:()=>setState({step:1})},"← Буцах"));
+    inner.appendChild(h2({className:"serif f1",style:{fontSize:"30px",marginBottom:"8px"}},"Төрөл сонгоно уу"));
+    inner.appendChild(p({style:{color:"var(--muted)",marginBottom:"24px",fontSize:"14px"}},[
+      span({style:{background:"#f7f0f5",color:"var(--pink3)",borderRadius:"8px",padding:"3px 10px",fontSize:"13px",fontWeight:"600"}},S.selService?.name||""), " — дэд төрлийг сонгоно уу"
     ]));
-    inner.appendChild(lbl({style:{display:"block",marginBottom:"7px",fontSize:"13px",fontWeight:"600",color:"#555"}},"Өдөр"));
-    const di=inp({type:"date",value:S.date,min:today(),style:{marginBottom:"24px"}});
+    const subs=S.selService?.subs||[];
+    const sg=div({style:{display:"flex",flexDirection:"column",gap:"10px"}});
+    subs.forEach(sub=>{
+      const sel=S.selSub?.id===sub.id;
+      const card=btn({style:{border:"2px solid "+(sel?"var(--pink2)":"var(--border)"),borderRadius:"14px",padding:"16px 20px",background:sel?"#fdf0f7":"#fff",display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%",textAlign:"left",transition:"all .15s"}});
+      const left2=div({});
+      left2.appendChild(p({style:{fontWeight:"700",fontSize:"15px",color:"var(--dark)",marginBottom:"2px"}},sub.name));
+      left2.appendChild(p({style:{fontSize:"12px",color:"var(--muted)"}},`${cfg.serviceDuration||90} минут`));
+      card.appendChild(left2);
+      const right2=div({style:{display:"flex",alignItems:"center",gap:"10px"}});
+      right2.appendChild(span({style:{fontSize:"18px",fontWeight:"700",color:"var(--pink3)"}},fmt(sub.price)));
+      if(sel) right2.appendChild(span({style:{fontSize:"16px",color:"var(--pink2)"}},"✓"));
+      card.appendChild(right2);
+      card.addEventListener("click",()=>{ S.selSub=sub; render(); });
+      sg.appendChild(card);
+    });
+    inner.appendChild(sg);
+    inner.appendChild(div({style:{marginTop:"20px"}},[
+      btn({style:{width:"100%",background:S.selSub?"var(--dark)":"#e5e7eb",color:S.selSub?"#fff":"#9ca3af",border:"none",borderRadius:"13px",padding:"14px 0",fontSize:"15px",fontWeight:"600"},onClick:()=>{ if(S.selSub) setState({step:3}); }},"Үргэлжлүүлэх →")
+    ]));
+  }
+
+  // ── STEP 3: Өдөр + цаг ──
+  else if(S.step===3){
+    inner.appendChild(btn({style:{background:"none",border:"none",color:"var(--muted)",fontSize:"13px",marginBottom:"18px",display:"flex",alignItems:"center",gap:"5px"},onClick:()=>setState({step:2})},"← Буцах"));
+    inner.appendChild(h2({className:"serif f1",style:{fontSize:"30px",marginBottom:"8px"}},"Өдөр, цаг сонгоно уу"));
+    inner.appendChild(p({style:{color:"var(--muted)",marginBottom:"24px",fontSize:"14px"}},[
+      span({style:{background:"#f7f0f5",color:"var(--pink3)",borderRadius:"8px",padding:"3px 10px",fontSize:"13px",fontWeight:"600"}},S.selService?.name+" – "+S.selSub?.name)
+    ]));
+    inner.appendChild(lbl({className:"lbl"},"Өдөр"));
+    const di=inp({type:"date",value:S.date,min:today(),style:{marginBottom:"22px"}});
     di.addEventListener("change",e=>{ S.date=e.target.value; S.time=""; render(); });
     inner.appendChild(di);
+
     if(isHol){
       inner.appendChild(div({style:{background:"#fef3c7",border:"1px solid #fcd34d",borderRadius:"12px",padding:"14px 18px",fontSize:"13px",color:"#92400e"}},"⚠️ Энэ өдөр амралтын өдөр тул захиалга авахгүй."));
     } else {
-      inner.appendChild(lbl({style:{display:"block",marginBottom:"12px",fontSize:"13px",fontWeight:"600",color:"#555"}},"Цаг сонгоно уу"));
+      inner.appendChild(lbl({className:"lbl",style:{marginBottom:"12px"}},"Цаг сонгоно уу"));
       const tg=div({className:"slot-grid"});
       slots.forEach(t=>{
-        const used=slotUsedAny(S.date,t);
-        const full=used>=maxSlot;
+        const info=getSlotInfo(S.date,t,S.selService.id,cfg,S.bookings);
         const sel=S.time===t;
-        const tb=btn({className:"slot-btn"+(sel?" sel":full?" full":"")});
-        tb.disabled=full;
+        let cls="slot-btn";
+        if(sel) cls+=" sel";
+        else if(info.full) cls+=" full";
+        else if(info.used>0) cls+=" partial";
+        const tb=el("button",{className:cls});
+        tb.disabled=info.full;
         tb.appendChild(p({style:{fontWeight:"700",fontSize:"15px"}},t));
-        tb.appendChild(p({style:{fontSize:"11px",marginTop:"3px",color:sel?"rgba(255,255,255,.7)":full?"#ccc":"var(--muted)"}},full?"Дүүрсэн":"Боломжтой"));
+        const statusTxt = info.full ? "Дүүрсэн" : info.cap>1 ? `${info.left}/${info.cap} боломжтой` : "Боломжтой";
+        tb.appendChild(p({style:{fontSize:"11px",marginTop:"3px",color:sel?"rgba(255,255,255,.7)":info.full?"#ccc":info.used>0?"#d97706":"var(--muted)"}},statusTxt));
         tb.addEventListener("click",()=>{ S.time=t; render(); });
         tg.appendChild(tb);
       });
       inner.appendChild(tg);
-      inner.appendChild(btn({style:{width:"100%",background:S.time?"var(--dark)":"#e5e7eb",color:S.time?"#fff":"#9ca3af",border:"none",borderRadius:"13px",padding:"15px 0",fontSize:"15px",fontWeight:"600"},onClick:()=>{ if(S.time) setState({step:3}); }}, "Үргэлжлүүлэх →"));
+
+      // Мэдэгдэл: хугацааны тайлбар
+      const dur=cfg.serviceDuration||90;
+      inner.appendChild(div({style:{background:"#f0f9ff",border:"1px solid #bae6fd",borderRadius:"10px",padding:"10px 14px",fontSize:"12px",color:"#0369a1",marginBottom:"20px"}},
+        `ℹ️ ${S.selService?.name} үйлчилгээ ${dur} минут үргэлжилнэ. Сонгосон цагаас хойш ${dur} минутын хуваарь эзлэгдэнэ.`
+      ));
+
+      inner.appendChild(btn({style:{width:"100%",background:S.time?"var(--dark)":"#e5e7eb",color:S.time?"#fff":"#9ca3af",border:"none",borderRadius:"13px",padding:"14px 0",fontSize:"15px",fontWeight:"600"},onClick:()=>{ if(S.time) setState({step:4}); }},"Үргэлжлүүлэх →"));
     }
   }
 
-  // STEP 3 – info
-  else if(S.step===3){
-    inner.appendChild(btn({style:{background:"none",border:"none",color:"var(--muted)",fontSize:"13px",marginBottom:"20px",display:"flex",alignItems:"center",gap:"5px"},onClick:()=>setState({step:2})}, "← Буцах"));
-    inner.appendChild(h2({className:"serif f1",style:{fontSize:"32px",marginBottom:"8px"}},"Мэдээлэл оруулна уу"));
-    inner.appendChild(p({style:{color:"var(--muted)",marginBottom:"24px",fontSize:"14px"}},[
-      span({style:{background:"#f7f0f5",color:"var(--pink3)",borderRadius:"8px",padding:"3px 10px",fontSize:"13px",fontWeight:"600"}},S.selectedService?.name||""),
+  // ── STEP 4: Мэдээлэл ──
+  else if(S.step===4){
+    inner.appendChild(btn({style:{background:"none",border:"none",color:"var(--muted)",fontSize:"13px",marginBottom:"18px",display:"flex",alignItems:"center",gap:"5px"},onClick:()=>setState({step:3})},"← Буцах"));
+    inner.appendChild(h2({className:"serif f1",style:{fontSize:"30px",marginBottom:"8px"}},"Мэдээлэл оруулна уу"));
+    inner.appendChild(p({style:{color:"var(--muted)",marginBottom:"22px",fontSize:"14px"}},[
+      span({style:{background:"#f7f0f5",color:"var(--pink3)",borderRadius:"8px",padding:"3px 10px",fontSize:"13px",fontWeight:"600"}},S.selService?.name+" – "+S.selSub?.name),
       " · "+S.date+" · "+S.time
     ]));
     [{key:"name",label:"Нэр",ph:"Таны нэр",type:"text"},{key:"phone",label:"Утас",ph:"9900-0000",type:"tel"},{key:"email",label:"И-мэйл",ph:"email@example.com",type:"email"}].forEach(f=>{
-      const fw=div({style:{marginBottom:"18px"}});
-      fw.appendChild(lbl({style:{display:"block",marginBottom:"7px",fontSize:"13px",fontWeight:"600",color:"#555"}},f.label));
+      const fw=div({style:{marginBottom:"16px"}});
+      fw.appendChild(lbl({className:"lbl"},f.label));
       const fi=inp({type:f.type,placeholder:f.ph,value:S.form[f.key]});
       fi.style.borderColor=S.errors[f.key]?"#f87171":"var(--border)";
       fi.addEventListener("input",e=>{ S.form[f.key]=e.target.value; });
@@ -519,27 +608,37 @@ function BookPage(){
       if(S.errors[f.key]) fw.appendChild(p({style:{fontSize:"12px",color:"#ef4444",marginTop:"4px"}},S.errors[f.key]));
       inner.appendChild(fw);
     });
-    const sum=div({style:{background:"#fdf4ff",border:"1px solid #e9d5ff",borderRadius:"14px",padding:"18px",marginBottom:"24px"}});
+    // Summary
+    const sum=div({style:{background:"#fdf4ff",border:"1px solid #e9d5ff",borderRadius:"14px",padding:"18px",marginBottom:"22px"}});
     sum.appendChild(p({style:{fontSize:"11px",fontWeight:"700",color:"var(--pink3)",marginBottom:"10px",letterSpacing:"1px"}},"📋 ЗАХИАЛГЫН ДЭЛГЭРЭНГҮЙ"));
-    [["Үйлчилгээ",S.selectedService?.name||""],["Өдөр",S.date],["Цаг",S.time],["Үнэ",fmt(S.selectedService?.price||0)]].forEach(row=>{
+    [["Үйлчилгээ",S.selService?.name],["Дэд төрөл",S.selSub?.name],["Хугацаа",(cfg.serviceDuration||90)+" минут"],["Өдөр",S.date],["Цаг",S.time],["Үнэ",fmt(S.selSub?.price||0)]].forEach(row=>{
       const r=div({style:{display:"flex",justifyContent:"space-between",fontSize:"13px",marginBottom:"6px"}});
       r.appendChild(span({style:{color:"var(--muted)"}},row[0]));
-      r.appendChild(span({style:{fontWeight:"600",color:"var(--dark)"}},row[1]));
+      r.appendChild(span({style:{fontWeight:"600",color:"var(--dark)"}},row[1]||""));
       sum.appendChild(r);
     });
     inner.appendChild(sum);
-    const sb=btn({style:{width:"100%",background:S.loading?"#bbb":"var(--pink2)",color:"#fff",border:"none",borderRadius:"13px",padding:"16px 0",fontWeight:"700",fontSize:"15px",boxShadow:"0 4px 18px rgba(212,114,159,.35)"},onClick:async()=>{
+    const sb=btn({style:{width:"100%",background:S.loading?"#bbb":"var(--pink2)",color:"#fff",border:"none",borderRadius:"13px",padding:"16px 0",fontWeight:"700",fontSize:"15px",boxShadow:"0 4px 18px rgba(212,114,159,.35)"}},S.loading?"Илгээж байна...":"Захиалга илгээх ✦");
+    sb.disabled=S.loading;
+    sb.addEventListener("click",async()=>{
       const e={};
       if(!S.form.name.trim()) e.name="Нэр оруулна уу";
-      if(!/^\d{7,8}/.test(S.form.phone.replace(/[\s\-]/g,""))) e.phone="Утасны дугаар буруу байна";
+      if(!/^\d{7,8}/.test(S.form.phone.replace(/[\s\-]/g,""))) e.phone="Утасны дугаар буруу";
       if(!S.form.email.includes("@")) e.email="Зөв и-мэйл оруулна уу";
       if(Object.keys(e).length){ setState({errors:e}); return; }
       setState({loading:true});
-      const b={name:S.form.name,phone:S.form.phone,email:S.form.email,date:S.date,time:S.time,serviceId:S.selectedService?.id,serviceName:S.selectedService?.name,price:S.selectedService?.price||0,id:uid(),status:"pending",createdAt:new Date().toISOString()};
+      const b={
+        name:S.form.name, phone:S.form.phone, email:S.form.email,
+        date:S.date, time:S.time,
+        serviceId:S.selService.id, serviceName:S.selService.name,
+        subId:S.selSub.id, subName:S.selSub.name,
+        price:S.selSub.price,
+        duration:cfg.serviceDuration||90,
+        id:uid(), status:"pending", createdAt:new Date().toISOString()
+      };
       const saved=await DB.addBooking(b);
-      setState({lastBook:saved,page:"success",step:1,form:{name:"",phone:"",email:""},errors:{},time:"",selectedService:null,loading:false});
-    }},S.loading?"Илгээж байна...":"Захиалга илгээх ✦");
-    sb.disabled=S.loading;
+      setState({lastBook:saved,page:"success",step:1,form:{name:"",phone:"",email:""},errors:{},time:"",selService:null,selSub:null,loading:false});
+    });
     inner.appendChild(sb);
   }
 
@@ -552,30 +651,29 @@ function SuccessPage(){
   const b=S.lastBook, cfg=S.settings;
   if(!b){ setState({page:"home"}); return div({}); }
   const wrap=div({style:{minHeight:"100vh",background:"linear-gradient(135deg,#fff5f0,#fdf4ff)",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"24px"}});
-  const card=div({style:{maxWidth:"480px",width:"100%",background:"#fff",borderRadius:"28px",padding:"44px 36px",textAlign:"center",boxShadow:"0 20px 60px rgba(0,0,0,.08)"}});
-  card.appendChild(div({style:{fontSize:"52px",marginBottom:"14px"}},"✨"));
-  card.appendChild(h2({className:"serif",style:{fontSize:"32px",marginBottom:"8px"}},"Амжилттай захиалагдлаа!"));
-  const sp=p({style:{color:"var(--muted)",marginBottom:"28px",fontSize:"14px",lineHeight:"1.75"}});
-  sp.innerHTML=`Захиалгын дугаар: <strong style="color:var(--dark)">#${b.id}</strong><br>Та <strong>${b.email}</strong> хаяг руу баталгаажих мэйл хүлээж авна.`;
+  const card=div({style:{maxWidth:"460px",width:"100%",background:"#fff",borderRadius:"26px",padding:"40px 32px",textAlign:"center",boxShadow:"0 20px 60px rgba(0,0,0,.08)"}});
+  card.appendChild(div({style:{fontSize:"48px",marginBottom:"12px"}},"✨"));
+  card.appendChild(h2({className:"serif",style:{fontSize:"30px",marginBottom:"8px"}},"Амжилттай захиалагдлаа!"));
+  const sp=p({style:{color:"var(--muted)",marginBottom:"24px",fontSize:"14px",lineHeight:"1.75"}});
+  sp.innerHTML=`Захиалгын дугаар: <strong style="color:var(--dark)">#${b.id}</strong><br>Та <strong>${b.email}</strong> хаяг руу мэйл хүлээж авна.`;
   card.appendChild(sp);
-  const det=div({style:{background:"#fdf4ff",border:"1px dashed #e9d5ff",borderRadius:"14px",padding:"18px",marginBottom:"20px",textAlign:"left"}});
-  [["Үйлчилгээ",b.serviceName],["Өдөр",b.date],["Цаг",b.time],["Нэр",b.name],["Утас",b.phone],["Үнэ",fmt(b.price)]].forEach(row=>{
-    const r=div({style:{display:"flex",justifyContent:"space-between",fontSize:"13px",marginBottom:"7px"}});
+  const det=div({style:{background:"#fdf4ff",border:"1px dashed #e9d5ff",borderRadius:"14px",padding:"16px",marginBottom:"18px",textAlign:"left"}});
+  [["Үйлчилгээ",b.serviceName],["Дэд төрөл",b.subName],["Өдөр",b.date],["Цаг",b.time],["Нэр",b.name],["Утас",b.phone],["Үнэ",fmt(b.price)]].forEach(row=>{
+    const r=div({style:{display:"flex",justifyContent:"space-between",fontSize:"13px",marginBottom:"6px"}});
     r.appendChild(span({style:{color:"var(--muted)"}},row[0]));
     r.appendChild(span({style:{fontWeight:"600"}},row[1]||""));
     det.appendChild(r);
   });
   card.appendChild(det);
   if(cfg.account){
-    const pay=div({style:{background:"#fff7ed",border:"1px solid #fed7aa",borderRadius:"12px",padding:"16px",marginBottom:"24px",textAlign:"left",fontSize:"13px"}});
-    pay.appendChild(p({style:{fontWeight:"700",color:"#c2410c",marginBottom:"8px"}},"💳 Төлбөр шилжүүлэх"));
+    const pay=div({style:{background:"#fff7ed",border:"1px solid #fed7aa",borderRadius:"12px",padding:"14px",marginBottom:"22px",textAlign:"left",fontSize:"13px"}});
+    pay.appendChild(p({style:{fontWeight:"700",color:"#c2410c",marginBottom:"6px"}},"💳 Төлбөр шилжүүлэх"));
     const pp=p({style:{color:"#555",lineHeight:"1.8"}});
-    pp.innerHTML=`<strong>${cfg.bank}</strong> · <strong>${cfg.account}</strong><br>Гүйлгээний утга: <strong>${b.phone}</strong><br>Дүн: <strong style="color:#c2410c">${fmt(b.price)}</strong>`;
+    pp.innerHTML=`<strong>${cfg.bank}</strong> · <strong>${cfg.account}</strong><br>Утга: <strong>${b.phone}</strong> · Дүн: <strong style="color:#c2410c">${fmt(b.price)}</strong>`;
     pay.appendChild(pp);
-    pay.appendChild(p({style:{marginTop:"8px",color:"#aaa",fontSize:"12px"}},"Төлбөр орсны дараа админ баталгаажуулна."));
     card.appendChild(pay);
   }
-  card.appendChild(btn({style:{width:"100%",background:"var(--dark)",color:"#fff",border:"none",borderRadius:"13px",padding:"14px 0",fontSize:"15px",fontWeight:"600"},onClick:()=>setState({page:"home"})},"Нүүр хуудас руу буцах"));
+  card.appendChild(btn({style:{width:"100%",background:"var(--dark)",color:"#fff",border:"none",borderRadius:"13px",padding:"13px 0",fontSize:"15px",fontWeight:"600"},onClick:()=>setState({page:"home"})},"Нүүр хуудас руу буцах"));
   wrap.appendChild(card);
   return wrap;
 }
@@ -584,127 +682,63 @@ function SuccessPage(){
 function AdminLoginPage(){
   const cfg=S.settings;
   const wrap=div({style:{minHeight:"100vh",background:"linear-gradient(135deg,var(--dark),#2d1526)",display:"flex",alignItems:"center",justifyContent:"center",padding:"24px"}});
-  const card=div({style:{background:"#fff",borderRadius:"28px",padding:"48px 40px",width:"100%",maxWidth:"400px",boxShadow:"0 32px 80px rgba(0,0,0,.35)"}});
-  card.appendChild(div({style:{textAlign:"center",marginBottom:"32px"}},[
-    div({style:{fontSize:"36px",marginBottom:"8px"}},"✨"),
-    h1({className:"serif",style:{fontSize:"24px",fontWeight:"500",color:"var(--dark)"}},cfg.studioName||"Glow Studio"),
-    p({style:{fontSize:"13px",color:"var(--muted)",marginTop:"4px"}},"Админ удирдлагын систем")
-  ]));
-  const eW=div({style:{marginBottom:"14px"}});
-  eW.appendChild(lbl({style:{display:"block",marginBottom:"7px",fontSize:"13px",fontWeight:"600",color:"#555"}},"И-мэйл хаяг"));
-  const eI=inp({type:"email",placeholder:cfg.adminEmail});
-  eW.appendChild(eI); card.appendChild(eW);
-  const pW=div({style:{marginBottom:"20px"}});
-  pW.appendChild(lbl({style:{display:"block",marginBottom:"7px",fontSize:"13px",fontWeight:"600",color:"#555"}},"Нууц үг"));
-  const pI=inp({type:"password",placeholder:"••••••••"});
-  pW.appendChild(pI); card.appendChild(pW);
-  const err=div({style:{display:"none",background:"#fef2f2",border:"1px solid #fecaca",borderRadius:"9px",padding:"10px 14px",marginBottom:"16px",fontSize:"13px",color:"#dc2626"}});
+  const card=div({style:{background:"#fff",borderRadius:"26px",padding:"44px 36px",width:"100%",maxWidth:"380px",boxShadow:"0 32px 80px rgba(0,0,0,.35)"}});
+  card.appendChild(div({style:{textAlign:"center",marginBottom:"28px"}},[div({style:{fontSize:"32px",marginBottom:"8px"}},"✨"),h1({className:"serif",style:{fontSize:"22px",fontWeight:"500",color:"var(--dark)"}},cfg.studioName||"Glow Studio"),p({style:{fontSize:"13px",color:"var(--muted)",marginTop:"4px"}},"Админ удирдлагын систем")]));
+  const eW=div({style:{marginBottom:"13px"}}); eW.appendChild(lbl({className:"lbl"},"И-мэйл хаяг")); const eI=inp({type:"email",placeholder:cfg.adminEmail}); eW.appendChild(eI); card.appendChild(eW);
+  const pW=div({style:{marginBottom:"18px"}}); pW.appendChild(lbl({className:"lbl"},"Нууц үг")); const pI=inp({type:"password",placeholder:"••••••••"}); pW.appendChild(pI); card.appendChild(pW);
+  const err=div({style:{display:"none",background:"#fef2f2",border:"1px solid #fecaca",borderRadius:"9px",padding:"10px 14px",marginBottom:"14px",fontSize:"13px",color:"#dc2626"}});
   card.appendChild(err);
-  const lb=btn({style:{width:"100%",background:"var(--dark)",color:"#fff",border:"none",borderRadius:"12px",padding:"14px 0",fontWeight:"600",fontSize:"15px"}},"Нэвтрэх");
-  lb.addEventListener("click",()=>{
-    if(eI.value.trim().toLowerCase()===cfg.adminEmail.toLowerCase()&&pI.value===cfg.adminPass){
-      localStorage.setItem("gw:auth","1"); setState({adminAuthed:true});
-    } else { err.style.display="block"; err.textContent="⚠️ И-мэйл эсвэл нууц үг буруу байна."; }
-  });
+  const lb=btn({style:{width:"100%",background:"var(--dark)",color:"#fff",border:"none",borderRadius:"12px",padding:"13px 0",fontWeight:"600",fontSize:"15px"}},"Нэвтрэх");
+  lb.addEventListener("click",()=>{ if(eI.value.trim().toLowerCase()===cfg.adminEmail.toLowerCase()&&pI.value===cfg.adminPass){ localStorage.setItem("gw:auth","1"); setState({adminAuthed:true}); } else { err.style.display="block"; err.textContent="⚠️ И-мэйл эсвэл нууц үг буруу."; } });
   card.appendChild(lb);
-  card.appendChild(btn({style:{display:"block",margin:"14px auto 0",background:"none",border:"none",color:"var(--muted)",fontSize:"13px"},onClick:()=>setState({page:"home"})},"← Нүүр хуудасруу буцах"));
+  card.appendChild(btn({style:{display:"block",margin:"12px auto 0",background:"none",border:"none",color:"var(--muted)",fontSize:"13px"},onClick:()=>setState({page:"home"})},"← Нүүр хуудасруу буцах"));
   wrap.appendChild(card);
   return wrap;
 }
 
-// ── ADMIN EMAIL MODAL ─────────────────────────────
-function showEmailModal(booking,text){
-  const ov=div({className:"modal-overlay"});
-  const m=div({style:{background:"#fff",borderRadius:"20px",padding:"28px",maxWidth:"500px",width:"100%",maxHeight:"80vh",overflowY:"auto",boxShadow:"0 20px 60px rgba(0,0,0,.3)"}});
-  const hd=div({style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"16px"}});
-  hd.appendChild(h3({style:{fontSize:"16px",fontWeight:"700"}},"📧 Баталгаажах мэйл"));
-  const cb=btn({style:{background:"none",border:"none",fontSize:"20px",cursor:"pointer",color:"#999"}},"✕");
-  cb.addEventListener("click",()=>ov.remove()); hd.appendChild(cb); m.appendChild(hd);
-  m.appendChild(div({style:{background:"#f0fdf4",border:"1px solid #86efac",borderRadius:"10px",padding:"12px",marginBottom:"16px",fontSize:"13px"},html:`✅ Захиалга баталгаажлаа! Мэйлийг <strong>${booking.email}</strong> руу илгээнэ үү.`}));
-  m.appendChild(div({style:{background:"#f8f8f8",borderRadius:"10px",padding:"16px",fontSize:"13px",lineHeight:"1.7",whiteSpace:"pre-wrap",marginBottom:"16px"}},text));
-  const br=div({style:{display:"flex",gap:"8px"}});
-  const cc=btn({style:{flex:"1",background:"var(--dark)",color:"#fff",border:"none",borderRadius:"10px",padding:"12px",fontWeight:"600",fontSize:"13px"}},"📋 Текст хуулах");
-  cc.addEventListener("click",()=>{ navigator.clipboard.writeText(text).then(()=>{ cc.textContent="✓ Хуулагдлаа!"; setTimeout(()=>cc.textContent="📋 Текст хуулах",2000); }); });
-  br.appendChild(cc); m.appendChild(br);
-  ov.addEventListener("click",e=>{ if(e.target===ov) ov.remove(); });
-  ov.appendChild(m); document.body.appendChild(ov);
-}
-
-async function confirmAndEmail(booking){
-  const cfg=S.settings;
-  const def=`Сайн байна уу, ${booking.name}!\n\nТаны захиалга баталгаажлаа.\n\n- Үйлчилгээ: ${booking.serviceName}\n- Огноо: ${booking.date}\n- Цаг: ${booking.time}\n- Үнэ: ${fmt(booking.price)}\n\nХаяг: ${cfg.address}\nУтас: ${cfg.phone}\n\nБаярлалаа!\n${cfg.studioName}`;
-  try{
-    const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:400,messages:[{role:"user",content:`Write a warm confirmation email in Mongolian for ${cfg.studioName||"Glow Studio"} beauty salon. Service: ${booking.serviceName}, Date: ${booking.date}, Time: ${booking.time}, Price: ${fmt(booking.price)}. Customer: ${booking.name}. Address: ${cfg.address}. Phone: ${cfg.phone}. Short and friendly. Email body only.`}]})});
-    const d=await r.json();
-    showEmailModal(booking,(d.content&&d.content[0]&&d.content[0].text)||def);
-  }catch(e){ showEmailModal(booking,def); }
-}
-
-// ── ADMIN STATS ───────────────────────────────────
+// ── ADMIN: Stats ──────────────────────────────────
 function buildStats(){
-  const w=div({style:{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(140px,1fr))",gap:"12px",marginBottom:"24px"}});
+  const w=div({style:{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(130px,1fr))",gap:"12px",marginBottom:"20px"}});
   [{l:"Нийт",v:S.bookings.length,c:"#6366f1"},{l:"Хүлээгдэж буй",v:S.bookings.filter(b=>b.status==="pending").length,c:"#f59e0b"},{l:"Баталгаажсан",v:S.bookings.filter(b=>b.status==="confirmed").length,c:"#10b981"},{l:"Цуцлагдсан",v:S.bookings.filter(b=>b.status==="cancelled").length,c:"#ef4444"}].forEach(s=>{
-    const c=div({className:"card-box"});
-    c.appendChild(p({style:{fontSize:"28px",fontWeight:"700",color:s.c}},s.v));
-    c.appendChild(p({style:{fontSize:"12px",color:"var(--muted)",marginTop:"2px"}},s.l));
-    w.appendChild(c);
+    const c=div({className:"card"}); c.appendChild(p({style:{fontSize:"26px",fontWeight:"700",color:s.c}},s.v)); c.appendChild(p({style:{fontSize:"12px",color:"var(--muted)",marginTop:"2px"}},s.l)); w.appendChild(c);
   });
   return w;
 }
 
+// ── ADMIN: Booking table ──────────────────────────
 function buildBookingTable(){
   const wrap=div({});
-  const flt=div({style:{display:"flex",gap:"7px",marginBottom:"16px",flexWrap:"wrap"}});
+  const flt=div({style:{display:"flex",gap:"6px",marginBottom:"14px",flexWrap:"wrap"}});
   [["all","Бүгд"],["pending","Хүлээгдэж буй"],["confirmed","Баталгаажсан"],["cancelled","Цуцлагдсан"]].forEach(item=>{
-    flt.appendChild(btn({style:{background:S.adminFilter===item[0]?"var(--dark)":"#fff",color:S.adminFilter===item[0]?"#fff":"#666",border:"1px solid var(--border)",borderRadius:"8px",padding:"7px 16px",fontSize:"13px",fontWeight:"500"},onClick:()=>{ S.adminFilter=item[0]; refreshAdminTable(); }},item[1]));
+    flt.appendChild(btn({style:{background:S.adminFilter===item[0]?"var(--dark)":"#fff",color:S.adminFilter===item[0]?"#fff":"#666",border:"1px solid var(--border)",borderRadius:"8px",padding:"6px 14px",fontSize:"13px",fontWeight:"500"},onClick:()=>{ S.adminFilter=item[0]; refreshAdminTable(); }},item[1]));
   });
   wrap.appendChild(flt);
   const filtered=S.adminFilter==="all"?S.bookings:S.bookings.filter(b=>b.status===S.adminFilter);
-  const tw=div({className:"card-box",style:{padding:"0",overflow:"hidden"}});
+  const tw=div({className:"card",style:{padding:"0",overflow:"hidden"}});
   if(filtered.length===0){ tw.appendChild(div({style:{padding:"48px",textAlign:"center",color:"#bbb",fontSize:"14px"}},"Захиалга байхгүй байна")); }
   else {
     const ow=div({style:{overflowX:"auto"}});
     const tbl=el("table",{style:{width:"100%",borderCollapse:"collapse"}});
-    const thead=el("thead");
-    const hr=el("tr",{style:{background:"#fafafa",borderBottom:"1px solid var(--border)"}});
-    ["#ID","Нэр","Утас","И-мэйл","Үйлчилгээ","Өдөр","Цаг","Үнэ","Төлөв","Үйлдэл"].forEach(h=>{
-      hr.appendChild(el("th",{style:{padding:"11px 14px",textAlign:"left",fontSize:"10px",fontWeight:"700",color:"#999",letterSpacing:"1px",textTransform:"uppercase",whiteSpace:"nowrap"}},h));
-    });
+    const thead=el("thead"); const hr=el("tr",{style:{background:"#fafafa",borderBottom:"1px solid var(--border)"}});
+    ["#ID","Нэр","Утас","Үйлчилгээ","Дэд төрөл","Өдөр","Цаг","Үнэ","Төлөв","Үйлдэл"].forEach(h=>{ hr.appendChild(el("th",{style:{padding:"11px 12px",textAlign:"left",fontSize:"10px",fontWeight:"700",color:"#999",letterSpacing:"1px",textTransform:"uppercase",whiteSpace:"nowrap"}},h)); });
     thead.appendChild(hr); tbl.appendChild(thead);
     const tbody=el("tbody");
     filtered.forEach((b,i)=>{
       const tr=el("tr",{style:{borderBottom:"1px solid #f8f8f8",background:i%2===0?"#fff":"#fafafa"}});
-      [["#"+b.id,""],[b.name,"font-weight:600"],[b.phone,""],[b.email,"color:#777;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"],[b.serviceName||"","font-weight:600;color:var(--pink3)"],[b.date,"font-weight:600"],[b.time,""],[fmt(b.price),"font-weight:700"]].forEach(cell=>{
-        const td=el("td",{style:{padding:"11px 14px",fontSize:"13px"}},String(cell[0]||""));
-        if(cell[1]) td.setAttribute("style","padding:11px 14px;font-size:13px;"+cell[1]);
+      [["#"+b.id,""],[b.name,"font-weight:600"],[b.phone,""],[b.serviceName||"","color:var(--pink3);font-weight:600"],[b.subName||"",""],[b.date,"font-weight:600"],[b.time,""],[fmt(b.price),"font-weight:700"]].forEach(cell=>{
+        const td=el("td",{style:{padding:"10px 12px",fontSize:"13px"}},String(cell[0]||""));
+        if(cell[1]) td.setAttribute("style","padding:10px 12px;font-size:13px;"+cell[1]);
         tr.appendChild(td);
       });
-      const std=el("td",{style:{padding:"11px 14px"}});
-      std.appendChild(span({className:"pill",style:{background:SC[b.status]+"22",color:SC[b.status]}},SL[b.status]));
-      tr.appendChild(std);
-      const atd=el("td",{style:{padding:"11px 14px"}});
-      const abx=div({style:{display:"flex",gap:"5px"}});
+      const std=el("td",{style:{padding:"10px 12px"}}); std.appendChild(span({className:"pill",style:{background:SC[b.status]+"22",color:SC[b.status]}},SL[b.status])); tr.appendChild(std);
+      const atd=el("td",{style:{padding:"10px 12px"}}); const abx=div({style:{display:"flex",gap:"4px"}});
       if(b.status==="pending"){
-        const cb=btn({style:{background:"#10b981",color:"#fff",border:"none",borderRadius:"7px",padding:"5px 10px",fontSize:"11px",fontWeight:"600",whiteSpace:"nowrap"}},"✓ Баталгаажуулах");
-        (function(booking,button){
-          button.addEventListener("click",async()=>{
-            if(!booking._docId){alert("_docId олдсонгүй");return;}
-            button.textContent="⏳..."; button.disabled=true; button.style.background="#6b7280";
-            try{ await DB.updateBooking(booking._docId,{status:"confirmed"}); await confirmAndEmail({...booking,status:"confirmed"}); }
-            catch(err){ alert("Алдаа: "+err.message); button.textContent="✓ Баталгаажуулах"; button.disabled=false; button.style.background="#10b981"; }
-          });
-        })(b,cb); abx.appendChild(cb);
+        const cb=btn({style:{background:"#10b981",color:"#fff",border:"none",borderRadius:"7px",padding:"5px 9px",fontSize:"11px",fontWeight:"600",whiteSpace:"nowrap"}},"✓ Баталгаажуулах");
+        (function(booking,button){ button.addEventListener("click",async()=>{ if(!booking._docId){alert("_docId олдсонгүй");return;} button.textContent="⏳..."; button.disabled=true; button.style.background="#6b7280"; try{ await DB.updateBooking(booking._docId,{status:"confirmed"}); showToast("Баталгаажлаа ✓"); } catch(err){ alert("Алдаа: "+err.message); button.textContent="✓ Баталгаажуулах"; button.disabled=false; button.style.background="#10b981"; } }); })(b,cb); abx.appendChild(cb);
       }
       if(b.status!=="cancelled"){
-        const xb=btn({style:{background:"#ef4444",color:"#fff",border:"none",borderRadius:"7px",padding:"5px 10px",fontSize:"11px",fontWeight:"600"}},"✕");
-        (function(booking,button){
-          button.addEventListener("click",async()=>{
-            if(!confirm("Цуцлах уу?\n"+booking.name+" – "+booking.date+" "+booking.time)) return;
-            button.textContent="⏳"; button.disabled=true; button.style.background="#9ca3af";
-            try{ await DB.updateBooking(booking._docId,{status:"cancelled"}); }
-            catch(err){ alert("Алдаа: "+err.message); button.textContent="✕"; button.disabled=false; button.style.background="#ef4444"; }
-          });
-        })(b,xb); abx.appendChild(xb);
+        const xb=btn({style:{background:"#ef4444",color:"#fff",border:"none",borderRadius:"7px",padding:"5px 9px",fontSize:"11px",fontWeight:"600"}},"✕");
+        (function(booking,button){ button.addEventListener("click",async()=>{ if(!confirm("Цуцлах уу?\n"+booking.name+" – "+booking.date+" "+booking.time)) return; button.textContent="⏳"; button.disabled=true; button.style.background="#9ca3af"; try{ await DB.updateBooking(booking._docId,{status:"cancelled"}); } catch(err){ alert("Алдаа: "+err.message); button.textContent="✕"; button.disabled=false; button.style.background="#ef4444"; } }); })(b,xb); abx.appendChild(xb);
       }
       atd.appendChild(abx); tr.appendChild(atd); tbody.appendChild(tr);
     });
@@ -714,33 +748,40 @@ function buildBookingTable(){
   return wrap;
 }
 
-// ── ADMIN SERVICES TAB ────────────────────────────
+// ── ADMIN: Services tab ───────────────────────────
 function buildServicesTab(){
   const wrap=div({});
-  wrap.appendChild(div({style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"20px"}},[
-    h3({style:{fontSize:"16px",fontWeight:"700"}},"✂️ Үйлчилгээнүүд удирдах"),
-    btn({style:{background:"var(--dark)",color:"#fff",border:"none",borderRadius:"10px",padding:"9px 18px",fontSize:"13px",fontWeight:"600"},onClick:()=>showServiceModal(null)},"+ Шинэ нэмэх")
+  wrap.appendChild(div({style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"18px"}},[
+    h3({style:{fontSize:"16px",fontWeight:"700"}},"✂️ Үйлчилгээнүүд"),
+    btn({style:{background:"var(--dark)",color:"#fff",border:"none",borderRadius:"10px",padding:"8px 16px",fontSize:"13px",fontWeight:"600"},onClick:()=>showServiceModal(null)},"+ Шинэ үйлчилгээ")
   ]));
   const svcs=S.services.length>0?S.services:DEF_SERVICES;
-  const grid=div({style:{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(280px,1fr))",gap:"16px"}});
+  const grid=div({style:{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(300px,1fr))",gap:"14px"}});
   svcs.forEach(svc=>{
-    const card=div({className:"card-box",style:{padding:"0",overflow:"hidden"}});
-    if(svc.imageUrl){ card.appendChild(el("img",{src:svc.imageUrl,alt:svc.name,style:{width:"100%",height:"140px",objectFit:"cover",display:"block"}})); }
-    else { card.appendChild(div({style:{width:"100%",height:"100px",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"40px",background:"linear-gradient(135deg,#fdf0f7,#f5e8f2)"}},svc.emoji||"💄")); }
+    const card=div({className:"card",style:{padding:"0",overflow:"hidden"}});
+    if(svc.imageUrl) card.appendChild(el("img",{src:svc.imageUrl,alt:svc.name,style:{width:"100%",height:"130px",objectFit:"cover",display:"block"}}));
+    else card.appendChild(div({style:{width:"100%",height:"80px",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"36px",background:"linear-gradient(135deg,#fdf0f7,#f5e8f2)"}},svc.emoji||"💄"));
     const body=div({style:{padding:"16px"}});
-    body.appendChild(p({style:{fontWeight:"700",fontSize:"15px",marginBottom:"3px"}},svc.name));
-    body.appendChild(p({style:{fontSize:"12px",color:"var(--muted)",marginBottom:"10px",lineHeight:"1.5"}},svc.desc||""));
-    const sf=div({style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"12px"}});
-    sf.appendChild(span({style:{fontSize:"16px",fontWeight:"700",color:"var(--pink3)"}},fmt(svc.price)));
-    sf.appendChild(span({style:{fontSize:"11px",color:"var(--muted)",background:"#f7f0f5",padding:"3px 8px",borderRadius:"100px"}},svc.duration||""));
-    body.appendChild(sf);
-    const br=div({style:{display:"flex",gap:"6px"}});
-    const eb=btn({style:{flex:"1",background:"#f7f0f5",color:"var(--pink3)",border:"none",borderRadius:"8px",padding:"8px 0",fontSize:"12px",fontWeight:"600"}},"✏️ Засах");
+    body.appendChild(p({style:{fontWeight:"700",fontSize:"15px",marginBottom:"4px"}},svc.name));
+    // Дэд төрлүүд жагсаах
+    const subs=svc.subs||[];
+    if(subs.length>0){
+      const sl=div({style:{marginBottom:"10px"}});
+      subs.forEach(sub=>{
+        const row=div({style:{display:"flex",justifyContent:"space-between",fontSize:"12px",padding:"4px 0",borderBottom:"1px solid #fdf4ff"}});
+        row.appendChild(span({style:{color:"var(--text)"}},sub.name));
+        row.appendChild(span({style:{fontWeight:"700",color:"var(--pink3)"}},fmt(sub.price)));
+        sl.appendChild(row);
+      });
+      body.appendChild(sl);
+    }
+    body.appendChild(p({style:{fontSize:"12px",color:"var(--muted)",marginBottom:"4px"}},`👥 Зэрэг ${svc.capacity||1} хүн хүлээж авна`));
+    const br2=div({style:{display:"flex",gap:"6px",marginTop:"10px"}});
+    const eb=btn({style:{flex:"1",background:"#f7f0f5",color:"var(--pink3)",border:"none",borderRadius:"8px",padding:"7px 0",fontSize:"12px",fontWeight:"600"}},"✏️ Засах");
     eb.addEventListener("click",()=>showServiceModal(svc));
-    const db2=btn({style:{background:"#fef2f2",color:"#ef4444",border:"none",borderRadius:"8px",padding:"8px 12px",fontSize:"12px",fontWeight:"600"}},"🗑️");
-    (function(s){ db2.addEventListener("click",async()=>{ if(!confirm(s.name+" үйлчилгээг устгах уу?")) return; if(s._docId) await DB.deleteService(s._docId); showToast("Устгагдлаа"); }); })(svc);
-    br.appendChild(eb); br.appendChild(db2);
-    body.appendChild(br);
+    const db3=btn({style:{background:"#fef2f2",color:"#ef4444",border:"none",borderRadius:"8px",padding:"7px 12px",fontSize:"12px",fontWeight:"600"}},"🗑️");
+    (function(s){ db3.addEventListener("click",async()=>{ if(!confirm(s.name+" устгах уу?")) return; if(s._docId) await DB.deleteService(s._docId); showToast("Устгагдлаа"); }); })(svc);
+    br2.appendChild(eb); br2.appendChild(db3); body.appendChild(br2);
     card.appendChild(body);
     grid.appendChild(card);
   });
@@ -750,53 +791,81 @@ function buildServicesTab(){
 
 function showServiceModal(svc){
   const isNew=!svc;
-  let data=svc?{...svc}:{id:"s"+Date.now(),name:"",emoji:"💄",desc:"",price:0,duration:"60 мин",imageUrl:"",order:S.services.length};
+  let data=svc?JSON.parse(JSON.stringify(svc)):{id:"svc"+Date.now(),name:"",emoji:"💄",desc:"",imageUrl:"",capacity:1,order:S.services.length,subs:[]};
   const ov=div({className:"modal-overlay"});
-  const m=div({style:{background:"#fff",borderRadius:"22px",padding:"28px",maxWidth:"500px",width:"100%",maxHeight:"90vh",overflowY:"auto",boxShadow:"0 20px 60px rgba(0,0,0,.3)"}});
+  const m=div({className:"modal",style:{maxWidth:"520px"}});
+  // Header
   const hd=div({style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"20px"}});
   hd.appendChild(h3({style:{fontSize:"17px",fontWeight:"700"}},isNew?"+ Шинэ үйлчилгээ":"✏️ Үйлчилгээ засах"));
-  const cl=btn({style:{background:"none",border:"none",fontSize:"20px",cursor:"pointer",color:"#999"}},"✕");
-  cl.addEventListener("click",()=>ov.remove()); hd.appendChild(cl); m.appendChild(hd);
+  const cl=btn({style:{background:"none",border:"none",fontSize:"20px",cursor:"pointer",color:"#999"}},"✕"); cl.addEventListener("click",()=>ov.remove()); hd.appendChild(cl); m.appendChild(hd);
 
-  // Image
-  const imgWrap=div({style:{marginBottom:"16px"}});
-  if(data.imageUrl){ imgWrap.appendChild(el("img",{src:data.imageUrl,alt:"",style:{width:"100%",height:"160px",objectFit:"cover",borderRadius:"12px",display:"block",marginBottom:"8px"}})); }
+  // Зураг
+  const imgSec=div({style:{marginBottom:"16px"}});
+  if(data.imageUrl) imgSec.appendChild(el("img",{src:data.imageUrl,alt:"",style:{width:"100%",height:"140px",objectFit:"cover",borderRadius:"12px",display:"block",marginBottom:"8px"}}));
   const ua=div({className:"upload-area"});
-  ua.innerHTML=`<div style="font-size:28px;margin-bottom:6px">📸</div><p style="font-size:13px;color:#888">Зураг оруулах</p>`;
-  const ufi=inp({type:"file",accept:"image/*"});
-  ua.appendChild(ufi); ua.addEventListener("click",()=>ufi.click());
-  ufi.addEventListener("change",async e=>{
-    const f=e.target.files[0]; if(!f) return;
-    ua.innerHTML=`<div style="font-size:22px">⏳</div><p style="font-size:12px;color:#999">Байршуулж байна...</p>`;
-    try{ data.imageUrl=await compressImage(f); ua.innerHTML=`<div style="font-size:22px">✅</div><p style="font-size:12px;color:#10b981">Амжилттай байршлаа</p>`; showToast("Зураг байршлаа ✓"); }
-    catch(err){ ua.innerHTML=`<div style="font-size:22px">❌</div><p style="font-size:12px;color:#ef4444">Алдаа гарлаа</p>`; }
-  });
-  imgWrap.appendChild(ua); m.appendChild(imgWrap);
+  ua.innerHTML=`<div style="font-size:24px;margin-bottom:4px">📸</div><p style="font-size:13px;color:#888">Зураг оруулах (заавал биш)</p>`;
+  const ufi=inp({type:"file",accept:"image/*"}); ua.appendChild(ufi); ua.addEventListener("click",()=>ufi.click());
+  ufi.addEventListener("change",async e=>{ const f=e.target.files[0]; if(!f) return; ua.innerHTML=`<div>⏳</div>`; try{ data.imageUrl=await compressImage(f); ua.innerHTML=`<div style="color:#10b981;font-size:13px">✅ Амжилттай</div>`; }catch(err){ ua.innerHTML=`<div style="color:#ef4444;font-size:13px">❌ Алдаа</div>`; } });
+  imgSec.appendChild(ua); m.appendChild(imgSec);
 
-  // Fields
-  [[{key:"name",label:"Үйлчилгээний нэр",ph:"Сормуус",type:"text"},{key:"emoji",label:"Emoji",ph:"💄",type:"text"}],[{key:"price",label:"Үнэ (₮)",ph:"35000",type:"number"},{key:"duration",label:"Үргэлжлэх хугацаа",ph:"60 мин",type:"text"}]].forEach(row=>{
-    const rw=div({style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"10px",marginBottom:"12px"}});
-    row.forEach(f=>{
-      const fw=div({});
-      fw.appendChild(lbl({style:{display:"block",fontSize:"11px",fontWeight:"600",color:"#777",marginBottom:"5px",textTransform:"uppercase",letterSpacing:"0.5px"}},f.label));
-      const fi=inp({type:f.type,placeholder:f.ph,value:String(data[f.key]||"")});
-      fi.addEventListener("input",e=>{ data[f.key]=f.type==="number"?parseInt(e.target.value)||0:e.target.value; });
-      fw.appendChild(fi); rw.appendChild(fw);
-    });
-    m.appendChild(rw);
+  // Үндсэн мэдээлэл
+  const row1=div({className:"row2 mb12"});
+  [{key:"name",label:"Нэр",ph:"Сормуус",type:"text"},{key:"emoji",label:"Emoji",ph:"👁️",type:"text"}].forEach(f=>{
+    const fw=div({}); fw.appendChild(lbl({className:"lbl"},f.label));
+    const fi=inp({type:f.type,placeholder:f.ph,value:String(data[f.key]||"")});
+    fi.addEventListener("input",e=>{ data[f.key]=e.target.value; }); fw.appendChild(fi); row1.appendChild(fw);
   });
-  m.appendChild(lbl({style:{display:"block",fontSize:"11px",fontWeight:"600",color:"#777",marginBottom:"5px",textTransform:"uppercase",letterSpacing:"0.5px"}},"Тайлбар"));
-  const ta=el("textarea",{placeholder:"Үйлчилгээний товч тайлбар...",style:{minHeight:"70px",resize:"vertical",marginBottom:"16px"}});
+  m.appendChild(row1);
+
+  const row2=div({className:"row2 mb12"});
+  [{key:"capacity",label:"Зэрэг хүлээж авах тоо",ph:"1",type:"number"},{key:"order",label:"Эрэмбэ",ph:"0",type:"number"}].forEach(f=>{
+    const fw=div({}); fw.appendChild(lbl({className:"lbl"},f.label));
+    const fi=inp({type:"number",min:"1",placeholder:f.ph,value:String(data[f.key]||"")});
+    fi.addEventListener("input",e=>{ data[f.key]=parseInt(e.target.value)||1; }); fw.appendChild(fi); row2.appendChild(fw);
+  });
+  m.appendChild(row2);
+
+  m.appendChild(lbl({className:"lbl"},"Тайлбар"));
+  const ta=el("textarea",{placeholder:"Үйлчилгээний товч тайлбар...",style:{minHeight:"60px",resize:"vertical",marginBottom:"18px"}});
   ta.value=data.desc||""; ta.addEventListener("input",e=>{ data.desc=e.target.value; }); m.appendChild(ta);
 
+  // Дэд төрлүүд
+  m.appendChild(div({style:{height:"1px",background:"var(--border)",marginBottom:"16px"}}));
+  const subHeader=div({style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"12px"}});
+  subHeader.appendChild(p({style:{fontWeight:"700",fontSize:"14px"}},"Дэд төрлүүд (үнэ)"));
+  const addSubBtn=btn({style:{background:"var(--pink3)",color:"#fff",border:"none",borderRadius:"8px",padding:"5px 12px",fontSize:"12px",fontWeight:"600"}},"+ Нэмэх");
+  subHeader.appendChild(addSubBtn); m.appendChild(subHeader);
+
+  const subList=div({style:{display:"flex",flexDirection:"column",gap:"8px",marginBottom:"16px"}});
+
+  function renderSubs(){
+    subList.innerHTML="";
+    (data.subs||[]).forEach((sub,idx)=>{
+      const row=div({style:{display:"grid",gridTemplateColumns:"1fr 1fr auto",gap:"8px",alignItems:"center"}});
+      const ni=inp({type:"text",placeholder:"Нэр (жишээ: Classic)",value:sub.name,style:{padding:"9px 12px"}});
+      ni.addEventListener("input",e=>{ data.subs[idx].name=e.target.value; });
+      const pi=inp({type:"number",placeholder:"Үнэ",value:String(sub.price||""),style:{padding:"9px 12px"}});
+      pi.addEventListener("input",e=>{ data.subs[idx].price=parseInt(e.target.value)||0; });
+      const db4=btn({style:{background:"#fef2f2",color:"#ef4444",border:"1px solid #fecaca",borderRadius:"8px",padding:"8px 10px",fontSize:"13px"}},"✕");
+      (function(i){ db4.addEventListener("click",()=>{ data.subs.splice(i,1); renderSubs(); }); })(idx);
+      row.appendChild(ni); row.appendChild(pi); row.appendChild(db4);
+      subList.appendChild(row);
+    });
+  }
+  renderSubs();
+  addSubBtn.addEventListener("click",()=>{ if(!data.subs) data.subs=[]; data.subs.push({id:"sub"+Date.now(),name:"",price:0}); renderSubs(); });
+  m.appendChild(subList);
+
+  // Хадгалах
   const sb=btn({style:{width:"100%",background:"var(--dark)",color:"#fff",border:"none",borderRadius:"12px",padding:"13px 0",fontWeight:"600",fontSize:"14px"}},"💾 Хадгалах");
   sb.addEventListener("click",async()=>{
     if(!data.name.trim()){ showToast("Нэр оруулна уу"); return; }
+    if(!data.subs||data.subs.length===0){ showToast("Дэд төрөл нэмнэ үү"); return; }
     sb.textContent="⏳ Хадгалж байна..."; sb.disabled=true;
-    await DB.saveService(data);
+    const saved=await DB.saveService(data);
     const idx=S.services.findIndex(s=>s.id===data.id);
-    if(idx>=0) S.services[idx]={...S.services[idx],...data};
-    else S.services.push(data);
+    if(idx>=0) S.services[idx]={...S.services[idx],...saved};
+    else S.services.push(saved);
     showToast("Хадгалагдлаа ✓"); ov.remove(); render();
   });
   m.appendChild(sb);
@@ -804,43 +873,42 @@ function showServiceModal(svc){
   ov.appendChild(m); document.body.appendChild(ov);
 }
 
-// ── ADMIN GALLERY TAB ─────────────────────────────
+// ── ADMIN: Gallery tab ────────────────────────────
 function buildGalleryTab(){
   const wrap=div({});
-  wrap.appendChild(h3({style:{fontSize:"16px",fontWeight:"700",marginBottom:"6px"}},"🖼️ Галерей удирдах"));
-  wrap.appendChild(p({style:{fontSize:"13px",color:"var(--muted)",marginBottom:"20px"}},"Нүүр хуудасны галерейд харагдах зургуудыг энд нэмнэ үү"));
-  const add=div({className:"card-box",style:{marginBottom:"20px"}});
-  add.appendChild(h3({style:{fontSize:"14px",fontWeight:"700",marginBottom:"12px",color:"#555"}},"+ Шинэ зураг нэмэх"));
+  wrap.appendChild(h3({style:{fontSize:"16px",fontWeight:"700",marginBottom:"6px"}},"🖼️ Галерей"));
+  wrap.appendChild(p({style:{fontSize:"13px",color:"var(--muted)",marginBottom:"16px"}},"Нүүр хуудасны галерейд харагдах зургуудыг энд нэмнэ үү"));
+  const add=div({className:"card",style:{marginBottom:"16px"}});
+  add.appendChild(h3({style:{fontSize:"14px",fontWeight:"700",marginBottom:"10px",color:"#555"}},"+ Шинэ зураг нэмэх"));
   const capI=inp({type:"text",placeholder:"Зургийн тайлбар (заавал биш)",style:{marginBottom:"10px"}});
   add.appendChild(capI);
   const ua=div({className:"upload-area"});
-  ua.innerHTML=`<div style="font-size:28px;margin-bottom:6px">📸</div><p style="font-size:13px;font-weight:600;color:#555;margin-bottom:3px">Зураг оруулах</p><p style="font-size:12px;color:#bbb">JPG, PNG • Олон зураг зэрэг оруулах боломжтой</p>`;
-  const ufi=inp({type:"file",accept:"image/*",multiple:true});
-  ua.appendChild(ufi); ua.addEventListener("click",()=>ufi.click());
+  ua.innerHTML=`<div style="font-size:26px;margin-bottom:4px">📸</div><p style="font-size:13px;font-weight:600;color:#555;margin-bottom:2px">Зураг оруулах</p><p style="font-size:12px;color:#bbb">JPG, PNG • Олон зураг нэгэн зэрэг</p>`;
+  const ufi=inp({type:"file",accept:"image/*",multiple:true}); ua.appendChild(ufi);
+  ua.addEventListener("click",()=>ufi.click());
   ua.addEventListener("dragover",e=>{ e.preventDefault(); ua.classList.add("drag"); });
   ua.addEventListener("dragleave",()=>ua.classList.remove("drag"));
-  ua.addEventListener("drop",e=>{ e.preventDefault(); ua.classList.remove("drag"); Array.from(e.dataTransfer.files).filter(f=>f.type.startsWith("image/")).forEach(f=>uploadGallery(f,capI.value.trim())); });
-  ufi.addEventListener("change",e=>{ Array.from(e.target.files).forEach(f=>uploadGallery(f,capI.value.trim())); ufi.value=""; });
-  async function uploadGallery(file,caption){
-    ua.innerHTML=`<div style="font-size:22px">⏳</div><p style="font-size:12px;color:#999">Байршуулж байна...</p>`;
-    try{ const url=await compressImage(file); await DB.addGallery({imageUrl:url,caption,createdAt:new Date().toISOString()}); showToast("Галерейд нэмэгдлаа ✓"); capI.value=""; ua.innerHTML=`<div style="font-size:28px;margin-bottom:6px">📸</div><p style="font-size:13px;font-weight:600;color:#555">Зураг оруулах</p><p style="font-size:12px;color:#bbb">JPG, PNG</p>`; ua.appendChild(ufi); }
-    catch(e){ ua.innerHTML=`<div style="font-size:22px">❌</div><p style="font-size:12px;color:#ef4444">Алдаа гарлаа</p>`; }
+  ua.addEventListener("drop",e=>{ e.preventDefault(); ua.classList.remove("drag"); Array.from(e.dataTransfer.files).filter(f=>f.type.startsWith("image/")).forEach(f=>uploadGal(f,capI.value.trim())); });
+  ufi.addEventListener("change",e=>{ Array.from(e.target.files).forEach(f=>uploadGal(f,capI.value.trim())); ufi.value=""; });
+  async function uploadGal(file,caption){
+    ua.innerHTML=`<div style="font-size:20px">⏳</div><p style="font-size:12px;color:#999">Байршуулж байна...</p>`;
+    try{ const url=await compressImage(file); await DB.addGallery({imageUrl:url,caption,createdAt:new Date().toISOString()}); showToast("Нэмэгдлаа ✓"); capI.value=""; ua.innerHTML=`<div style="font-size:26px;margin-bottom:4px">📸</div><p style="font-size:13px;font-weight:600;color:#555">Зураг оруулах</p><p style="font-size:12px;color:#bbb">JPG, PNG</p>`; ua.appendChild(ufi); }
+    catch(e){ ua.innerHTML=`<p style="font-size:12px;color:#ef4444">❌ Алдаа гарлаа</p>`; }
   }
   add.appendChild(ua); wrap.appendChild(add);
-  const gc=div({className:"card-box"});
-  if(S.gallery.length===0){ gc.appendChild(div({style:{textAlign:"center",padding:"36px",color:"#bbb",fontSize:"14px"}},"Галерейд зураг байхгүй байна")); }
+  const gc=div({className:"card"});
+  if(S.gallery.length===0){ gc.appendChild(div({style:{textAlign:"center",padding:"32px",color:"#bbb",fontSize:"14px"}},"Галерейд зураг байхгүй")); }
   else {
-    const gg=div({style:{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(150px,1fr))",gap:"10px"}});
+    const gg=div({style:{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(140px,1fr))",gap:"10px"}});
     S.gallery.forEach(item=>{
       const gi=div({style:{position:"relative",borderRadius:"12px",overflow:"hidden",aspectRatio:"1",background:"#f0e6de"}});
-      if(item.imageUrl){ gi.appendChild(el("img",{src:item.imageUrl,alt:item.caption||"",style:{width:"100%",aspectRatio:"1",objectFit:"cover",display:"block"}})); }
+      if(item.imageUrl) gi.appendChild(el("img",{src:item.imageUrl,alt:item.caption||"",style:{width:"100%",aspectRatio:"1",objectFit:"cover",display:"block"}}));
       const ov2=div({style:{position:"absolute",inset:"0",background:"rgba(28,18,24,.55)",opacity:"0",transition:"opacity .2s",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:"4px",padding:"8px"}});
       if(item.caption) ov2.appendChild(span({style:{color:"#fff",fontSize:"11px",textAlign:"center"}},item.caption));
-      const db3=btn({style:{background:"#ef4444",color:"#fff",border:"none",borderRadius:"7px",padding:"4px 10px",fontSize:"11px",fontWeight:"700"}},"🗑️ Устгах");
-      (function(it){ db3.addEventListener("click",async e=>{ e.stopPropagation(); if(!confirm("Зургийг устгах уу?")) return; await DB.deleteGallery(it._docId); showToast("Устгагдлаа"); }); })(item);
-      ov2.appendChild(db3); gi.appendChild(ov2);
-      gi.addEventListener("mouseenter",()=>ov2.style.opacity="1");
-      gi.addEventListener("mouseleave",()=>ov2.style.opacity="0");
+      const db5=btn({style:{background:"#ef4444",color:"#fff",border:"none",borderRadius:"7px",padding:"4px 10px",fontSize:"11px",fontWeight:"700"}},"🗑️");
+      (function(it){ db5.addEventListener("click",async e=>{ e.stopPropagation(); if(!confirm("Устгах уу?")) return; await DB.deleteGallery(it._docId); showToast("Устгагдлаа"); }); })(item);
+      ov2.appendChild(db5); gi.appendChild(ov2);
+      gi.addEventListener("mouseenter",()=>ov2.style.opacity="1"); gi.addEventListener("mouseleave",()=>ov2.style.opacity="0");
       gg.appendChild(gi);
     });
     gc.appendChild(gg);
@@ -849,117 +917,89 @@ function buildGalleryTab(){
   return wrap;
 }
 
-// ── ADMIN SETTINGS TAB ────────────────────────────
+// ── ADMIN: Settings tab ───────────────────────────
 function buildSettingsTab(){
   const cfg={...S.settings};
-  const wrap=div({style:{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(320px,1fr))",gap:"18px"}});
+  const wrap=div({style:{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(300px,1fr))",gap:"16px"}});
 
-  function settingCard(title, fields, onSave){
-    const c=div({className:"card-box"});
-    c.appendChild(h3({style:{fontSize:"15px",fontWeight:"700",marginBottom:"18px"}},title));
+  function settingCard(title,fields){
+    const c=div({className:"card"});
+    c.appendChild(h3({style:{fontSize:"15px",fontWeight:"700",marginBottom:"16px"}},title));
     fields.forEach(f=>{
-      const fw=div({style:{marginBottom:"13px"}});
-      fw.appendChild(lbl({style:{display:"block",fontSize:"11px",fontWeight:"600",color:"#777",marginBottom:"5px",textTransform:"uppercase",letterSpacing:"0.5px"}},f.label));
-      if(f.type==="textarea"){
-        const ta=el("textarea",{placeholder:f.ph,style:{minHeight:"80px",resize:"vertical"}});
-        ta.value=cfg[f.key]||""; ta.addEventListener("input",e=>{ cfg[f.key]=e.target.value; }); fw.appendChild(ta);
-      } else {
-        const fi=inp({type:f.type||"text",placeholder:f.ph,value:String(cfg[f.key]||"")});
-        fi.addEventListener("input",e=>{ cfg[f.key]=f.type==="number"?parseInt(e.target.value)||0:e.target.value; }); fw.appendChild(fi);
-      }
+      const fw=div({style:{marginBottom:"12px"}});
+      fw.appendChild(lbl({className:"lbl"},f.label));
+      if(f.type==="textarea"){ const ta=el("textarea",{placeholder:f.ph,style:{minHeight:"75px",resize:"vertical"}}); ta.value=cfg[f.key]||""; ta.addEventListener("input",e=>{ cfg[f.key]=e.target.value; }); fw.appendChild(ta); }
+      else { const fi=inp({type:f.type||"text",placeholder:f.ph,value:String(cfg[f.key]||"")}); fi.addEventListener("input",e=>{ cfg[f.key]=f.type==="number"?parseInt(e.target.value)||0:e.target.value; }); fw.appendChild(fi); }
       c.appendChild(fw);
     });
-    const sb=btn({style:{width:"100%",background:"var(--dark)",color:"#fff",border:"none",borderRadius:"10px",padding:"12px",fontWeight:"600",fontSize:"14px",marginTop:"6px"}},"💾 Хадгалах");
-    sb.addEventListener("click",async()=>{
-      sb.textContent="⏳..."; sb.disabled=true;
-      await DB.saveSettings(cfg); S.settings={...cfg};
-      sb.textContent="✓ Хадгалагдлаа!"; sb.style.background="#10b981";
-      setTimeout(()=>{ sb.textContent="💾 Хадгалах"; sb.style.background="var(--dark)"; sb.disabled=false; },2000);
-      showToast("Хадгалагдлаа ✓");
-    });
+    const sb=btn({style:{width:"100%",background:"var(--dark)",color:"#fff",border:"none",borderRadius:"10px",padding:"11px",fontWeight:"600",fontSize:"14px",marginTop:"4px"}},"💾 Хадгалах");
+    sb.addEventListener("click",async()=>{ sb.textContent="⏳..."; sb.disabled=true; await DB.saveSettings(cfg); S.settings={...cfg}; sb.textContent="✓ Хадгалагдлаа!"; sb.style.background="#10b981"; setTimeout(()=>{ sb.textContent="💾 Хадгалах"; sb.style.background="var(--dark)"; sb.disabled=false; },2000); showToast("Хадгалагдлаа ✓"); });
     c.appendChild(sb);
     return c;
   }
 
-  wrap.appendChild(settingCard("🏠 Студийн мэдээлэл",[
-    {key:"studioName",label:"Студийн нэр",ph:"Glow Studio"},
-    {key:"tagline",label:"Уриа үг",ph:"Өөрийгөө илэрхийлэх газар"},
-    {key:"phone",label:"Утас",ph:"9900-0000"},
-    {key:"address",label:"Хаяг",ph:"Улаанбаатар хот"}
-  ]));
-  wrap.appendChild(settingCard("💳 Банкны мэдээлэл",[
-    {key:"bank",label:"Банкны нэр",ph:"Хаан банк"},
-    {key:"account",label:"Дансны дугаар",ph:"1234567890"}
-  ]));
-  wrap.appendChild(settingCard("📱 Сошиал медиа",[
-    {key:"instagram",label:"Instagram",ph:"@glowstudio эсвэл бүрэн URL"},
-    {key:"facebook",label:"Facebook",ph:"facebook.com/glowstudio"},
-    {key:"tiktok",label:"TikTok",ph:"@glowstudio"}
-  ]));
-  wrap.appendChild(settingCard("ℹ️ Бидний тухай",[
-    {key:"aboutEmoji",label:"Emoji",ph:"✨"},
-    {key:"aboutTitle",label:"Гарчиг",ph:"Бидний тухай"},
-    {key:"aboutText",label:"Тайлбар",ph:"Студийн тухай...",type:"textarea"}
-  ]));
-
-  // Slot settings separate card
-  const slotCard=div({className:"card-box"});
-  slotCard.appendChild(h3({style:{fontSize:"15px",fontWeight:"700",marginBottom:"18px"}},"⏰ Цагийн тохиргоо"));
-  slotCard.appendChild(lbl({style:{display:"block",fontSize:"11px",fontWeight:"600",color:"#777",marginBottom:"5px",textTransform:"uppercase",letterSpacing:"0.5px"}},"Нэг цагт хамгийн их хүний тоо"));
-  const mxi=inp({type:"number",min:"1",max:"20",value:String(cfg.maxSlot||1),style:{marginBottom:"14px"}});
-  mxi.addEventListener("input",e=>{ cfg.maxSlot=parseInt(e.target.value)||1; }); slotCard.appendChild(mxi);
-  slotCard.appendChild(lbl({style:{display:"block",fontSize:"11px",fontWeight:"600",color:"#777",marginBottom:"5px",textTransform:"uppercase",letterSpacing:"0.5px"}},"Цагийн slot-ууд (нэг мөрт нэг цаг)"));
-  const sta=el("textarea",{placeholder:"10:00\n11:30\n13:00",style:{minHeight:"120px",fontFamily:"monospace",marginBottom:"14px",resize:"vertical"}});
-  sta.value=(cfg.slots||[]).join("\n"); sta.addEventListener("input",e=>{ cfg.slots=e.target.value.split("\n").map(s=>s.trim()).filter(Boolean); }); slotCard.appendChild(sta);
-  const slsb=btn({style:{width:"100%",background:"var(--dark)",color:"#fff",border:"none",borderRadius:"10px",padding:"12px",fontWeight:"600",fontSize:"14px"}},"💾 Хадгалах");
-  slsb.addEventListener("click",async()=>{ slsb.textContent="⏳..."; slsb.disabled=true; await DB.saveSettings(cfg); S.settings={...cfg}; slsb.textContent="✓ Хадгалагдлаа!"; slsb.style.background="#10b981"; setTimeout(()=>{ slsb.textContent="💾 Хадгалах"; slsb.style.background="var(--dark)"; slsb.disabled=false; },2000); showToast("Цагийн тохиргоо хадгалагдлаа ✓"); });
-  slotCard.appendChild(slsb); wrap.appendChild(slotCard);
+  wrap.appendChild(settingCard("🏠 Студийн мэдээлэл",[{key:"studioName",label:"Нэр",ph:"Glow Studio"},{key:"tagline",label:"Уриа үг (hero гарчиг)",ph:"Өөрийгөө <em>илэрхийлэх</em> газар"},{key:"phone",label:"Утас",ph:"9900-0000"},{key:"address",label:"Хаяг",ph:"УБ хот"}]));
+  wrap.appendChild(settingCard("⏰ Цагийн тохиргоо",[{key:"serviceDuration",label:"Үйлчилгээний хугацаа (мин) — бүх үйлчилгээнд адилхан",ph:"90",type:"number"},{key:"slotDuration",label:"Slot хоорондын зай (мин) — ихэвчлэн адилхан",ph:"90",type:"number"},{key:"firstSlot",label:"Эхний цаг",ph:"10:00"},{key:"lastSlot",label:"Сүүлийн эхлэх цаг",ph:"20:00"}]));
+  wrap.appendChild(settingCard("💳 Банкны мэдээлэл",[{key:"bank",label:"Банк",ph:"Хаан банк"},{key:"account",label:"Данс",ph:"1234567890"}]));
+  wrap.appendChild(settingCard("📱 Сошиал медиа",[{key:"instagram",label:"Instagram",ph:"@glowstudio"},{key:"facebook",label:"Facebook",ph:"facebook.com/glowstudio"},{key:"tiktok",label:"TikTok",ph:"@glowstudio"}]));
+  wrap.appendChild(settingCard("ℹ️ Бидний тухай",[{key:"aboutEmoji",label:"Emoji",ph:"✨"},{key:"aboutTitle",label:"Гарчиг",ph:"Бидний тухай"},{key:"aboutText",label:"Тайлбар",ph:"Студийн тухай...",type:"textarea"}]));
 
   // About image
-  const aImgCard=div({className:"card-box"});
-  aImgCard.appendChild(h3({style:{fontSize:"15px",fontWeight:"700",marginBottom:"14px"}},"🖼️ About хэсгийн зураг"));
-  if(cfg.aboutImageUrl){ aImgCard.appendChild(el("img",{src:cfg.aboutImageUrl,alt:"About",style:{width:"100%",height:"160px",objectFit:"cover",borderRadius:"12px",marginBottom:"10px",display:"block"}})); }
-  const aUa=div({className:"upload-area"});
-  aUa.innerHTML=`<div style="font-size:24px;margin-bottom:6px">📸</div><p style="font-size:13px;color:#888">About зураг оруулах</p>`;
-  const aUfi=inp({type:"file",accept:"image/*"}); aUa.appendChild(aUfi);
-  aUa.addEventListener("click",()=>aUfi.click());
-  aUfi.addEventListener("change",async e=>{ const f=e.target.files[0]; if(!f) return; aUa.innerHTML=`<div style="font-size:20px">⏳</div><p style="font-size:12px;color:#999">Байршуулж байна...</p>`; try{ cfg.aboutImageUrl=await compressImage(f,1200,0.82); await DB.saveSettings(cfg); S.settings={...cfg}; showToast("Зураг хадгалагдлаа ✓"); render(); }catch(e){ aUa.innerHTML=`<p style="font-size:12px;color:#ef4444">❌ Алдаа гарлаа</p>`; } });
-  aImgCard.appendChild(aUa); wrap.appendChild(aImgCard);
-
+  const aCard=div({className:"card"});
+  aCard.appendChild(h3({style:{fontSize:"15px",fontWeight:"700",marginBottom:"14px"}},"🖼️ About хэсгийн зураг"));
+  if(cfg.aboutImageUrl) aCard.appendChild(el("img",{src:cfg.aboutImageUrl,alt:"",style:{width:"100%",height:"150px",objectFit:"cover",borderRadius:"12px",marginBottom:"8px",display:"block"}}));
+  const aUa=div({className:"upload-area"}); aUa.innerHTML=`<div style="font-size:22px;margin-bottom:4px">📸</div><p style="font-size:13px;color:#888">About зураг оруулах</p>`;
+  const aUfi=inp({type:"file",accept:"image/*"}); aUa.appendChild(aUfi); aUa.addEventListener("click",()=>aUfi.click());
+  aUfi.addEventListener("change",async e=>{ const f=e.target.files[0]; if(!f) return; aUa.innerHTML=`<div>⏳</div>`; try{ cfg.aboutImageUrl=await compressImage(f,1200,0.82); await DB.saveSettings(cfg); S.settings={...cfg}; showToast("Зураг хадгалагдлаа ✓"); render(); }catch(e){ aUa.innerHTML=`<p style="font-size:12px;color:#ef4444">❌ Алдаа</p>`; } });
+  aCard.appendChild(aUa); wrap.appendChild(aCard);
   return wrap;
 }
 
-// ── ADMIN CALENDAR TAB ────────────────────────────
+// ── ADMIN: Calendar tab ───────────────────────────
 function buildCalendarTab(){
   const cfg=S.settings;
-  const slots=cfg.slots||["10:00","11:30","13:00","14:30","16:00","17:30"];
-  const maxSlot=cfg.maxSlot||1;
+  const slots=genSlots(cfg);
+  const svcs=S.services.length>0?S.services:DEF_SERVICES;
   const wrap=div({});
-  wrap.appendChild(h2({className:"serif",style:{fontSize:"26px",marginBottom:"6px"}},"Хуваарь удирдах"));
-  wrap.appendChild(p({style:{color:"var(--muted)",fontSize:"14px",marginBottom:"28px"}},"Амралтын өдрүүд болон өдрийн захиалгуудыг харах"));
-  const g=div({style:{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(300px,1fr))",gap:"20px"}});
+  wrap.appendChild(h2({className:"serif",style:{fontSize:"24px",marginBottom:"6px"}},"Хуваарь"));
+  wrap.appendChild(p({style:{color:"var(--muted)",fontSize:"13px",marginBottom:"24px"}},"Амралтын өдрүүд болон өдрийн захиалгуудыг харах"));
+  const g=div({style:{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(300px,1fr))",gap:"18px"}});
 
-  const hCard=div({className:"card-box"});
-  hCard.appendChild(h3({style:{fontSize:"15px",fontWeight:"700",marginBottom:"14px"}},"🛑 Амралтын өдрүүд"));
-  const hr2=div({style:{display:"flex",gap:"8px",marginBottom:"14px"}});
-  const hI=inp({type:"date",style:{flex:"1"}});
-  hr2.appendChild(hI);
-  const addHBtn=btn({style:{background:"var(--dark)",color:"#fff",border:"none",borderRadius:"9px",padding:"0 16px",fontWeight:"600",fontSize:"13px",whiteSpace:"nowrap"}},"+ Нэмэх");
-  addHBtn.addEventListener("click",async()=>{ const v=hI.value; if(v&&S.holidays.indexOf(v)<0){ await DB.addHoliday(v); hI.value=""; showToast("Нэмэгдлаа"); } });
-  hr2.appendChild(addHBtn); hCard.appendChild(hr2);
+  // Амралтын өдрүүд
+  const hCard=div({className:"card"});
+  hCard.appendChild(h3({style:{fontSize:"15px",fontWeight:"700",marginBottom:"12px"}},"🛑 Амралтын өдрүүд"));
+  const hr2=div({style:{display:"flex",gap:"7px",marginBottom:"12px"}}); const hI=inp({type:"date",style:{flex:"1"}}); hr2.appendChild(hI);
+  const addHB=btn({style:{background:"var(--dark)",color:"#fff",border:"none",borderRadius:"9px",padding:"0 14px",fontWeight:"600",fontSize:"13px",whiteSpace:"nowrap"}},"+ Нэмэх");
+  addHB.addEventListener("click",async()=>{ const v=hI.value; if(v&&!S.holidays.includes(v)){ await DB.addHoliday(v); hI.value=""; showToast("Нэмэгдлаа"); } }); hr2.appendChild(addHB); hCard.appendChild(hr2);
   if(S.holidays.length===0){ hCard.appendChild(p({style:{color:"#ccc",fontSize:"13px"}},"Амралтын өдөр байхгүй")); }
-  else { const hl=div({style:{display:"flex",flexWrap:"wrap",gap:"7px"}}); S.holidays.forEach(hd=>{ const c=div({style:{background:"#fff7ed",border:"1px solid #fed7aa",borderRadius:"8px",padding:"6px 10px",display:"flex",alignItems:"center",gap:"7px",fontSize:"13px"}}); c.appendChild(span({},"📅 "+hd)); const rb=btn({style:{background:"#fee2e2",color:"#ef4444",border:"none",borderRadius:"4px",padding:"1px 7px",fontSize:"12px",fontWeight:"700"}},"✕"); (function(d){ rb.addEventListener("click",async()=>{ await DB.removeHoliday(d); showToast("Устгагдлаа"); }); })(hd); c.appendChild(rb); hl.appendChild(c); }); hCard.appendChild(hl); }
+  else { const hl=div({style:{display:"flex",flexWrap:"wrap",gap:"7px"}}); S.holidays.forEach(hd=>{ const c=div({style:{background:"#fff7ed",border:"1px solid #fed7aa",borderRadius:"8px",padding:"5px 10px",display:"flex",alignItems:"center",gap:"6px",fontSize:"13px"}}); c.appendChild(span({},"📅 "+hd)); const rb=btn({style:{background:"#fee2e2",color:"#ef4444",border:"none",borderRadius:"4px",padding:"1px 7px",fontSize:"12px",fontWeight:"700"}},"✕"); (function(d){ rb.addEventListener("click",async()=>{ await DB.removeHoliday(d); showToast("Устгагдлаа"); }); })(hd); c.appendChild(rb); hl.appendChild(c); }); hCard.appendChild(hl); }
   g.appendChild(hCard);
 
-  const sCard=div({className:"card-box"});
-  sCard.appendChild(h3({style:{fontSize:"15px",fontWeight:"700",marginBottom:"14px"}},"📊 Өдрийн захиалгын байдал"));
+  // Өдрийн байдал — үйлчилгээ тус бүрээр
+  const sCard=div({className:"card"});
+  sCard.appendChild(h3({style:{fontSize:"15px",fontWeight:"700",marginBottom:"12px"}},"📊 Өдрийн захиалгын байдал"));
   const sI=inp({type:"date",value:S.schedDate,style:{marginBottom:"14px"}});
   sI.addEventListener("change",e=>setState({schedDate:e.target.value})); sCard.appendChild(sI);
-  if(S.holidays.indexOf(S.schedDate)>=0){ sCard.appendChild(div({style:{background:"#fef3c7",border:"1px solid #fcd34d",borderRadius:"10px",padding:"12px 14px",fontSize:"13px",color:"#92400e"}},"⚠️ Амралтын өдөр")); }
+  if(S.holidays.includes(S.schedDate)){ sCard.appendChild(div({style:{background:"#fef3c7",border:"1px solid #fcd34d",borderRadius:"10px",padding:"12px",fontSize:"13px",color:"#92400e"}},"⚠️ Амралтын өдөр")); }
   else {
-    const sg=div({style:{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:"8px"}});
-    slots.forEach(t=>{ const list=S.bookings.filter(b=>b.date===S.schedDate&&b.time===t&&b.status!=="cancelled"); const used=list.length; const left=maxSlot-used; const sc2=div({style:{border:"1px solid var(--border)",borderRadius:"12px",padding:"10px 8px",background:left===0?"#fff5f5":"#fff"}}); sc2.appendChild(p({style:{fontWeight:"700",fontSize:"14px",marginBottom:"2px"}},t)); sc2.appendChild(p({style:{fontSize:"11px",fontWeight:"700",color:left===0?"#ef4444":left<=1?"#f59e0b":"#10b981"}},left===0?"Дүүрсэн":used+"/"+maxSlot)); list.forEach(b=>sc2.appendChild(p({style:{fontSize:"10px",color:"#999",marginTop:"2px"}},"• "+b.name))); sg.appendChild(sc2); });
-    sCard.appendChild(sg);
+    svcs.forEach(svc=>{
+      const cap=svc.capacity||1;
+      const secDiv=div({style:{marginBottom:"16px"}});
+      secDiv.appendChild(p({style:{fontWeight:"700",fontSize:"13px",marginBottom:"8px",color:"var(--pink3)"}},[svc.emoji||"","  ",svc.name,span({style:{fontSize:"11px",color:"var(--muted)",fontWeight:"400",marginLeft:"6px"}},"("+cap+" зэрэг)")]));
+      const sg=div({style:{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(90px,1fr))",gap:"6px"}});
+      slots.forEach(t=>{
+        const info=getSlotInfo(S.schedDate,t,svc.id,cfg,S.bookings);
+        const sc2=div({style:{border:"1px solid var(--border)",borderRadius:"10px",padding:"8px 6px",background:info.full?"#fff5f5":info.used>0?"#fffbeb":"#fff",textAlign:"center"}});
+        sc2.appendChild(p({style:{fontWeight:"700",fontSize:"13px",marginBottom:"2px"}},t));
+        sc2.appendChild(p({style:{fontSize:"10px",fontWeight:"700",color:info.full?"#ef4444":info.used>0?"#d97706":"#10b981"}},info.full?"Дүүрсэн":info.used+"/"+cap));
+        // Захиалагчдын нэр
+        const bks=S.bookings.filter(b=>b.date===S.schedDate&&b.time===t&&b.serviceId===svc.id&&b.status!=="cancelled");
+        bks.forEach(b=>sc2.appendChild(p({style:{fontSize:"9px",color:"#999",marginTop:"2px"}},"• "+b.name+(b.subName?" ("+b.subName+")":""))));
+        sg.appendChild(sc2);
+      });
+      secDiv.appendChild(sg);
+      sCard.appendChild(secDiv);
+    });
   }
   g.appendChild(sCard);
   wrap.appendChild(g);
@@ -970,30 +1010,30 @@ function buildCalendarTab(){
 function AdminPage(){
   if(!S.adminAuthed) return AdminLoginPage();
   const cfg=S.settings;
-  const wrap=div({style:{minHeight:"100vh",background:"#f6f4f5"}});
+  const wrap=div({style:{minHeight:"100vh",background:"#f5f3f4"}});
   const bar=div({className:"admin-bar"});
   const left=div({style:{display:"flex",alignItems:"center",gap:"10px"}});
-  left.appendChild(span({style:{fontSize:"16px"}},"✨"));
-  left.appendChild(span({className:"serif",style:{fontSize:"18px",fontWeight:"500",color:"#fff"}},cfg.studioName||"Glow Studio"));
-  left.appendChild(span({style:{fontSize:"11px",background:"rgba(255,255,255,.1)",borderRadius:"6px",padding:"2px 8px",color:"#aaa"}},cfg.adminEmail));
-  const right=div({style:{display:"flex",gap:"3px",alignItems:"center",flexWrap:"wrap"}});
+  left.appendChild(span({style:{fontSize:"14px"}},"✨"));
+  left.appendChild(span({className:"serif",style:{fontSize:"17px",fontWeight:"500",color:"#fff"}},cfg.studioName||"Glow Studio"));
+  left.appendChild(span({style:{fontSize:"11px",background:"rgba(255,255,255,.1)",borderRadius:"6px",padding:"2px 8px",color:"#888"}},cfg.adminEmail));
+  const right=div({style:{display:"flex",gap:"2px",alignItems:"center",flexWrap:"wrap"}});
   [["bookings","📋 Захиалга"],["services","✂️ Үйлчилгээ"],["gallery","🖼️ Галерей"],["settings","⚙️ Тохиргоо"],["calendar","📅 Хуваарь"]].forEach(item=>{
-    const tb=btn({className:"admin-tab"+(S.adminTab===item[0]?" active":"")},item[1]);
+    const tb=btn({className:"atab"+(S.adminTab===item[0]?" on":"")},item[1]);
     tb.addEventListener("click",()=>setState({adminTab:item[0]})); right.appendChild(tb);
   });
-  const out=btn({style:{background:"none",border:"1px solid #333",color:"#777",borderRadius:"8px",padding:"5px 12px",fontSize:"12px",marginLeft:"8px"}},"Гарах");
+  const out=btn({style:{background:"none",border:"1px solid #333",color:"#777",borderRadius:"8px",padding:"5px 11px",fontSize:"12px",marginLeft:"8px"}},"Гарах");
   out.addEventListener("click",()=>{ localStorage.removeItem("gw:auth"); setState({adminAuthed:false}); }); right.appendChild(out);
   bar.appendChild(left); bar.appendChild(right); wrap.appendChild(bar);
 
-  const inner=div({style:{maxWidth:"1100px",margin:"0 auto",padding:"28px clamp(12px,3vw,28px)"}});
+  const inner=div({style:{maxWidth:"1100px",margin:"0 auto",padding:"24px clamp(12px,3vw,24px)"}});
   if(S.adminTab==="bookings"){
     const sw=div({id:"asc"}); sw.appendChild(buildStats()); inner.appendChild(sw);
     const tw=div({id:"atc"}); tw.appendChild(buildBookingTable()); inner.appendChild(tw);
-  } else if(S.adminTab==="services"){ inner.appendChild(buildServicesTab()); }
-  else if(S.adminTab==="gallery"){ inner.appendChild(buildGalleryTab()); }
-  else if(S.adminTab==="settings"){
-    inner.appendChild(h2({className:"serif",style:{fontSize:"26px",marginBottom:"6px"}},"Тохиргоо"));
-    inner.appendChild(p({style:{color:"var(--muted)",fontSize:"14px",marginBottom:"24px"}},"Студийн бүх мэдээллийг энд удирдана уу"));
+  } else if(S.adminTab==="services"){ inner.appendChild(buildServicesTab());
+  } else if(S.adminTab==="gallery"){ inner.appendChild(buildGalleryTab());
+  } else if(S.adminTab==="settings"){
+    inner.appendChild(h2({className:"serif",style:{fontSize:"24px",marginBottom:"6px"}},"Тохиргоо"));
+    inner.appendChild(p({style:{color:"var(--muted)",fontSize:"13px",marginBottom:"20px"}},"Студийн бүх мэдээллийг энд удирдана уу"));
     inner.appendChild(buildSettingsTab());
   } else if(S.adminTab==="calendar"){ inner.appendChild(buildCalendarTab()); }
   wrap.appendChild(inner);
