@@ -10,18 +10,18 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --cream:#faf6f1;
-  --rose:#e8c4c4;
-  --rose2:#d4a0a0;
-  --rose3:#b87878;
-  --sage:#c8d5c0;
-  --sage2:#a8b89a;
-  --terra:#c4957a;
-  --dark:#2c2018;
-  --text:#3d2e24;
-  --muted:#9a8070;
-  --border:#ecddd5;
-  --card:#fff9f6;
+  --cream:#ffffff;
+  --rose:#fadadd;
+  --rose2:#f4a7b9;
+  --rose3:#e07090;
+  --sage:#fce4ec;
+  --sage2:#d47a8f;
+  --terra:#e07090;
+  --dark:#2a1a22;
+  --text:#3a2030;
+  --muted:#b08090;
+  --border:#fbc8d4;
+  --card:#fff5f7;
 }
 html{scroll-behavior:smooth;}
 body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;}
@@ -49,7 +49,7 @@ button{cursor:pointer;font-family:‘DM Sans’,sans-serif;}
 /* NAV */
 nav{position:sticky;top:0;z-index:200;height:68px;background:rgba(250,246,241,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(236,221,213,.6);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,5vw,56px);}
 .nav-logo{display:flex;align-items:center;gap:12px;background:none;border:none;cursor:pointer;}
-.nav-petal{width:28px;height:28px;background:linear-gradient(135deg,var(–rose),var(–terra));border-radius:60% 40% 30% 70%/60% 30% 70% 40%;animation:blob 6s ease-in-out infinite;}
+.nav-petal{width:28px;height:28px;background:linear-gradient(135deg,var(–rose),var(–rose3));border-radius:60% 40% 30% 70%/60% 30% 70% 40%;animation:blob 6s ease-in-out infinite;}
 .nav-name{font-family:‘Fraunces’,serif;font-size:20px;font-weight:400;color:var(–dark);letter-spacing:-.3px;}
 .nav-links{display:flex;gap:4px;align-items:center;}
 .nav-btn{background:none;border:none;color:var(–muted);border-radius:100px;padding:8px 18px;font-size:13px;font-weight:500;transition:all .2s;}
@@ -60,9 +60,9 @@ nav{position:sticky;top:0;z-index:200;height:68px;background:rgba(250,246,241,.9
 
 /* HERO */
 .hero{min-height:96vh;display:grid;place-items:center;padding:80px clamp(20px,5vw,60px);position:relative;overflow:hidden;}
-.hero-blob1{position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(232,196,196,.35),transparent 70%);top:-100px;right:-100px;border-radius:50%;pointer-events:none;}
-.hero-blob2{position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(200,213,192,.3),transparent 70%);bottom:-80px;left:-80px;border-radius:50%;pointer-events:none;}
-.hero-blob3{position:absolute;width:200px;height:200px;background:radial-gradient(circle,rgba(196,149,122,.15),transparent 70%);top:30%;left:10%;border-radius:50%;pointer-events:none;}
+.hero-blob1{position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(250,218,221,.5),transparent 70%);top:-100px;right:-100px;border-radius:50%;pointer-events:none;}
+.hero-blob2{position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(244,167,185,.25),transparent 70%);bottom:-80px;left:-80px;border-radius:50%;pointer-events:none;}
+.hero-blob3{position:absolute;width:200px;height:200px;background:radial-gradient(circle,rgba(224,112,144,.12),transparent 70%);top:30%;left:10%;border-radius:50%;pointer-events:none;}
 .hero-inner{text-align:center;max-width:720px;position:relative;z-index:1;}
 .hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.7);border:1px solid var(–border);border-radius:100px;padding:8px 22px;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(–terra);margin-bottom:36px;backdrop-filter:blur(8px);}
 .hero-tag-dot{width:6px;height:6px;border-radius:50%;background:var(–terra);animation:float 2s ease-in-out infinite;}
@@ -422,12 +422,12 @@ function HomePage(){
   hero.appendChild(div({className:"hero-blob2"}));
   hero.appendChild(div({className:"hero-blob3"}));
   const hi=div({className:"hero-inner"});
-  hi.appendChild(div({className:"hero-tag f1"},[div({className:"hero-tag-dot"}),"Гоо сайхны студи"]));
+  hi.appendChild(div({className:"hero-tag f1"},[div({className:"hero-tag-dot"}),"Beauty Studio"]));
   const ht=h1({className:"serif hero-title f2"});
   const tl=cfg.tagline||"Өөрийгөө <em>хайрлах</em> газар";
   ht.innerHTML=tl;
   hi.appendChild(ht);
-  hi.appendChild(p({className:"hero-sub f3"},"Мэргэжлийн гоо сайхны үйлчилгээгээр өөрийгөө хайрлаарай. Дулаахан орчинд тав тухтай өнгөрүүлээрэй."));
+  hi.appendChild(p({className:"hero-sub f3"},"Таны гоо сайхны манаанд."));
   const ctaWrap=div({className:"f4"});
   const cta=btn({className:"hero-cta",onClick:()=>setState({page:"book",step:1,selService:null,selSub:null,time:""})});
   cta.appendChild(span({},"Цаг захиалах"));
@@ -482,11 +482,6 @@ function HomePage(){
   // GALLERY
   if(S.gallery.length>0){
     const secGal=div({className:"section",style:{textAlign:"center"}});
-    const gEye=div({className:"sec-eyebrow",style:{justifyContent:"center"}});
-    gEye.appendChild(div({className:"sec-eyebrow-line"}));
-    gEye.appendChild(span({className:"sec-eyebrow-text"},"Галерей"));
-    gEye.appendChild(div({className:"sec-eyebrow-line"}));
-    secGal.appendChild(gEye);
     const gT=h2({className:"serif sec-title",style:{marginBottom:"0"}});gT.innerHTML="Манай <em>ажлуудаас</em>";secGal.appendChild(gT);
     const gg=div({className:"gal-grid"});
     S.gallery.forEach(item=>{
@@ -675,8 +670,8 @@ function BookPage(){
       inner.appendChild(tg);
       const subDurDisp=S.selSub?.duration||90;
       const endT=S.time?minToTime(timeToMin(S.time)+subDurDisp):"";
-      inner.appendChild(div({style:{background:"rgba(168,184,154,.12)",border:"1px solid rgba(168,184,154,.3)",borderRadius:"12px",padding:"10px 16px",fontSize:"12px",color:"var(--sage2)",marginBottom:"20px"}},
-        S.time?`⏱️ ${S.time} – ${endT} (${subDurDisp} минут)`:`🌿 ${S.selSub?.name} — ${subDurDisp} минут үргэлжилнэ`));
+      inner.appendChild(div({style:{background:"rgba(250,218,221,.2)",border:"1px solid rgba(244,167,185,.4)",borderRadius:"12px",padding:"10px 16px",fontSize:"12px",color:"var(--rose3)",marginBottom:"20px"}},
+        S.time?`⏱️ ${S.time} – ${endT} (${subDurDisp} минут)`:`🌸 ${S.selSub?.name} — ${subDurDisp} минут үргэлжилнэ`));
       const nb=btn({className:"btn-primary",onClick:()=>{if(S.time)setState({step:4});}});
       nb.textContent="Үргэлжлүүлэх →";
       if(!S.time)nb.disabled=true;
@@ -765,8 +760,8 @@ function SuccessPage(){
     });
     card.appendChild(pay);
   }
-  const notice=div({style:{background:"rgba(168,184,154,.12)",border:"1px solid rgba(168,184,154,.3)",borderRadius:"14px",padding:"14px 18px",marginBottom:"24px",textAlign:"left"}});
-  notice.appendChild(p({style:{fontSize:"13px",color:"var(--sage2)",marginBottom:"3px"}},"✅ Төлбөр шилжүүлсний дараа админ захиалгыг баталгаажуулна."));
+  const notice=div({style:{background:"rgba(250,218,221,.2)",border:"1px solid rgba(244,167,185,.4)",borderRadius:"14px",padding:"14px 18px",marginBottom:"24px",textAlign:"left"}});
+  notice.appendChild(p({style:{fontSize:"13px",color:"var(--rose3)",marginBottom:"3px"}},"✅ Төлбөр шилжүүлсний дараа админ захиалгыг баталгаажуулна."));
   notice.appendChild(p({style:{fontSize:"12px",color:"var(--muted)"}},b.phone+" дугаарт мэдэгдэл хүлээж авна."));
   card.appendChild(notice);
   card.appendChild(btn({className:"btn-primary",onClick:()=>setState({page:"home"})},"Нүүр хуудас руу буцах"));
@@ -820,7 +815,7 @@ function showMsgModal(booking){
   hd.appendChild(h3({style:{fontFamily:"'Fraunces',serif",fontSize:"18px",fontWeight:"400",color:"var(--dark)"}},"💬 Мессеж илгээх"));
   const cl=btn({style:{background:"none",border:"none",fontSize:"20px",cursor:"pointer",color:"var(--muted)"}},"✕");
   cl.addEventListener("click",()=>ov.remove());hd.appendChild(cl);m.appendChild(hd);
-  m.appendChild(div({style:{background:"rgba(168,184,154,.12)",border:"1px solid rgba(168,184,154,.3)",borderRadius:"12px",padding:"10px 14px",marginBottom:"14px",fontSize:"13px",color:"var(--sage2)"}},`✅ ${booking.name}-д илгээх мессежийн текст. Хуулаад мессеж app-д paste хийнэ үү.`));
+  m.appendChild(div({style:{background:"rgba(250,218,221,.2)",border:"1px solid rgba(244,167,185,.4)",borderRadius:"12px",padding:"10px 14px",marginBottom:"14px",fontSize:"13px",color:"var(--rose3)"}},`✅ ${booking.name}-д илгээх мессежийн текст. Хуулаад мессеж app-д paste хийнэ үү.`));
   m.appendChild(div({style:{background:"#f8f6f4",border:"1px solid var(--border)",borderRadius:"14px",padding:"16px",fontSize:"13px",lineHeight:"1.8",whiteSpace:"pre-wrap",marginBottom:"14px",color:"var(--text)",fontFamily:"monospace",maxHeight:"240px",overflowY:"auto"}},txt));
   const cpBtn=btn({style:{width:"100%",background:"var(--dark)",color:"#fff",border:"none",borderRadius:"100px",padding:"13px",fontWeight:"500",fontSize:"14px",marginBottom:"8px"}},"📋 Мессежийн текст хуулах");
   cpBtn.addEventListener("click",()=>{navigator.clipboard.writeText(txt).then(()=>{cpBtn.textContent="✓ Хуулагдлаа!";cpBtn.style.background="#059669";setTimeout(()=>{cpBtn.textContent="📋 Мессежийн текст хуулах";cpBtn.style.background="var(--dark)";},2500);});});
